@@ -15,5 +15,6 @@ namespace MyVetAppoinment.Entities
          public int Stock { get; set; }
 
          public int ID { get; set; }
+        public int Price { get; set; }
     }
 }
