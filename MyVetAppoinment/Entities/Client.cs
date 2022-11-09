@@ -8,6 +8,15 @@ namespace MyVetAppoinment.Entities
 {
     public class Client
     {
+        public Client(int id, string name, List<Pet> pets, string eMail, int phoneNumber)
+        {
+            Id = id;
+            Name = name;
+            Pets = pets;
+            EMail = eMail;
+            PhoneNumber = phoneNumber;
+        }
+
         public int Id { get; set; } 
 
         public string Name { get; set; }    
