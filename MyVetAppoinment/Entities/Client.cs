@@ -11,14 +11,14 @@
             PhoneNumber = phoneNumber;
         }
 
-        public int Id { get; set; } 
+        public int Id { get; } 
 
-        public string Name { get; set; }    
+        public string Name { get; }    
 
-        public List<Pet> Pets { get; set; }
+        public List<Pet> Pets { get; }
 
-        public string EMail { get; set; }
+        public string EMail { get; }
 
-        public int PhoneNumber { get; set; }
+        public int PhoneNumber { get; }
     }
 }

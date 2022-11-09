@@ -11,10 +11,10 @@
             Appointments = appointments;
         }
 
-        public int Id { get; set; }
-        public int OwnerId { get; set; }
-        public string Name { get; set; }
-        public DateTime Birthdate { get; set; }
-        public List<Appointment> Appointments { get; set; }
+        public int Id { get; }
+        public int OwnerId { get; }
+        public string Name { get; }
+        public DateTime Birthdate { get; }
+        public List<Appointment> Appointments { get; }
     }
 }
