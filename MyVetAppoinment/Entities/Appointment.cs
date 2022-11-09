@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace MyVetAppoinment.Entities
 {
-    internal class Appointment
+    public class Appointment
     {
+        public int Id { get; set; } 
+
+        public Pet Pet { get; set; }
+
+        public DateTime DateAndHour { get; set; }
+
+        public Cabinet Cabinet { get; set; }
+
     }
 }
