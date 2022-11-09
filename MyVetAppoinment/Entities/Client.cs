@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace MyVetAppoinment.Entities
 {
-    internal class Client
+    public class Client
     {
+        public int Id { get; set; } 
+
+        public string Name { get; set; }    
+
+        public List<Pet> Pets { get; set; }
+
+        public string EMail { get; set; }
+
+        public int PhoneNumber { get; set; }
     }
 }
