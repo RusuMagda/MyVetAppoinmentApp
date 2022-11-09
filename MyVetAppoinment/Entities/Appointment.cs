@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyVetAppoinment.Entities
 {
-    internal class Appointment
+    public class Appointment
     {
     }
 }
