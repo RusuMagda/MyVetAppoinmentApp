@@ -10,13 +10,15 @@
             Cabinet = cabinet;
         }
 
-        public int Id { get; set; } 
+        public int Id { get; } 
 
-        public Pet Pet { get; set; }
+        public Pet Pet { get; }
 
-        public DateTime DateAndHour { get; set; }
+        public DateTime DateAndHour { get; }
 
-        public Cabinet Cabinet { get; set; }
+        public string Description { get; }
+
+        public Cabinet Cabinet { get; }
 
     }
 }

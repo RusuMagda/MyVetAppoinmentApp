@@ -9,8 +9,8 @@
             Drugs = drugs;
         }
 
-        public int ShopId { get; set; }
-        public string ShopName { get; set; }    
-        public List<Drug> Drugs { get; set; }
+        public int ShopId { get; }
+        public string ShopName { get; }    
+        public List<Drug> Drugs { get; }
     }
 }
