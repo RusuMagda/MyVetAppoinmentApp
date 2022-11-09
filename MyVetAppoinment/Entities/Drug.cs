@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace MyVetAppoinment.Entities
 {
-    internal class Drug
+    public class Drug
     {
+         public string DrugName { get; set; }
+
+         public string DrugDescription { get; set; }
+
+         public int Stock { get; set; }
+
+         public int ID { get; set; }
     }
 }
