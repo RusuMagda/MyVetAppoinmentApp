@@ -20,5 +20,10 @@ namespace MyVetAppoinment.Domain.Entities
         {
             Clients.Add(client);
         }
+
+        public void attachShop(Shop shop)
+        {
+            Shop = shop;
+        }
     }
 }

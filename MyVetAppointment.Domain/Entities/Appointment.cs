@@ -21,5 +21,15 @@
 
         public Cabinet Cabinet { get; private set; }
 
+        public void attachPet(Pet pet)
+        {
+            Pet = pet;
+        }
+
+        public void attachCabinet(Cabinet cabinet)
+        {
+            Cabinet = cabinet;
+        }
+
     }
 }
