@@ -12,5 +12,10 @@
         public int ShopId { get; }
         public string ShopName { get; }    
         public List<Drug> Drugs { get; }
+
+        public void addDrug(Drug drug)
+        {
+            Drugs.Add(drug);
+        }
     }
 }

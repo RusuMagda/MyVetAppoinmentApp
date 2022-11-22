@@ -20,5 +20,10 @@
         public string EMail { get; }
 
         public int PhoneNumber { get; }
+
+        public void addPet(Pet pet)
+        {
+            Pets.Add(pet);
+        }
     }
 }
