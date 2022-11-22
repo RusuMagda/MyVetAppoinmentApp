@@ -1,8 +1,4 @@
-﻿
-using MyVetAppoinment.Data;
-using MyVetAppoinment.Entities;
-
-namespace MyVetAppoinment.Repositories
+﻿namespace MyVetAppoinment.Repositories
 {
     public class ShopRepository : IShopRepository
     {
