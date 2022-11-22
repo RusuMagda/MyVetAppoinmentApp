@@ -17,5 +17,10 @@ namespace MyVetAppoinment.Entities
         public string Address { get; }
         public List<Client> Clients { get; }
         public Shop Shop { get; }
+
+        public void addClient(Client client)
+        {
+            Clients.Add(client);
+        }
     }
 }

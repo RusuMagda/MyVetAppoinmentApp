@@ -2,11 +2,12 @@
 {
     public class Appointment
     {
-        public Appointment(int id, Pet pet, DateTime dateAndHour, Cabinet cabinet)
+        public Appointment(int id, Pet pet, DateTime startTime, DateTime endTime, Cabinet cabinet)
         {
             Id = id;
             Pet = pet;
-            DateAndHour = dateAndHour;
+            StartTime = startTime;
+            EndTime = endTime;
             Cabinet = cabinet;
         }
 
@@ -14,7 +15,8 @@
 
         public Pet Pet { get; }
 
-        public DateTime DateAndHour { get; }
+        public DateTime StartTime { get; }
+        public DateTime EndTime { get; }
 
         public string Description { get; }
 

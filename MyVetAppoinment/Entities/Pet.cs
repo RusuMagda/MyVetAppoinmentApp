@@ -16,5 +16,10 @@
         public string Name { get; }
         public DateTime Birthdate { get; }
         public List<Appointment> Appointments { get; }
+
+        public void addAppointment(Appointment appointment)
+        {
+            Appointments.Add(appointment);
+        }
     }
 }
