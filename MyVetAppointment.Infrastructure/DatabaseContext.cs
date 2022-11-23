@@ -6,6 +6,11 @@ namespace MyVetAppointment.Infrastructure
 {
     public class DatabaseContext : DbContext, IDatabaseContext
     {
+
+        public DatabaseContext()
+        {
+            this.Database.EnsureCreated();
+        }
         public DbSet<Appointment> Appointments => Set<Appointment>();
 
         public DbSet<Cabinet> Cabinets => Set<Cabinet>();
