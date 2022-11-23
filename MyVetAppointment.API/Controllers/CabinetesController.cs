@@ -31,5 +31,36 @@ namespace MyVetAppointment.API.Controllers
             return Created(nameof(Get), cabinet);
 
         }
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            return Ok(cabinetRepository.Get(id));
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Remove(Guid id)
+        {
+            var cabinet = cabinetRepository.Get(id);
+            if (cabinet == null)
+            {
+                return NotFound();
+            }
+            cabinetRepository.Delete(cabinet);
+            cabinetRepository.Save();
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, [FromBody] CreateCabinetDto dto)
+        {
+            var cabinet = cabinetRepository.Get(id);
+            if (cabinet == null)
+            {
+                return NotFound();
+            }
+            cabinetRepository.Update(new Cabinet(dto.Name, dto.Address));
+            // petRepository.Save();
+            return NoContent();
+        }
     }
 }
