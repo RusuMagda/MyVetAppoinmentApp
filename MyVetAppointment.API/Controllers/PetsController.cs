@@ -59,8 +59,11 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            petRepository.Update(new Pet(dto.OwnerId, dto.Name, dto.Birthdate));
-           // petRepository.Save();
+            pet.Name = dto.Name;
+            pet.OwnerId = dto.OwnerId;
+            pet.Birthdate = dto.Birthdate;
+            petRepository.Update(pet);
+            petRepository.Save();
             return NoContent();
         }
 
