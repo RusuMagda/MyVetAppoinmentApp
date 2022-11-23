@@ -18,7 +18,8 @@ namespace MyVetAppoinment.Repositories
         }
 
         public void Update(Drug drug)
-        {
+        {    
+
             this.context.Drugs.Update(drug);
         }
 
@@ -35,6 +36,10 @@ namespace MyVetAppoinment.Repositories
         public Drug Get(Guid id)
         {
             return context.Drugs.Find(id);
+        }
+        public Drug Get(string name)
+        {
+            return context.Drugs.Find(name);
         }
 
         public void Save()
