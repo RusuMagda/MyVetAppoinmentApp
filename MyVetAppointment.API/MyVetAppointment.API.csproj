@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MyVetAppointment.Application\MyVetAppointment.Application.csproj" />
     <ProjectReference Include="..\MyVetAppointment.Infrastructure\MyVetAppointment.Infrastructure.csproj" />
   </ItemGroup>
