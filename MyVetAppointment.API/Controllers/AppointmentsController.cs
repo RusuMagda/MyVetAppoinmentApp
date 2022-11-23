@@ -34,8 +34,8 @@ namespace MyVetAppointment.API.Controllers
             return Ok(appointment);
         }
 
-        [HttpPost]
-        public IActionResult Create([FromBody] CreateAppointmentDto dto)
+        [HttpPost("{idPet:guid}/{idCabinet:guid}")]
+        public IActionResult Create([FromBody] CreateAppointmentDto dto, Guid idPet, Guid idCabinet)
         {
             var appointment = new Appointment(dto.StartTime, dto.EndTime, dto.Description);
             appointmentRepository.Add(appointment);
