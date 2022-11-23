@@ -11,10 +11,14 @@ namespace MyVetAppointment.API.Controllers
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentRepository appointmentRepository;
+        private readonly IPetRepository petRepository;
+        private readonly ICabinetRepository cabinetRepository;
 
-        public AppointmentsController(IAppointmentRepository appointmentRepository)
+        public AppointmentsController(IAppointmentRepository appointmentRepository, IPetRepository petRepository, ICabinetRepository cabinetRepository)
         {
             this.appointmentRepository = appointmentRepository;
+            this.petRepository = petRepository;
+            this.cabinetRepository = cabinetRepository;
         }
 
         [HttpGet]
@@ -38,9 +42,22 @@ namespace MyVetAppointment.API.Controllers
         public IActionResult Create([FromBody] CreateAppointmentDto dto, Guid idPet, Guid idCabinet)
         {
             var appointment = new Appointment(dto.StartTime, dto.EndTime, dto.Description);
+            var pet = petRepository.Get(idPet);
+            var cabinet = cabinetRepository.Get(idCabinet);
+            appointment.attachPet(pet);
+            appointment.attachCabinet(cabinet);
             appointmentRepository.Add(appointment);
             appointmentRepository.Save();
             return Created(nameof(Get), appointment);
+        }
+
+        [HttpDelete("{id:guid}")]
+        public IActionResult Delete(Guid id)
+        {
+            var appointment = appointmentRepository.Get(id);
+            appointmentRepository.Delete(appointment);
+            appointmentRepository.Save();
+            return NoContent();
         }
     }
 }
