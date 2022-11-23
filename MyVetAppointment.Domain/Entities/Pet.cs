@@ -10,11 +10,11 @@
             Birthdate = birthdate;
         }
 
-        public Guid Id { get; private set; }
-        public int OwnerId { get; private set; }
-        public string Name { get; private set; }
-        public DateTime Birthdate { get; private set; }
-        public List<Appointment> Appointments { get; private set; }
+        public Guid Id { get;  set; }
+        public int OwnerId { get;  set; }
+        public string Name { get;  set; }
+        public DateTime Birthdate { get;  set; }
+        public List<Appointment> Appointments { get;  set; }
 
         public void addAppointment(Appointment appointment)
         {

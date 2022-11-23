@@ -10,15 +10,15 @@
             PhoneNumber = phoneNumber;
         }
 
-        public Guid Id { get; private set; } 
+        public Guid Id { get;  set; } 
 
-        public string Name { get; private set; }    
+        public string Name { get;  set; }    
 
-        public List<Pet> Pets { get; private set; }
+        public List<Pet> Pets { get;  set; }
 
-        public string EMail { get; private set; }
+        public string EMail { get;  set; }
 
-        public int PhoneNumber { get; private set; }
+        public int PhoneNumber { get;  set; }
 
         public void addPet(Pet pet)
         {

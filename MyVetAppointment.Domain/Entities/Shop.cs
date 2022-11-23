@@ -8,10 +8,10 @@
             ShopName = shopName;
         }
 
-        public Guid ShopId { get; private set; }
-        public string ShopName { get; private set; }  
-        public Guid CabinetId { get; private set; }
-        public List<Drug> Drugs { get; private set; }
+        public Guid ShopId { get;  set; }
+        public string ShopName { get;  set; }  
+        public Guid CabinetId { get;  set; }
+        public List<Drug> Drugs { get;  set; }
 
         public void AttachShopToCabinet(Cabinet cabinet)
         {

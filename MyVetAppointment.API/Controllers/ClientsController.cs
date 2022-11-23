@@ -52,5 +52,21 @@ namespace MyVetAppointment.API.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, [FromBody] CreateClientDto dto)
+        {
+            var client = clientRepository.Get(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            client.PhoneNumber = dto.PhoneNumber;
+            client.Name = dto.Name;
+            client.EMail = dto.EMail;
+            clientRepository.Update(client);
+            clientRepository.Save();
+            return NoContent();
+        }
+
     }
 }

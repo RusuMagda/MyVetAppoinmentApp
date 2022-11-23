@@ -55,5 +55,19 @@ namespace MyVetAppointment.API.Controllers
             shopRepository.Save();
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, [FromBody] CreateShopDto dto)
+        {
+            var shop = shopRepository.Get(id);
+            if (shop == null)
+            {
+                return NotFound();
+            }
+            shop.ShopName = dto.ShopName;
+            shopRepository.Update(shop);
+            shopRepository.Save();
+            return NoContent();
+        }
     }
 }
