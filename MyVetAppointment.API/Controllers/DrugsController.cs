@@ -57,8 +57,14 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            drugRepository.Update(new Drug(dto.DrugName, dto.Description, dto.Stock, dto.Price, dto.SaleForm,
-                                dto.Quantity, dto.QuantityMeasure));
+            drug.DrugName = dto.DrugName;
+            drug.DrugDescription=dto.Description;
+            drug.Stock=dto.Stock;
+            drug.Price=dto.Price;
+            drug.SaleForm=dto.SaleForm;
+            drug.Quantity=dto.Quantity;
+            drug.QuantityMeasure=dto.QuantityMeasure;
+            drugRepository.Update(drug);
             drugRepository.Save();
             return NoContent();
         }
