@@ -2,7 +2,7 @@
 {
     public class Client
     {
-        public Client(string name, string eMail, int phoneNumber)
+        public Client(string name, string eMail, string phoneNumber)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -18,7 +18,7 @@
 
         public string EMail { get;  set; }
 
-        public int PhoneNumber { get;  set; }
+        public string PhoneNumber { get;  set; }
 
         public void addPet(Pet pet)
         {

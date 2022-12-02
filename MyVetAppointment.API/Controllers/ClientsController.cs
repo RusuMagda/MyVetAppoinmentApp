@@ -34,6 +34,19 @@ namespace MyVetAppointment.API.Controllers
             return Ok(client);
         }
 
+        [HttpGet("{id:guid}/pets")]
+        public IActionResult GetPets(Guid id)
+        {
+            var client = clientRepository.Get(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            var pets = clientRepository.GetAllPets(id);
+            return Ok(pets);
+        }
+
+
         [HttpPost]
         public IActionResult Create([FromBody] CreateClientDto dto)
         {
