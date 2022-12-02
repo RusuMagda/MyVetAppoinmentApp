@@ -29,6 +29,13 @@ namespace MyVetAppointment.API.Controllers
             return Ok(petRepository.Get(id));
         }
 
+        [HttpGet("{id}/appointments")]
+        public IActionResult GetAppointments(Guid id)
+        {
+            var pets = petRepository.GetAppointments(id);
+            return Ok(pets);
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] CreatePetDto dto)
         {

@@ -8,6 +8,7 @@ namespace MyVetAppoinment.Repositories
         void Delete(Pet pet);
         Pet Get(Guid id);
         List<Pet> GetAll();
+        List<Appointment> GetAppointments(Guid id);
         void Save();
         void Update(Pet pet);
     }

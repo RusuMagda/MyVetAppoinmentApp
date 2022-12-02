@@ -37,6 +37,11 @@ namespace MyVetAppoinment.Repositories
             return context.Clients.Find(id);
         }
 
+        public List<Pet> GetAllPets(Guid id)
+        {
+            return (context.Pets.Where(p => p.OwnerId == id)).ToList();
+        }
+
         public void Save()
         {
             context.Save();
