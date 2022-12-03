@@ -7,7 +7,7 @@ namespace MyVetAppointment.Infrastructure
     public class DatabaseContext : DbContext, IDatabaseContext
     {
 
-        public DatabaseContext()
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             this.Database.EnsureCreated();
         }
@@ -28,9 +28,9 @@ namespace MyVetAppointment.Infrastructure
             SaveChanges();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source = MyVetAppointment.Db");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite("Data Source = MyVetAppointment.Db");
+        //}
     }
 }
