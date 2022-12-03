@@ -74,7 +74,7 @@ namespace IntegrationTests
         }
 
         [Fact]
-        public async Task TestPutStockItemAsync()
+        public async Task TestPutClientAsync()
         {
             // Arrange
             var request = new
@@ -94,39 +94,6 @@ namespace IntegrationTests
             // Assert
             response.EnsureSuccessStatusCode();
         }
-
-        //[Fact]
-        //public async Task TestDeleteClientAsync()
-        //{
-        //    // Arrange
-
-        //    var postRequest = new
-        //    {
-        //        Url = "/api/Clients",
-        //        Body = new
-        //        {
-        //            Id = new Guid("39ffa571-e14c-4e48-88f4-88e37666c75f"),
-        //            Name = "testuser",
-        //            EMail = "test@yahoo.com",
-        //            PhoneNumber = "0123456789"
-        //        }
-        //    };
-
-        //    // Act
-        //    var postResponse = await HttpClient.PostAsync(postRequest.Url, ContentHelper.GetStringContent(postRequest.Body));
-        //    var jsonFromPostResponse = await postResponse.Content.ReadAsStringAsync();
-
-        //    var singleResponse = JsonConvert.DeserializeObject<SingleResponse<Client>>(jsonFromPostResponse);
-
-        //    var deleteResponse = await HttpClient.DeleteAsync(string.Format("/api/Clients/39ffa571-e14c-4e48-88f4-88e37666c75f", singleResponse.Entity.Id));
-
-        //    // Assert
-        //    postResponse.EnsureSuccessStatusCode();
-
-        //    Assert.False(singleResponse.DidError);
-
-        //    deleteResponse.EnsureSuccessStatusCode();
-        //}
     }
 
 }
