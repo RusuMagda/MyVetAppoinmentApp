@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.Application;
 using MyVetAppointment.Infrastructure;
@@ -11,7 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IDatabaseContext, DatabaseContext>();
+//builder.Services.AddScoped<IDatabaseContext, DatabaseContext>();
+builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(
+    options => options.UseSqlite(builder.Configuration.GetConnectionString("MyVetAppointmentDb"),
+           b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<ICabinetRepository, CabinetRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
@@ -35,3 +39,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

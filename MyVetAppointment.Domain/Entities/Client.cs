@@ -10,6 +10,14 @@
             PhoneNumber = phoneNumber;
         }
 
+        public Client(Guid id, string name, string eMail, string phoneNumber)
+        {
+            Id = id;
+            Name = name;
+            EMail = eMail;
+            PhoneNumber = phoneNumber;
+        }
+
         public Guid Id { get;  set; } 
 
         public string Name { get;  set; }    
