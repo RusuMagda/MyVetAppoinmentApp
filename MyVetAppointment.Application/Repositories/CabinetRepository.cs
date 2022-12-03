@@ -35,6 +35,18 @@ namespace MyVetAppoinment.Repositories
         {
             return context.Cabinets.Find(id);
         }
+        public List<Client> GetClients(Guid id)
+        {
+            var pets=(context.Appointments.Where(a => a.CabinetId == id)).Select(a=> a.PetId).ToList();
+           List<Guid> ids=new List<Guid>();
+            foreach(Guid q in pets)
+                ids.Add(context.Pets.Where(p=>p.Id==q).Select(p=>p.OwnerId).Single());
+            List<Client> clients=new List<Client>();
+            foreach (Guid cl in ids)
+                clients.Add(context.Clients.Where(c => c.Id == cl).Single());
+            return clients;
+
+        }
 
         public void Save()
         {

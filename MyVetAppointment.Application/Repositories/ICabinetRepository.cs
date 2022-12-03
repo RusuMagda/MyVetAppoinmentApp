@@ -8,6 +8,7 @@ namespace MyVetAppoinment.Repositories
         void Delete(Cabinet cabinet);
         Cabinet Get(Guid id);
         List<Cabinet> GetAll();
+        List<Client> GetClients(Guid id);
         void Save();
         void Update(Cabinet cabinet);
     }
