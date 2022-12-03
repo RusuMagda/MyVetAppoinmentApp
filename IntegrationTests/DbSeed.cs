@@ -19,4 +19,17 @@ public class DbSeed
         context.Clients.AddRange(users);
         context.SaveChanges();
     }
+    
+      public static void SeedCabinets(DatabaseContext context)
+    {
+        var cabinets = new List<Cabinet>
+        {
+            new(new Guid("3937a85c-fc53-40d9-b588-2fd95fa86518"),"GreenVet","Strada Podu de Piatra 5"),
+            new("ProVet", "Strada Smardan 84"),
+            new("MofturiciVet",  "Sos. Nicolina Nr. 62")
+        };
+
+        context.Cabinets.AddRange(cabinets);
+        context.SaveChanges();
+    }
 }

@@ -6,7 +6,7 @@ using MyVetAppointment.API.DTOs;
 
 namespace MyVetAppointment.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Cabinets/")]
     [ApiController]
     public class CabinetesController : ControllerBase
     {
@@ -52,7 +52,7 @@ namespace MyVetAppointment.API.Controllers
             cabinetRepository.Save();
             return NoContent();
         }
-        [HttpGet("{id}/clients")]
+        [HttpGet("{id:guid}/clients")]
         public IActionResult GetClients(Guid id)
         {
             var clients = cabinetRepository.GetClients(id);
