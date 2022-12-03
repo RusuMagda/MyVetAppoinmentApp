@@ -40,6 +40,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                 context.Database.EnsureCreated();
 
                 SeedClients(context);
+                SeedCabinets(context);
             }
             catch (Exception ex)
             {

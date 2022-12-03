@@ -9,6 +9,12 @@ namespace MyVetAppoinment.Domain.Entities
             Name = name;
             Address = address;
         }
+        public Cabinet(Guid id, string name, string address)
+        {
+            Id = id;
+            Name = name;
+            Address = address;
+        }
 
         public Guid Id { get; private set; }
         public string Name { get; private set; }
