@@ -1,0 +1,29 @@
+﻿@page "/cabinetsoverview"
+<h2>Cabinets Overview</h2>
+@if (Cabinets == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <tabel class="table table-light">
+        <thead class="table-primary">
+        <th>Cabinet Id</th>
+        <th>Cabinet Name</th>
+        <th>Cabinet Address</th>
+       
+        </thead>
+        <tbody>
+            @foreach (var cabinet in Cabinets)
+            {
+                <tr>
+                    <td>@cabinet.Id</td>
+                    <td>@cabinet.Name</td>
+                    <td>@cabinet.Address</td>
+                    
+                    
+                </tr>
+            }
+        </tbody>
+    </tabel>
+}

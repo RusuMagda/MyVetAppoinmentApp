@@ -23,6 +23,13 @@ builder.Services.AddScoped<IDrugRepository, DrugRepository>();
 builder.Services.AddScoped<IPetRepository, PetRepository>();
 builder.Services.AddScoped<IShopRepository, ShopRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("cabinetsCors", policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,11 +40,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("cabinetsCors");
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
-
 public partial class Program { }
+
+

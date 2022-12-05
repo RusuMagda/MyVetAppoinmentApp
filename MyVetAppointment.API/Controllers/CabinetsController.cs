@@ -8,13 +8,13 @@ namespace MyVetAppointment.API.Controllers
 {
     [Route("api/Cabinets/")]
     [ApiController]
-    public class CabinetesController : ControllerBase
+    public class CabinetsController : ControllerBase
     {
         private readonly ICabinetRepository cabinetRepository;
         private readonly IClientRepository clientRepository;
         
 
-        public CabinetesController(ICabinetRepository cabinetRepository, IClientRepository clientRepository)
+        public CabinetsController(ICabinetRepository cabinetRepository, IClientRepository clientRepository)
         {
             this.cabinetRepository = cabinetRepository;
             this.clientRepository = clientRepository;
