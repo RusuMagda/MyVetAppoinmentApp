@@ -24,6 +24,7 @@ namespace MyVetAppoinment.Domain.Entities
 
         public void addClient(Client client)
         {
+            if (Clients == null) Clients = new List<Client>();
             Clients.Add(client);
         }
 

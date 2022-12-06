@@ -30,6 +30,7 @@
 
         public void addPet(Pet pet)
         {
+            if (Pets == null) Pets = new List<Pet>();
             Pets.Add(pet);
         }
     }
