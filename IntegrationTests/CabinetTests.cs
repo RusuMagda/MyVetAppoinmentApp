@@ -1,6 +1,4 @@
-﻿using MyVetAppoinment.Domain.Entities;
-using MyVetAppoinment.IntegrationTest;
-using Newtonsoft.Json;
+﻿using MyVetAppoinment.IntegrationTest;
 using Xunit;
 
 namespace IntegrationTests

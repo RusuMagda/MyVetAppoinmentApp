@@ -1,7 +1,5 @@
 ﻿using Xunit;
 using MyVetAppoinment.IntegrationTest;
-using Newtonsoft.Json;
-using MyVetAppoinment.Domain.Entities;
 
 namespace IntegrationTests
 {

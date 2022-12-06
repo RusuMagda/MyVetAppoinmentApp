@@ -1,7 +1,5 @@
 ﻿using Xunit;
 using MyVetAppoinment.IntegrationTest;
-using Newtonsoft.Json;
-using MyVetAppoinment.Domain.Entities;
 
 namespace IntegrationTests
 {
@@ -16,7 +14,7 @@ namespace IntegrationTests
 
 
         [Fact]
-        public async Task TestGetClientsAsync()
+        public async Task TestGetDrugsAsync()
         {
             // Arrange
             var request = "/api/Drugs";
