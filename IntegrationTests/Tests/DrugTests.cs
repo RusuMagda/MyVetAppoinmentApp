@@ -1,7 +1,7 @@
 ﻿using Xunit;
-using MyVetAppoinment.IntegrationTest;
+using IntegrationTests.Configure;
 
-namespace IntegrationTests
+namespace IntegrationTests.Tests
 {
     public class DrugTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
@@ -74,13 +74,13 @@ namespace IntegrationTests
                 Url = "/api/Drugs/fe1bdfc5-5424-4410-ab46-3cf1f98ac59a",
                 Body = new
                 {
-                    DrugName="CorpetVet",
-                    Description="Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
-                    Stock= 98,
-                    Price=160,
-                    SaleForm="pastile",
-                    Quantity=90,
-                    QuantityMeasure="pastile"
+                    DrugName = "CorpetVet",
+                    Description = "Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
+                    Stock = 98,
+                    Price = 160,
+                    SaleForm = "pastile",
+                    Quantity = 90,
+                    QuantityMeasure = "pastile"
                 }
             };
 

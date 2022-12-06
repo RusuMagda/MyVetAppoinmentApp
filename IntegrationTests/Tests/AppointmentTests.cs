@@ -1,7 +1,7 @@
-﻿using MyVetAppoinment.IntegrationTest;
+﻿using IntegrationTests.Configure;
 using Xunit;
 
-namespace IntegrationTests
+namespace IntegrationTests.Tests
 {
     public class AppointmentTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
@@ -39,7 +39,7 @@ namespace IntegrationTests
         public async Task TestDeleteAppointmentAsync()
         {
             // Arrange
-            var request = "/api/Appointments/6fa878bc-5a6c-4f6d-804c-2f487b892145";
+            var request = "/api/Appointments/6fc6532f-8da1-48c5-8752-fee1ef0b728a";
             // Act
             var response = await HttpClient.DeleteAsync(request);
 

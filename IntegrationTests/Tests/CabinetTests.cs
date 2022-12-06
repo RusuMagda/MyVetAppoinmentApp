@@ -1,7 +1,7 @@
-﻿using MyVetAppoinment.IntegrationTest;
+﻿using IntegrationTests.Configure;
 using Xunit;
 
-namespace IntegrationTests
+namespace IntegrationTests.Tests
 {
     public class CabinetTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
@@ -46,7 +46,7 @@ namespace IntegrationTests
                     Id = Guid.NewGuid(),
                     Name = "TestVet",
                     Address = "Str. Stefan Cel Mare"
-                    
+
                 }
             };
 
@@ -61,10 +61,10 @@ namespace IntegrationTests
         [Fact]
         public async Task TestGetCabinetClientsAsync()
         {
-           // Arrange
-          var request = "/api/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518/clients";
-           // Act
-           var response = await HttpClient.GetAsync(request);
+            // Arrange
+            var request = "/api/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518/clients";
+            // Act
+            var response = await HttpClient.GetAsync(request);
 
             // Assert
             response.EnsureSuccessStatusCode();
@@ -98,7 +98,7 @@ namespace IntegrationTests
         //   // Assert
         //   postResponse.EnsureSuccessStatusCode();
 
-            
+
 
         //   deleteResponse.EnsureSuccessStatusCode();
         //}

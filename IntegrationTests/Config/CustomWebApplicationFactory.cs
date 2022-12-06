@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MyVetAppointment.Infrastructure;
-using static MyVetAppoinment.IntegrationTest.DbSeed;
+using static IntegrationTests.Configure.DbSeed;
 
-namespace MyVetAppoinment.IntegrationTest;
+namespace IntegrationTests.Configure;
 public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : class
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
