@@ -13,6 +13,17 @@
             Quantity = quantity;
             QuantityMeasure = quantityMeasure;
         }
+        public Drug(Guid id,string drugName, string drugDescription, int stock, int price, string saleForm, int quantity, string quantityMeasure)
+        {
+            DrugName = drugName;
+            DrugDescription = drugDescription;
+            Stock = stock;
+            ID = id;
+            Price = price;
+            SaleForm = saleForm;
+            Quantity = quantity;
+            QuantityMeasure = quantityMeasure;
+        }
 
         public string DrugName { get;  set; }
 

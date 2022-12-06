@@ -32,4 +32,22 @@ public class DbSeed
         context.Cabinets.AddRange(cabinets);
         context.SaveChanges();
     }
+    public static void SeedDrugs(DatabaseContext context)
+    {
+        var drugs = new List<Drug>
+        {
+            new(new Guid("fe1bdfc5-5424-4410-ab46-3cf1f98ac59a"), "Corpet","Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
+            98,130,"pastile",90,"pastile"),
+            new("NeuroVet", "este indicat pentru tratamentul adjuvant al neuropatiilor",50,169, "comprimate",
+            60,"comprimate"),
+            new("RX Onco Support",  "pentru sustinerea functiilor in cazul afectiunilor cronice si / sau maligne",
+            30,380,"pulbere",300,"g"),
+            new("RX Liquid Immuno","supliment nutritional si botanic pentru intarirea sistemului imunitar la caini si pisici",
+            234,222,"lichid",120,"ml")
+
+        };
+
+        context.Drugs.AddRange(drugs);
+        context.SaveChanges();
+    }
 }
