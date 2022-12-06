@@ -9,6 +9,14 @@
             EndTime = endTime;
             Description = description;
         }
+        
+        public Appointment(Guid id, DateTime startTime, DateTime endTime, string description)
+        {
+            Id = id;
+            StartTime = startTime;
+            EndTime = endTime;
+            Description = description;
+        }
 
         public Guid Id { get; private set; } 
 

@@ -23,13 +23,25 @@ namespace IntegrationTests
             response.EnsureSuccessStatusCode();
         }
 
-        /*[Fact]
+        [Fact]
         public async Task TestGetAppointmentAsync()
         {
             // Arrange
-            var request = "/api/Appointments/3837a85c-fc53-40d9-b588-2fd95fa86518";
+            var request = "/api/Appointments/6fa878bc-5a6c-4f6d-804c-2f487b892145";
             // Act
             var response = await HttpClient.GetAsync(request);
+
+            // Assert
+            response.EnsureSuccessStatusCode();
+        }
+
+        [Fact]
+        public async Task TestDeleteAppointmentAsync()
+        {
+            // Arrange
+            var request = "/api/Appointments/6fa878bc-5a6c-4f6d-804c-2f487b892145";
+            // Act
+            var response = await HttpClient.DeleteAsync(request);
 
             // Assert
             response.EnsureSuccessStatusCode();
@@ -41,7 +53,7 @@ namespace IntegrationTests
             // Arrange
             var request = new
             {
-                Url = "/api/Appointments/89fabd96-2503-4703-88a7-3f91191d6944/53979a62-50ea-4746-b1af-8e50098e0eee",
+                Url = "/api/Appointments/7febb009-3dc4-4413-a5c4-4142b101be37/3937a85c-fc53-40d9-b588-2fd95fa86518",
                 Body = new
                 {
                     Id = Guid.NewGuid(),
@@ -57,6 +69,6 @@ namespace IntegrationTests
 
             // Assert
             response.EnsureSuccessStatusCode();
-        }*/
+        }
     }
 }

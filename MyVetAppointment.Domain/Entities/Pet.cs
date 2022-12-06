@@ -9,6 +9,14 @@
             Name = name;
             Birthdate = birthdate;
         }
+        
+        public Pet(Guid id, Guid ownerId, string name, DateTime birthdate)
+        {
+            Id = id;
+            OwnerId = ownerId;
+            Name = name;
+            Birthdate = birthdate;
+        }
 
         public Guid Id { get;  set; }
         public Guid OwnerId { get;  set; }
