@@ -50,4 +50,32 @@ public class DbSeed
         context.Drugs.AddRange(drugs);
         context.SaveChanges();
     }
+    
+    public static void SeedPets(DatabaseContext context)
+    {
+        var pets = new List<Pet>
+        {
+            new(new Guid("7febb009-3dc4-4413-a5c4-4142b101be37"), new Guid("3837a85c-fc53-40d9-b588-2fd95fa86518"),"Kara", Convert.ToDateTime("2022-12-06T16:47:02.959Z")),
+            new(new Guid("3837a85c-fc53-40d9-b588-2fd95fa86518"),"Bella", Convert.ToDateTime("2021-12-06T16:47:02.959Z")),
+            new(new Guid("3837a85c-fc53-40d9-b588-2fd95fa86518"),"Coco", Convert.ToDateTime("2022-10-06T16:47:02.959Z"))
+
+        };
+
+        context.Pets.AddRange(pets);
+        context.SaveChanges();
+    }
+    
+    public static void SeedAppointments(DatabaseContext context)
+    {
+        var appointments = new List<Appointment>
+        {
+            new(new Guid("6fa878bc-5a6c-4f6d-804c-2f487b892145"), Convert.ToDateTime("2022-12-06T16:47:02.959Z"), Convert.ToDateTime("2022-12-06T17:47:02.959Z"), "Usual"),
+            new(Convert.ToDateTime("2022-12-06T16:47:02.959Z"), Convert.ToDateTime("2022-12-06T17:47:02.959Z"), "Usual"),
+            new(Convert.ToDateTime("2022-12-06T16:47:02.959Z"), Convert.ToDateTime("2022-12-06T17:47:02.959Z"), "Usual")
+
+        };
+
+        context.Appointments.AddRange(appointments);
+        context.SaveChanges();
+    }
 }

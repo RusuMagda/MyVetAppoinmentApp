@@ -42,6 +42,8 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                 SeedClients(context);
                 SeedCabinets(context);
                 SeedDrugs(context);
+                SeedPets(context);
+                SeedAppointments(context);
             }
             catch (Exception ex)
             {
