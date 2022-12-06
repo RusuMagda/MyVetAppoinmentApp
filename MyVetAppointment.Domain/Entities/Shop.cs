@@ -13,13 +13,14 @@
         public Guid CabinetId { get;  set; }
         public List<Drug> Drugs { get;  set; }
 
-        public void AttachShopToCabinet(Cabinet cabinet)
+        public void AttachCabinet(Cabinet cabinet)
         {
             CabinetId = cabinet.Id;
         }
        
         public void addDrug(Drug drug)
         {
+            if(Drugs == null) Drugs = new List<Drug>();
             Drugs.Add(drug);
         }
     }

@@ -18,6 +18,7 @@
 
         public void addAppointment(Appointment appointment)
         {
+            if (Appointments == null) Appointments = new List<Appointment>();
             Appointments.Add(appointment);
         }
     }
