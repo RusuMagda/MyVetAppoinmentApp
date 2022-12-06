@@ -21,7 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVetAppointment.API", "MyV
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A913D0F0-AB22-4AA6-B575-D4EABE3E0178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{8C779B1C-8D05-4903-9C8E-C3265F28EF1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{8C779B1C-8D05-4903-9C8E-C3265F28EF1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F08BF311-55E8-4304-A7D8-E4DB7CC76309}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVetAppoinment.Shared", "MyVetAppoinment.Shared\MyVetAppoinment.Shared.csproj", "{4F7A8297-8F74-4AB1-871E-FEA951DA56D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVetAppoinment.UI", "MyVetAppoinment.UI\MyVetAppoinment.UI.csproj", "{77BC292E-0EF4-44D6-80EF-9670EA34E56D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +55,14 @@ Global
 		{8C779B1C-8D05-4903-9C8E-C3265F28EF1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C779B1C-8D05-4903-9C8E-C3265F28EF1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C779B1C-8D05-4903-9C8E-C3265F28EF1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F7A8297-8F74-4AB1-871E-FEA951DA56D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F7A8297-8F74-4AB1-871E-FEA951DA56D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F7A8297-8F74-4AB1-871E-FEA951DA56D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F7A8297-8F74-4AB1-871E-FEA951DA56D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77BC292E-0EF4-44D6-80EF-9670EA34E56D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77BC292E-0EF4-44D6-80EF-9670EA34E56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77BC292E-0EF4-44D6-80EF-9670EA34E56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77BC292E-0EF4-44D6-80EF-9670EA34E56D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +73,7 @@ Global
 		{6E406D54-3498-4F58-B3B9-4B66717FDACC} = {D9054126-041B-4377-AD61-D4518B25894D}
 		{9735DCC0-D28F-4CDA-9A2B-A63646D5223D} = {FCDFCAC5-C272-41F6-B731-3DB0C851B554}
 		{8C779B1C-8D05-4903-9C8E-C3265F28EF1A} = {A913D0F0-AB22-4AA6-B575-D4EABE3E0178}
+		{4F7A8297-8F74-4AB1-871E-FEA951DA56D0} = {F08BF311-55E8-4304-A7D8-E4DB7CC76309}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B60A9BC8-3485-4EDF-BD27-AE825EB26BD3}
