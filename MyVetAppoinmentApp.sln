@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVetAppoinment.Shared", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVetAppoinment.UI", "MyVetAppoinment.UI\MyVetAppoinment.UI.csproj", "{77BC292E-0EF4-44D6-80EF-9670EA34E56D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{925B12BA-F319-4F13-B02E-D05E7E558915}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{925B12BA-F319-4F13-B02E-D05E7E558915}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
