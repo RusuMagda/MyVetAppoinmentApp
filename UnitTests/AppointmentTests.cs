@@ -5,6 +5,21 @@ namespace UnitTests
     public class AppointmentTest
     {
         [Fact]
+        public void WhenCreateAppointmentWithId()
+        {
+            var id = new Guid("401ce3ad-cccd-4126-8067-55fb320ab637");
+            var startTime = new DateTime(01/01/2023);
+            var endTime = new DateTime(02/01/2023);
+            var description = "control";
+            Appointment appointment = new Appointment(id, startTime, endTime, description);
+
+            Assert.NotNull(appointment);
+            appointment.Id.Equals(new Guid("401ce3ad-cccd-4126-8067-55fb320ab637"));
+            appointment.StartTime.Equals(new DateTime(01 / 01 / 2023));
+            appointment.EndTime.Equals(new DateTime(02 / 01 / 2023));
+            appointment.Description.Equals("control");
+        }
+        [Fact]
         public void WhenAttachPet()
         {
             Appointment appointment = new Appointment(new DateTime(10 / 10 / 2022), new DateTime(11 / 10 / 2022), "consult");
