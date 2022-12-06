@@ -1,21 +1,22 @@
 ﻿using Xunit;
-using MyVetAppoinment.IntegrationTest;
+using IntegrationTests.Configure;
 
-namespace IntegrationTests
+namespace IntegrationTests.Tests
 {
-    public class ClientTests : IClassFixture<CustomWebApplicationFactory<Program>>
+    public class PetTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
         private HttpClient HttpClient;
 
-        public ClientTests(CustomWebApplicationFactory<Program> factory) {
+        public PetTests(CustomWebApplicationFactory<Program> factory)
+        {
             HttpClient = factory.CreateClient();
         }
 
         [Fact]
-        public async Task TestGetClientsAsync()
+        public async Task TestGetPetsAsync()
         {
             // Arrange
-            var request = "/api/Clients";
+            var request = "/api/Pets";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -24,10 +25,10 @@ namespace IntegrationTests
         }
 
         [Fact]
-        public async Task TestGetClientAsync()
+        public async Task TestGetPetAsync()
         {
             // Arrange
-            var request = "/api/Clients/3837a85c-fc53-40d9-b588-2fd95fa86518";
+            var request = "/api/Pets/7febb009-3dc4-4413-a5c4-4142b101be37";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -36,10 +37,10 @@ namespace IntegrationTests
         }
 
         [Fact]
-        public async Task TestGetClientPetsAsync()
+        public async Task TestGetPetAppointmnentsAsync()
         {
             // Arrange
-            var request = "/api/Clients/3837a85c-fc53-40d9-b588-2fd95fa86518/pets";
+            var request = "/api/Pets/7febb009-3dc4-4413-a5c4-4142b101be37/appointments";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -48,18 +49,18 @@ namespace IntegrationTests
         }
 
         [Fact]
-        public async Task TestPostClientAsync()
+        public async Task TestPostPetAsync()
         {
             // Arrange
             var request = new
             {
-                Url = "/api/Clients",
+                Url = "/api/Pets",
                 Body = new
                 {
                     Id = Guid.NewGuid(),
-                    Name = "testuser",
-                    EMail = "test@yahoo.com",
-                    PhoneNumber = "0123456789"
+                    OwnerId = "3837a85c-fc53-40d9-b588-2fd95fa86518",
+                    Name = "Kara",
+                    Birthdate = "2022-12-06T16:47:02.959Z"
                 }
             };
 
@@ -72,17 +73,17 @@ namespace IntegrationTests
         }
 
         [Fact]
-        public async Task TestPutClientAsync()
+        public async Task TestPutPetAsync()
         {
             // Arrange
             var request = new
             {
-                Url = "/api/Clients/3837a85c-fc53-40d9-b588-2fd95fa86518",
+                Url = "/api/Pets/7febb009-3dc4-4413-a5c4-4142b101be37",
                 Body = new
                 {
-                    Name = "oana",
-                    EMail = "oanamocanu@yahoo.com",
-                    PhoneNumber = "0123456789"
+                    OwnerId = "427a80d3-09b2-4c92-8e4c-369b8de6fe26",
+                    Name = "Kara",
+                    Birthdate = "2022-12-06T16:47:02.959Z"
                 }
             };
 
@@ -93,5 +94,4 @@ namespace IntegrationTests
             response.EnsureSuccessStatusCode();
         }
     }
-
 }
