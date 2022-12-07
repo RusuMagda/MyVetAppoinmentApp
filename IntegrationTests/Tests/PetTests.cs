@@ -1,5 +1,4 @@
 ﻿using Xunit;
-using IntegrationTests.Configure;
 
 namespace IntegrationTests.Tests
 {

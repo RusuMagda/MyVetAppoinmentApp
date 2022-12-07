@@ -2,7 +2,19 @@
 {
     public class Shop
     {
+
+        public Shop(string shopName)
+
+        public Shop(Guid shopId, string shopName, Guid cabinetId)
+        {
+            ShopId = shopId;
+            ShopName = shopName;
+            CabinetId = cabinetId;
+        }
         public Shop(string shopName,Guid cabinetId)
+
+        public Shop(string shopName,Guid cabinetId)
+
         {
             ShopId = Guid.NewGuid();
             ShopName = shopName;
