@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyVetAppoinment.Shared.Domain
+﻿namespace MyVetAppoinment.Shared.Domain
 {
     public class Pet
     {
-        public Guid Id { get; set; }
-        public Guid OwnerId { get; set; }
-        public string Name { get; set; }
-        public DateTime Birthdate { get; set; }
-        public List<Appointment> Appointments { get; set; }
+        public Guid Id { get; set; } = Guid.Empty;
+        public Guid OwnerId { get; set; } = Guid.Empty;
+        public string Name { get; set; } = string.Empty;
+        public DateTime Birthdate { get; set; } = default(DateTime);
+        public List<Appointment> Appointments { get; set; } = new List<Appointment>();
     }
 }

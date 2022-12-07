@@ -17,7 +17,6 @@ namespace MyVetAppoinment.UI.Pages
         protected override async Task OnInitializedAsync()
         {
             cabinet = await CabinetDataService.GetCabinetDetail(cabinetId);
-            //cabinet = await Http.GetFromJsonAsync<Cabinet>("https://localhost:7193/api/Cabinets/" + cabinetId);
         }
         protected async Task RemoveCabinet(Guid cabinetId)
         {

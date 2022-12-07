@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyVetAppoinment.Shared.Domain
+﻿namespace MyVetAppoinment.Shared.Domain
 {
     public class Appointment
     {
-        public Guid Id { get;  set; }
+        public Guid Id { get; private set; } = Guid.Empty;
 
-        public Guid PetId { get;  set; }
+        public Guid PetId { get; private set; } = Guid.Empty;
 
-        public DateTime StartTime { get;  set; }
-        public DateTime EndTime { get;  set; }
+        public DateTime StartTime { get; private set; } = default(DateTime);
+        public DateTime EndTime { get; private set; } = default(DateTime);
 
-        public string Description { get;  set; }
+        public string Description { get; private set; } = String.Empty;
 
-        public Guid CabinetId { get;  set; }
+        public Guid CabinetId { get; private set; } = Guid.Empty;
     }
 }

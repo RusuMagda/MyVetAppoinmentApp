@@ -18,11 +18,11 @@
             Birthdate = birthdate;
         }
 
-        public Guid Id { get;  set; }
-        public Guid OwnerId { get;  set; }
-        public string Name { get;  set; }
-        public DateTime Birthdate { get;  set; }
-        public List<Appointment> Appointments { get;  set; }
+        public Guid Id { get;  set; } = Guid.Empty;
+        public Guid OwnerId { get; set; } = Guid.Empty;
+        public string Name { get;  set; } = string.Empty;
+        public DateTime Birthdate { get; set; } = default(DateTime);
+        public List<Appointment> Appointments { get;  set; } = new List<Appointment>();
 
         public void addAppointment(Appointment appointment)
         {

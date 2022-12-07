@@ -16,11 +16,11 @@ namespace MyVetAppoinment.Domain.Entities
             Address = address;
         }
 
-        public Guid Id { get; private set; }
-        public string Name { get;  set; }
-        public string Address { get;  set; }
-        public List<Client> Clients { get; private set; }
-        public Shop Shop { get; private set; }
+        public Guid Id { get; private set; } = Guid.Empty;
+        public string Name { get;  set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public List<Client> Clients { get; private set; } = new List<Client>();
+        public Shop Shop { get; private set; } = default!;
 
         public void addClient(Client client)
         {

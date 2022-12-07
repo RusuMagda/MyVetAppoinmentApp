@@ -2,7 +2,7 @@
 {
     public class CreateShopDto
     {
-        public string ShopName { get; set; }
-        public Guid CabinetId { get; set; }
+        public string ShopName { get; set; } = string.Empty;
+        public Guid CabinetId { get; set; } = Guid.Empty;
     }
 }
