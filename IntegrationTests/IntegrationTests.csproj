@@ -31,8 +31,4 @@
     <ProjectReference Include="..\MyVetAppointment.API\MyVetAppointment.API.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Config\" />
-  </ItemGroup>
-
 </Project>
