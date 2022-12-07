@@ -1,5 +1,4 @@
-﻿using IntegrationTests.Configure;
-using Xunit;
+﻿using Xunit;
 
 namespace IntegrationTests.Tests
 {
@@ -39,7 +38,7 @@ namespace IntegrationTests.Tests
         public async Task TestDeleteAppointmentAsync()
         {
             // Arrange
-            var request = "/api/Appointments/6fc6532f-8da1-48c5-8752-fee1ef0b728a";
+            var request = "/api/Appointments/659a141f-03ba-4ee8-9faf-944944a85da8";
             // Act
             var response = await HttpClient.DeleteAsync(request);
 

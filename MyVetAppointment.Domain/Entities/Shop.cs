@@ -2,7 +2,17 @@
 {
     public class Shop
     {
+<<<<<<< Updated upstream
         public Shop(string shopName)
+=======
+        public Shop(Guid shopId, string shopName, Guid cabinetId)
+        {
+            ShopId = shopId;
+            ShopName = shopName;
+            CabinetId = cabinetId;
+        }
+        public Shop(string shopName,Guid cabinetId)
+>>>>>>> Stashed changes
         {
             ShopId = Guid.NewGuid();
             ShopName = shopName;
