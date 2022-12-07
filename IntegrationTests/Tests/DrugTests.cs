@@ -22,7 +22,7 @@ namespace IntegrationTests.Tests
             var response = await HttpClient.GetAsync(request);
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace IntegrationTests.Tests
             var response = await HttpClient.GetAsync(request);
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace IntegrationTests.Tests
             var value = await response.Content.ReadAsStringAsync();
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace IntegrationTests.Tests
             var response = await HttpClient.PutAsync(request.Url, ContentHelper.GetStringContent(request.Body));
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
     }
 

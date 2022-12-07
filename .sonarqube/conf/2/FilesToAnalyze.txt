@@ -1,0 +1,6 @@
+﻿C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Domain\Entities\Appointment.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Domain\Entities\Cabinet.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Domain\Entities\Client.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Domain\Entities\Drug.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Domain\Entities\Pet.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Domain\Entities\Shop.cs

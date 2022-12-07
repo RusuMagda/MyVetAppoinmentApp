@@ -39,7 +39,8 @@ namespace UnitTests
             Cabinet cabinet = new Cabinet("ProVet", "Strada Smardan 84");
             Assert.NotNull(cabinet);
 
-            var shop = new Shop("MyShop");
+            var shop = new Shop("MyShop", new Guid("d42fbb91-0ebe-43ea-b91c-b9b026430f09"));
+            Assert.NotNull(shop);
             cabinet.attachShop(shop);
 
             cabinet.Shop.Equals(shop);

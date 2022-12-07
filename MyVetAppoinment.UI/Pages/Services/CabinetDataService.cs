@@ -46,10 +46,10 @@ namespace MyVetAppoinment.UI.Pages.Services
 
             
         }
-        public async void EditCabinet(Guid cabietId, Cabinet cabinet)
+        public async void EditCabinet(Guid cabinetId, Cabinet cabinet)
         {
 
-            await httpClient.PutAsJsonAsync("https://localhost:7193/api/Cabinets/"+cabietId, cabinet);
+            await httpClient.PutAsJsonAsync("https://localhost:7193/api/Cabinets/"+cabinetId, cabinet);
 
 
         }

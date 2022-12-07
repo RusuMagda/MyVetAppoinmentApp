@@ -11,13 +11,11 @@ namespace MyVetAppointment.API.Controllers
     public class CabinetsController : ControllerBase
     {
         private readonly ICabinetRepository cabinetRepository;
-        private readonly IClientRepository clientRepository;
         
 
-        public CabinetsController(ICabinetRepository cabinetRepository, IClientRepository clientRepository)
+        public CabinetsController(ICabinetRepository cabinetRepository)
         {
             this.cabinetRepository = cabinetRepository;
-            this.clientRepository = clientRepository;
         }
         [HttpGet]
         public IActionResult Get()
