@@ -1,0 +1,31 @@
+﻿@page "/seeclients/{cabinetId:guid}"
+<h2>Clients</h2>
+@if (Clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <tabel class="table table-light">
+        <thead class="table-primary">
+        <th>Client Id</th>
+        <th>Client Name</th>
+        <th>Client Email</th>
+        <th>Client PhoneNumber</th>
+      
+
+        </thead>
+        <tbody>
+            @foreach (var client in Clients)
+            {
+                <tr>
+                    <td>@client.Id</td>
+                    <td>@client.Name</td>
+                    <td>@client.EMail</td>
+                    <td>@client.PhoneNumber</td>
+              
+                </tr>
+            }
+        </tbody>
+    </tabel>
+}

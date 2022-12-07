@@ -1,0 +1,24 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1:focus {
+    outline: none;
+}
+
+a, .btn-link {
+    color: #0071c1;
+}
+
+.btn-primary {
+    color:white;
+    background-color:black;
+    border-color: black;
+}
+
+.table-primary {
+    background: linear-gradient(to top, blue 0%, blue 100%);
+    color: white;
+}

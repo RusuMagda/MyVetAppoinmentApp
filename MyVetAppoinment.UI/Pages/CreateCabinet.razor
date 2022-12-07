@@ -1,0 +1,29 @@
+﻿@page "/cabinetcreate"
+@using MyVetAppoinment.Shared.Domain
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<h1>@Title Cabinet</h1>
+<hr />
+<EditForm Model="@cabinet" OnValidSubmit="SaveCabinet">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="cabinet.Name" />
+        </div>
+        <ValidationMessage For="@(() => cabinet.Name)" />
+    </div>
+    <div class="mb-3">
+        <label for="Address" class="form-label">Address</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="cabinet.Address" />
+        </div>
+        <ValidationMessage For="@(() => cabinet.Address)" />
+    </div>
+    
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>

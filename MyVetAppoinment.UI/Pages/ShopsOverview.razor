@@ -1,0 +1,50 @@
+﻿@page "/shopsoverview"
+@using MyVetAppoinment.Shared.Domain;
+@using static System.Net.WebRequestMethods;
+@inject HttpClient Http
+
+<h2>Shops Overview</h2>
+@if (Shops == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <tabel class="table table-light">
+        <thead class="table-primary">
+        <th>Shop Id</th>
+        <th>Shop Name</th>
+        <th>Cabinet Name</th>
+        
+        <th>Edit/Delete</th>
+        <th>Drugs</th>
+       
+        </thead>
+        <tbody>
+            @foreach (var shop in Shops)
+            {
+                <tr>
+                    <td>@shop.ShopId</td>
+                    <td>@shop.ShopName</td>
+                    <td>@cabinet.Name</td>
+
+                    
+                    <td>
+                        <a href='/shop/edit/@shop.ShopId' class="btn btn-outline-dark" role="button">
+                            Edit
+                        </a>
+                        <a href='/shop/delete/@shop.ShopId' class="btn btn-outline-danger" role="button">
+                            Delete
+                        </a>
+                    </td>
+                    
+
+
+                </tr>
+            }
+        </tbody>
+    </tabel>
+}
+@code{
+  
+}
