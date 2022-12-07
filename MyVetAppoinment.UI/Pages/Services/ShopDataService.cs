@@ -32,5 +32,25 @@ namespace MyVetAppoinment.UI.Pages.Services
         {
             return await httpClient.GetFromJsonAsync<Shop>(ApiURL + shopId);
         }
+
+        public async void AddShop(Shop shop)
+        {
+
+            await httpClient.PostAsJsonAsync(ApiURL, shop);
+
+
+        }
+        public async void EditShop(Guid shopId, Shop shop)
+        {
+
+            await httpClient.PutAsJsonAsync("https://localhost:7193/api/shops/" + shopId, shop);
+
+
+        }
+
+        public async void DeleteShop(Guid shopId)
+        {
+            await httpClient.DeleteAsync("https://localhost:7193/api/shops/" + shopId);
+        }
     }
 }

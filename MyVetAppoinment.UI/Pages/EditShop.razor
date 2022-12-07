@@ -1,0 +1,23 @@
+﻿@page "/shop/edit/{shopId:guid}"
+@using MyVetAppoinment.Shared.Domain
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<h1>@Title Shop</h1>
+<hr />
+<EditForm Model="@shop" OnValidSubmit="SaveShop">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="shop.ShopName" />
+        </div>
+        <ValidationMessage For="@(() => shop.ShopName)" />
+    </div>
+    
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>

@@ -1,0 +1,27 @@
+﻿@page "/shopcreate"
+@using MyVetAppoinment.Shared.Domain
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<h1> Cabinet</h1>
+<hr />
+
+    <div class="mb-3">
+        <label for="CabinetId" class="form-label">CabinetId</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="CabinetId" />
+        </div>
+    </div>
+<hr />
+<div class="mb-3">
+    <label for="Name" class="form-label">Shop Name</label>
+    <div class="col-md-4">
+        <InputText class="form-control" @bind-Value="ShopName" />
+    </div>
+</div>
+
+    
+
+    <div class="form-group">
+    <input type="submit" value="Save" @onclick="@(async () => await SaveShop())" class="btn btn-default" />
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>

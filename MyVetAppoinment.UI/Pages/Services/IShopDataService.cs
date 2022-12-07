@@ -9,8 +9,8 @@ namespace MyVetAppoinment.UI.Pages.Services
         Task<Shop> GetShopDetail(Guid shopId);
 
 
-        //void AddShop(Shop shop);
-        //void EditShop(Guid shopId, Shop shop);
-        //void DeleteShop(Guid shopId);
+        void AddShop(Shop shop);
+        void EditShop(Guid shopId, Shop shop);
+        void DeleteShop(Guid shopId);
     }
 }

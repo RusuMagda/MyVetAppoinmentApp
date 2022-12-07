@@ -1,0 +1,25 @@
+﻿@page "/shop/delete/{shopid:guid}"
+@using MyVetAppoinment.Shared.Domain
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<h2>Delete User</h2>
+<br />
+
+
+<div class="form-group">
+    <h4>Do you want to delete this cabinet?</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Name</td>
+                <td>@shop.ShopName</td>
+            </tr>
+            
+
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <input type="submit" value="Delete" @onclick="(async () => await RemoveShop(shop.ShopId))" class="btn btn-danger" />
+    <input type="submit" value="Cancel" @onclick="(() => Cancel())" class="btn btn-warning" />
+</div>
