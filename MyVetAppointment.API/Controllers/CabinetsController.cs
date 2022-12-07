@@ -68,8 +68,11 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            cabinetRepository.Update(new Cabinet(dto.Name, dto.Address));
-            // petRepository.Save();
+            cabinet.Name = dto.Name;
+            cabinet.Address = dto.Address;
+
+            cabinetRepository.Update(cabinet);
+            cabinetRepository.Save();
             return NoContent();
         }
     }

@@ -17,8 +17,8 @@ namespace MyVetAppoinment.Domain.Entities
         }
 
         public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public string Address { get; private set; }
+        public string Name { get;  set; }
+        public string Address { get;  set; }
         public List<Client> Clients { get; private set; }
         public Shop Shop { get; private set; }
 
