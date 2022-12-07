@@ -16,11 +16,7 @@ namespace MyVetAppoinment.UI.Pages
         protected Cabinet cabinet = new Cabinet();
         protected override async Task OnParametersSetAsync()
         {
-            if (cabinetId != null)
-            {
-
-                cabinet = await CabinetDataService.GetCabinetDetail(cabinetId);
-            }
+            cabinet = await CabinetDataService.GetCabinetDetail(cabinetId);
         }
         protected async Task SaveCabinet()
         {

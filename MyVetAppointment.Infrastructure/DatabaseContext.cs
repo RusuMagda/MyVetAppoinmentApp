@@ -27,10 +27,5 @@ namespace MyVetAppointment.Infrastructure
         {
             SaveChanges();
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlite("Data Source = MyVetAppointment.Db");
-        //}
     }
 }

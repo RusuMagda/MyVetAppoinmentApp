@@ -2,8 +2,8 @@
 {
     public class CreatePetDto
     {
-        public Guid OwnerId { get; set; }
-        public string Name { get; set; }
-        public DateTime Birthdate { get; set; }
+        public Guid OwnerId { get; set; } = Guid.Empty;
+        public string Name { get; set; } = string.Empty;
+        public DateTime Birthdate { get; set; } = default(DateTime);
     }
 }
