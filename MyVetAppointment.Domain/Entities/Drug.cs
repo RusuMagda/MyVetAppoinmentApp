@@ -25,20 +25,20 @@
             QuantityMeasure = quantityMeasure;
         }
 
-        public string DrugName { get;  set; }
+        public string DrugName { get; set; } = string.Empty;
 
-        public string DrugDescription { get;  set; }
+        public string DrugDescription { get; set; } = string.Empty;
 
-        public int Stock { get;  set; } //nr bucati
+        public int Stock { get; set; } = 0;
 
-        public Guid ID { get;  set; }
+        public Guid ID { get;  set; } = Guid.Empty;
 
-        public int Price { get;  set; }
+        public int Price { get; set; } = default(int);
 
-        public string SaleForm { get;  set; } //unguent, pastile, lichid
+        public string SaleForm { get; set; } = string.Empty;
 
-        public int Quantity { get;  set; } //cantitate per bucata
+        public int Quantity { get; set; } = default(int);
 
-        public string QuantityMeasure { get;  set; } //mg, nr pastile, ml
+        public string QuantityMeasure { get; set; } = string.Empty;
     }
 }

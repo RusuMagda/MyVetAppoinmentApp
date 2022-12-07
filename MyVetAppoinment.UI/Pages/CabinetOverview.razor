@@ -1,4 +1,5 @@
 ﻿@page "/cabinetsoverview"
+
 <h2>Cabinets Overview</h2>
 @if (Cabinets == null)
 {
@@ -7,10 +8,12 @@
 else
 {
     <tabel class="table table-light">
-        <thead class="table-primary">
+        <thead class="table-primary" >
         <th>Cabinet Id</th>
         <th>Cabinet Name</th>
         <th>Cabinet Address</th>
+        <th>Edit/Delete</th>
+        <th>Clients</th>
        
         </thead>
         <tbody>
@@ -20,6 +23,19 @@ else
                     <td>@cabinet.Id</td>
                     <td>@cabinet.Name</td>
                     <td>@cabinet.Address</td>
+                    <td>
+                        <a href='/cabinet/edit/@cabinet.Id' class="btn btn-outline-dark" role="button">
+                            Edit
+                        </a>
+                        <a href='/cabinet/delete/@cabinet.Id' class="btn btn-outline-danger" role="button">
+                            Delete
+                        </a>
+                    </td>
+                     <td>
+                    <a href='/seeclients/@cabinet.Id' class="btn btn-outline" role="button">
+                        Clients
+                    </a>
+                    </td>
                     
                     
                 </tr>

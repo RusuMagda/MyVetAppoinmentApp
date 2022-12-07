@@ -2,9 +2,9 @@
 {
     public class Shop
     {
-<<<<<<< Updated upstream
+
         public Shop(string shopName)
-=======
+
         public Shop(Guid shopId, string shopName, Guid cabinetId)
         {
             ShopId = shopId;
@@ -12,16 +12,19 @@
             CabinetId = cabinetId;
         }
         public Shop(string shopName,Guid cabinetId)
->>>>>>> Stashed changes
+
+        public Shop(string shopName,Guid cabinetId)
+
         {
             ShopId = Guid.NewGuid();
             ShopName = shopName;
+            CabinetId = cabinetId;
         }
 
-        public Guid ShopId { get;  set; }
-        public string ShopName { get;  set; }  
-        public Guid CabinetId { get;  set; }
-        public List<Drug> Drugs { get;  set; }
+        public Guid ShopId { get; set; } = Guid.Empty;
+        public string ShopName { get;  set; }  = string.Empty;
+        public Guid CabinetId { get; set; } = Guid.Empty;
+        public List<Drug> Drugs { get;  set; } = new List<Drug>();
 
         public void AttachCabinet(Cabinet cabinet)
         {

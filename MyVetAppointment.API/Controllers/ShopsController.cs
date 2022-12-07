@@ -37,7 +37,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CreateShopDto dto)
         {
-            var shop = new Shop(dto.ShopName);
+            var shop = new Shop(dto.ShopName,dto.CabinetId);
             shopRepository.Add(shop);
             shopRepository.Save();
             return Created(nameof(Get), shop);

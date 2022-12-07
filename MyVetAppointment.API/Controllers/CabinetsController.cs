@@ -11,13 +11,11 @@ namespace MyVetAppointment.API.Controllers
     public class CabinetsController : ControllerBase
     {
         private readonly ICabinetRepository cabinetRepository;
-        private readonly IClientRepository clientRepository;
         
 
-        public CabinetsController(ICabinetRepository cabinetRepository, IClientRepository clientRepository)
+        public CabinetsController(ICabinetRepository cabinetRepository)
         {
             this.cabinetRepository = cabinetRepository;
-            this.clientRepository = clientRepository;
         }
         [HttpGet]
         public IActionResult Get()
@@ -68,8 +66,11 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            cabinetRepository.Update(new Cabinet(dto.Name, dto.Address));
-            // petRepository.Save();
+            cabinet.Name = dto.Name;
+            cabinet.Address = dto.Address;
+
+            cabinetRepository.Update(cabinet);
+            cabinetRepository.Save();
             return NoContent();
         }
     }

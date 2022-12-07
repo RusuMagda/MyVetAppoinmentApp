@@ -18,15 +18,15 @@
             PhoneNumber = phoneNumber;
         }
 
-        public Guid Id { get;  set; } 
+        public Guid Id { get;  set; } = Guid.Empty;
 
-        public string Name { get;  set; }    
+        public string Name { get; set; } = string.Empty;    
 
-        public List<Pet> Pets { get;  set; }
+        public List<Pet> Pets { get; set; } = new List<Pet>();
 
-        public string EMail { get;  set; }
+        public string EMail { get; set; } = string.Empty;
 
-        public string PhoneNumber { get;  set; }
+        public string PhoneNumber { get; set; } = string.Empty;
 
         public void addPet(Pet pet)
         {

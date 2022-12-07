@@ -2,7 +2,7 @@
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Infrastructure;
 
-namespace IntegrationTests.Configure;
+namespace MyVetAppoinment.IntegrationTest;
 public class DbSeed
 {
     public static void SeedClients(DatabaseContext context)
@@ -19,8 +19,8 @@ public class DbSeed
         context.Clients.AddRange(users);
         context.SaveChanges();
     }
-
-    public static void SeedCabinets(DatabaseContext context)
+    
+      public static void SeedCabinets(DatabaseContext context)
     {
         var cabinets = new List<Cabinet>
         {
@@ -50,7 +50,7 @@ public class DbSeed
         context.Drugs.AddRange(drugs);
         context.SaveChanges();
     }
-
+    
     public static void SeedPets(DatabaseContext context)
     {
         var pets = new List<Pet>
@@ -64,18 +64,32 @@ public class DbSeed
         context.Pets.AddRange(pets);
         context.SaveChanges();
     }
-
+    
     public static void SeedAppointments(DatabaseContext context)
     {
         var appointments = new List<Appointment>
         {
             new(new Guid("6fa878bc-5a6c-4f6d-804c-2f487b892145"), Convert.ToDateTime("2022-12-06T16:47:02.959Z"), Convert.ToDateTime("2022-12-06T17:47:02.959Z"), "Usual"),
-            new(new Guid("6fc6532f-8da1-48c5-8752-fee1ef0b728a"), Convert.ToDateTime("2022-12-06T16:47:02.959Z"), Convert.ToDateTime("2022-12-06T17:47:02.959Z"), "Usual"),
+            new(Convert.ToDateTime("2022-12-06T16:47:02.959Z"), Convert.ToDateTime("2022-12-06T17:47:02.959Z"), "Usual"),
             new(Convert.ToDateTime("2022-12-06T16:47:02.959Z"), Convert.ToDateTime("2022-12-06T17:47:02.959Z"), "Usual")
 
         };
 
         context.Appointments.AddRange(appointments);
         context.SaveChanges();
+    }
+
+    public static void SeedShops(DatabaseContext context)
+    {
+        var shops = new List<Shop>
+        {
+            new(new Guid("4af1a2fb-61a2-4059-b3bb-bfad4aa07416"), new Guid("8a8d5c8c-bb42-4ada-ae09-8679f1e82a82"), "PharmaShop")
+            new(new Guid("8a8d5c8c-bb42-4ada-ae09-8679f1e82a82"), "VaccinesShop")
+            new(new Guid("8a8d5c8c-bb42-4ada-ae09-8679f1e82a82"), "AntiInsectShop")
+        };
+
+        context.Shops.AddRange(shops);
+        context.SaveChanges();
+
     }
 }

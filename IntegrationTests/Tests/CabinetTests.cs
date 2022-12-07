@@ -20,7 +20,7 @@ namespace IntegrationTests.Tests
             var response = await HttpClient.GetAsync(request);
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
         [Fact]
         public async Task TestGetCabinetAsync()
@@ -31,7 +31,7 @@ namespace IntegrationTests.Tests
             var response = await HttpClient.GetAsync(request);
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
         [Fact]
         public async Task TestPostCabinetAsync()
@@ -54,7 +54,7 @@ namespace IntegrationTests.Tests
             var value = await response.Content.ReadAsStringAsync();
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
 
         [Fact]
@@ -66,47 +66,7 @@ namespace IntegrationTests.Tests
             var response = await HttpClient.GetAsync(request);
 
             // Assert
-            response.EnsureSuccessStatusCode();
+            Assert.True(response.IsSuccessStatusCode);
         }
-
-
-        //[Fact]
-        //public async Task TestDeleteCabinetAsync()
-        //{
-        //    // Arrange
-
-        //    var postRequest = new
-        //    {
-        //        Url = "/api/Cabinets",
-        //        Body = new
-        //        {
-        //            Id = new Guid("39ffa571-e14c-4e48-88f4-88e37666c75f"),
-        //            Name = "TestVet",
-        //            Address = "Str. Stefan Cel Mare"
-        //        }
-        //    };
-
-        //    // Act
-        //    var postResponse = await HttpClient.PostAsync(postRequest.Url, ContentHelper.GetStringContent(postRequest.Body));
-        //    var jsonFromPostResponse = await postResponse.Content.ReadAsStringAsync();
-
-        //    var singleResponse = JsonConvert.DeserializeObject<Cabinet>(jsonFromPostResponse);
-
-        //    var deleteResponse = await HttpClient.DeleteAsync(string.Format("/api/Cabinets/39ffa571-e14c-4e48-88f4-88e37666c75f", singleResponse.Entity.Id));
-
-        //   // Assert
-        //   postResponse.EnsureSuccessStatusCode();
-
-
-
-        //   deleteResponse.EnsureSuccessStatusCode();
-        //}
-
-
-
-
-
-
-
     }
 }
