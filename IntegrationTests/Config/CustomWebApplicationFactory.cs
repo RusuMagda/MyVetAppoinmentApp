@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,6 +45,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                 SeedDrugs(context);
                 SeedPets(context);
                 SeedAppointments(context);
+                SeedShops(context);
             }
             catch (Exception)
             {
