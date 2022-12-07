@@ -9,7 +9,7 @@ namespace UnitTests
         [Fact]
         public void WhenAttachCabinet()
         {
-            Shop shop = new Shop("MyShop");
+            Shop shop = new Shop("MyShop", new Guid("d42fbb91-0ebe-43ea-b91c-b9b026430f09"));
 
             Assert.NotNull(shop);
 
@@ -22,7 +22,7 @@ namespace UnitTests
         [Fact]
         public void WhenAddDrug() 
         {
-            Shop shop = new Shop("MyShop");
+            Shop shop = new Shop("MyShop", new Guid("d42fbb91-0ebe-43ea-b91c-b9b026430f09"));
 
             Assert.NotNull(shop);
 
