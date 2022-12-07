@@ -58,7 +58,7 @@ namespace IntegrationTests
                 Body = new
                 {
                     ShopId = Guid.NewGuid(),
-                    Name = "TestShop",
+                    ShopName = "TestShop",
                     CabinetId = "8a8d5c8c - bb42 - 4ada - ae09 - 8679f1e82a82"
 
                 }
@@ -82,7 +82,7 @@ namespace IntegrationTests
                 Body = new
                 {
                     ShopId = Guid.NewGuid(),
-                    Name = "PharmaShop",
+                    ShopName = "PharmaShop",
                     CabinetId = "8a8d5c8c-bb42-4ada-ae09-8679f1e82a82"
                 }
             };
