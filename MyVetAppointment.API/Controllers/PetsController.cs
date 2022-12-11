@@ -48,7 +48,12 @@ namespace MyVetAppointment.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
-            petRepository.Delete(id);
+            var pet = petRepository.Get(id);
+            if(pet == null)
+            {
+                return NotFound();
+            }
+            petRepository.Delete(pet);
             petRepository.Save();
             return NoContent();
         }
@@ -56,10 +61,20 @@ namespace MyVetAppointment.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(Guid id, [FromBody] CreatePetDto dto)
         {
-            var pet = new Pet(id, dto.OwnerId, dto.Name, dto.Birthdate);
+            var pet = petRepository.Get(id);
+            if(pet == null)
+            {
+                return NotFound();
+            }
+            pet.Name = dto.Name;
+            pet.OwnerId = dto.OwnerId;
+            pet.Birthdate = dto.Birthdate;
             petRepository.Update(pet);
             petRepository.Save();
             return NoContent();
         }
+
+
+
     }
 }

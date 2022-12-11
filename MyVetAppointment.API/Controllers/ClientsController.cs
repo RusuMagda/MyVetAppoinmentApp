@@ -59,15 +59,16 @@ namespace MyVetAppointment.API.Controllers
         [HttpDelete("{id:guid}")]
         public IActionResult Delete(Guid id)
         {
-            clientRepository.Delete(id);
+            var client = clientRepository.Get(id);
+            clientRepository.Delete(client);
             clientRepository.Save();
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreateClientDto dto)
+        public IActionResult Update(Guid id, [FromBody] CreateClientDto dto)
         {
-            var client = await clientRepository.GetByIdAsync(id);
+            var client = clientRepository.Get(id);
             if (client == null)
             {
                 return NotFound();

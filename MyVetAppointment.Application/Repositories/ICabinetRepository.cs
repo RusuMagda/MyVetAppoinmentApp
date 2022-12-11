@@ -4,11 +4,11 @@ namespace MyVetAppoinment.Repositories
 {
     public interface ICabinetRepository
     {
-        Task AddAsync(Cabinet cabinet);
-        void Delete(Guid id);
-        Task<Cabinet> GetByIdAsync(Guid id);
-        Task<IReadOnlyCollection<Cabinet>> GetAllAsync();
-        Task<IReadOnlyCollection<Client>> GetClientsAsync(Guid id);
+        void Add(Cabinet cabinet);
+        void Delete(Cabinet cabinet);
+        Cabinet Get(Guid id);
+        List<Cabinet> GetAll();
+        List<Client> GetClients(Guid id);
         void Save();
         void Update(Cabinet cabinet);
     }

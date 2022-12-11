@@ -31,6 +31,7 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> Get(Guid id)
         {
             var appointment = await appointmentRepository.GetByIdAsync(id);
+
             if (appointment == null)
             {
                 return NotFound();
@@ -47,8 +48,8 @@ namespace MyVetAppointment.API.Controllers
             appointment.attachCabinet(idCabinet);
 
             await appointmentRepository.AddAsync(appointment);
-            appointmentRepository.Save();
 
+            appointmentRepository.Save();
             return Created(nameof(Get), appointment);
         }
 
@@ -56,6 +57,7 @@ namespace MyVetAppointment.API.Controllers
         public IActionResult Delete(Guid id)
         {
             appointmentRepository.Delete(id);
+
             appointmentRepository.Save();
             return NoContent();
         }

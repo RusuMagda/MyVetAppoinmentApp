@@ -51,15 +51,15 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            shopRepository.Delete(id);
+            shopRepository.Delete(shop);
             shopRepository.Save();
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] CreateShopDto dto)
+        public IActionResult Update(Guid id, [FromBody] CreateShopDto dto)
         {
-            var shop = await shopRepository.GetByIdAsync(id);
+            var shop = shopRepository.Get(id);
             if (shop == null)
             {
                 return NotFound();
