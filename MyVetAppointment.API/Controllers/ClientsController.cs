@@ -20,13 +20,13 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(clientRepository.GetAll());
+            return Ok(clientRepository.GetAllAsync());
         }
 
         [HttpGet("{id:guid}")]
         public IActionResult Get(Guid id)
         {
-            var client = clientRepository.Get(id);
+            var client = clientRepository.GetByIdAsync(id);
             if (client == null)
             {
                 return NotFound();
@@ -37,12 +37,12 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet("{id:guid}/pets")]
         public IActionResult GetPets(Guid id)
         {
-            var client = clientRepository.Get(id);
+            var client = clientRepository.GetByIdAsync(id);
             if (client == null)
             {
                 return NotFound();
             }
-            var pets = clientRepository.GetAllPets(id);
+            var pets = clientRepository.GetAllPetsAsync(id);
             return Ok(pets);
         }
 
@@ -51,7 +51,7 @@ namespace MyVetAppointment.API.Controllers
         public IActionResult Create([FromBody] CreateClientDto dto)
         {
             var client = new Client(dto.Name, dto.EMail, dto.PhoneNumber);
-            clientRepository.Add(client);
+            clientRepository.AddAsync(client);
             clientRepository.Save();
             return Created(nameof(Get), client);
         }
@@ -59,16 +59,15 @@ namespace MyVetAppointment.API.Controllers
         [HttpDelete("{id:guid}")]
         public IActionResult Delete(Guid id)
         {
-            var client = clientRepository.Get(id);
-            clientRepository.Delete(client);
+            clientRepository.Delete(id);
             clientRepository.Save();
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] CreateClientDto dto)
+        public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreateClientDto dto)
         {
-            var client = clientRepository.Get(id);
+            var client = await clientRepository.GetByIdAsync(id);
             if (client == null)
             {
                 return NotFound();

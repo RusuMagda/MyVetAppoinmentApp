@@ -20,43 +20,45 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(drugRepository.GetAll());
+            return Ok(drugRepository.GetAllAsync());
         }
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            return Ok(drugRepository.Get(id));
+            return Ok(drugRepository.GetByIdAsync(id));
         }
         [HttpPost]
         public IActionResult Create([FromBody] CreateDrugDto dto)
         {
             var drug = new Drug(dto.DrugName, dto.Description, dto.Stock, dto.Price, dto.SaleForm,
                                 dto.Quantity, dto.QuantityMeasure);
-            drugRepository.Add(drug);
+            drugRepository.AddAsync(drug);
             drugRepository.Save();
             return Created(nameof(Get), drug);
         }
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
-            var drug = drugRepository.Get(id);
+            var drug = drugRepository.GetByIdAsync(id);
             if (drug == null)
             {
                 return NotFound();
             }
-            drugRepository.Delete(drug);
+            drugRepository.Delete(id);
             drugRepository.Save();
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] CreateDrugDto dto)
+        public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreateDrugDto dto)
         {
-            var drug = drugRepository.Get(id);
+            var drug = await drugRepository.GetByIdAsync(id);
+
             if (drug == null)
             {
                 return NotFound();
             }
+
             drug.DrugName = dto.DrugName;
             drug.DrugDescription = dto.Description;
             drug.Stock = dto.Stock;
@@ -64,6 +66,7 @@ namespace MyVetAppointment.API.Controllers
             drug.SaleForm = dto.SaleForm;
             drug.Quantity = dto.Quantity;
             drug.QuantityMeasure = dto.QuantityMeasure;
+
             drugRepository.Update(drug);
             drugRepository.Save();
             return NoContent();

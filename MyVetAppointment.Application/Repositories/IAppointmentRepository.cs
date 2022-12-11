@@ -4,11 +4,12 @@ namespace MyVetAppoinment.Repositories
 {
     public interface IAppointmentRepository
     {
-        void Add(Appointment appointment);
-        void Delete(Appointment appointment);
-        Appointment Get(Guid id);
-        List<Appointment> GetAll();
-        void Save();
+        Task AddAsync(Appointment appointment);
+        Task<Appointment> GetByIdAsync(Guid id);
+        Task<IReadOnlyCollection<Appointment>> GetAllAsync();
+        void Delete(Guid id);
         void Update(Appointment appointment);
+        void Save();
+        //void Delete(Task<Appointment> appointment);
     }
 }

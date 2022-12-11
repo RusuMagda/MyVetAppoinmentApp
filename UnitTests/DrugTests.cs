@@ -21,7 +21,7 @@ namespace UnitTests
             Drug drug = new Drug(Id, name, description, stock, price, saleForm, quantity, quantityMeasure);
 
             Assert.NotNull(drug);
-            drug.ID.Equals(new Guid("39191ef4-fd54-4fb1-a428-8615d466fefd"));
+            drug.Id.Equals(new Guid("39191ef4-fd54-4fb1-a428-8615d466fefd"));
             drug.DrugName.Equals("Corpet");
             drug.DrugDescription.Equals("Supliment nutritional");
             drug.Stock.Equals(50);
