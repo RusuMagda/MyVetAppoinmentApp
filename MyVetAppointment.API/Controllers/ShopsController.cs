@@ -20,13 +20,13 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(shopRepository.GetAll());
+            return Ok(shopRepository.GetAllAsync());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            var shop = shopRepository.Get(id);
+            var shop = shopRepository.GetByIdAsync(id);
             if (shop == null)
             {
                 return NotFound();
@@ -38,7 +38,7 @@ namespace MyVetAppointment.API.Controllers
         public IActionResult Create([FromBody] CreateShopDto dto)
         {
             var shop = new Shop(dto.ShopName,dto.CabinetId);
-            shopRepository.Add(shop);
+            shopRepository.AddAsync(shop);
             shopRepository.Save();
             return Created(nameof(Get), shop);
         }
@@ -46,20 +46,20 @@ namespace MyVetAppointment.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
-            var shop = shopRepository.Get(id);
+            var shop = shopRepository.GetByIdAsync(id);
             if (shop == null)
             {
                 return NotFound();
             }
-            shopRepository.Delete(shop);
+            shopRepository.Delete(id);
             shopRepository.Save();
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] CreateShopDto dto)
+        public async Task<IActionResult> Update(Guid id, [FromBody] CreateShopDto dto)
         {
-            var shop = shopRepository.Get(id);
+            var shop = await shopRepository.GetByIdAsync(id);
             if (shop == null)
             {
                 return NotFound();

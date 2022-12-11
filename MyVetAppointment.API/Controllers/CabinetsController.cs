@@ -20,14 +20,14 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(cabinetRepository.GetAll());
+            return Ok(cabinetRepository.GetAllAsync());
         }
 
         [HttpPost]
         public IActionResult Create([FromBody] CreateCabinetDto dto)
         {
             var cabinet = new Cabinet(dto.Name, dto.Address);
-            cabinetRepository.Add(cabinet);
+            cabinetRepository.AddAsync(cabinet);
             cabinetRepository.Save();
             return Created(nameof(Get), cabinet);
 
@@ -35,42 +35,39 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            return Ok(cabinetRepository.Get(id));
+            return Ok(cabinetRepository.GetByIdAsync(id));
         }
 
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
-            var cabinet = cabinetRepository.Get(id);
-            if (cabinet == null)
-            {
-                return NotFound();
-            }
-            cabinetRepository.Delete(cabinet);
+            cabinetRepository.Delete(id);
             cabinetRepository.Save();
             return NoContent();
         }
         [HttpGet("{id:guid}/clients")]
         public IActionResult GetClients(Guid id)
         {
-            var clients = cabinetRepository.GetClients(id);
+            var clients = cabinetRepository.GetClientsAsync(id);
             return Ok(clients);
         }
 
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] CreateCabinetDto dto)
+        public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreateCabinetDto dto)
         {
-            var cabinet = cabinetRepository.Get(id);
+            var cabinet = await cabinetRepository.GetByIdAsync(id);
             if (cabinet == null)
             {
                 return NotFound();
             }
-            cabinet.Name = dto.Name;
+
             cabinet.Address = dto.Address;
+            cabinet.Name = dto.Name;
 
             cabinetRepository.Update(cabinet);
             cabinetRepository.Save();
+
             return NoContent();
         }
     }

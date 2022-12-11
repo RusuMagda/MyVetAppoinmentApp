@@ -4,11 +4,11 @@ namespace MyVetAppoinment.Repositories
 {
     public interface IClientRepository
     {
-        void Add(Client client);
-        void Delete(Client client);
-        Client Get(Guid id);
-        List<Client> GetAll();
-        List<Pet> GetAllPets(Guid id);
+        Task AddAsync(Client client);
+        void Delete(Guid id);
+        Task<Client> GetByIdAsync(Guid id);
+        Task<IReadOnlyCollection<Client>> GetAllAsync();
+        Task<IReadOnlyCollection<Pet>> GetAllPetsAsync(Guid id);
         void Save();
         void Update(Client client);
     }
