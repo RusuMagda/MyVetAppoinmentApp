@@ -18,28 +18,28 @@ namespace MyVetAppointment.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(drugRepository.GetAll());
+            return Ok(await drugRepository.GetAllAsync());
         }
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(drugRepository.Get(id));
+            return Ok(await drugRepository.GetByIdAsync(id));
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreateDrugDto dto)
+        public async Task<IActionResult> Create([FromBody] CreateDrugDto dto)
         {
             var drug = new Drug(dto.DrugName, dto.Description, dto.Stock, dto.Price, dto.SaleForm,
                                 dto.Quantity, dto.QuantityMeasure);
-            drugRepository.Add(drug);
+            await drugRepository.AddAsync(drug);
             drugRepository.Save();
             return Created(nameof(Get), drug);
         }
         [HttpDelete("{id}")]
-        public IActionResult Remove(Guid id)
+        public async Task<IActionResult> RemoveAsync(Guid id)
         {
-            var drug = drugRepository.Get(id);
+            var drug = await drugRepository.GetByIdAsync(id);
             if (drug == null)
             {
                 return NotFound();

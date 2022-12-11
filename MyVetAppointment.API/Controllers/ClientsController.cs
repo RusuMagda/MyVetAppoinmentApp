@@ -18,15 +18,15 @@ namespace MyVetAppointment.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(clientRepository.GetAll());
+            return Ok(await clientRepository.GetAllAsync());
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            var client = clientRepository.Get(id);
+            var client = await clientRepository.GetByIdAsync(id);
             if (client == null)
             {
                 return NotFound();
@@ -35,23 +35,23 @@ namespace MyVetAppointment.API.Controllers
         }
 
         [HttpGet("{id:guid}/pets")]
-        public IActionResult GetPets(Guid id)
+        public async Task<IActionResult> GetPets(Guid id)
         {
-            var client = clientRepository.Get(id);
+            var client = await clientRepository.GetByIdAsync(id);
             if (client == null)
             {
                 return NotFound();
             }
-            var pets = clientRepository.GetAllPets(id);
+            var pets = await clientRepository.GetAllPetsAsync(id);
             return Ok(pets);
         }
 
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateClientDto dto)
+        public async Task<IActionResult> Create([FromBody] CreateClientDto dto)
         {
             var client = new Client(dto.Name, dto.EMail, dto.PhoneNumber);
-            clientRepository.Add(client);
+            await clientRepository.AddAsync(client);
             clientRepository.Save();
             return Created(nameof(Get), client);
         }
