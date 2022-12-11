@@ -7,8 +7,7 @@ namespace MyVetAppoinment.UI.Pages
 {
     public partial class CreateCabinet
     {
-        [Inject]
-        public ICabinetDataService CabinetDataService { get; set; }
+        [Inject] public ICabinetDataService CabinetDataService { get; set; } = default!;
 
         public Cabinet cabinet=new Cabinet();
       
@@ -18,15 +17,11 @@ namespace MyVetAppoinment.UI.Pages
        
         protected async Task SaveCabinet()
         {
-           
-           
-               CabinetDataService.AddCabinet(cabinet);
-            
+            CabinetDataService.AddCabinet(cabinet);       
             Cancel();
         }
         public async Task Cancel()
         {
-         
             await Task.Delay(1000);
             NavigationManager.NavigateTo("/");
         }

@@ -7,16 +7,15 @@ namespace MyVetAppoinment.UI.Pages
 {
     public partial class DeleteCabinet
     {
-        [Inject]
-        public ICabinetDataService CabinetDataService { get; set; }
+        [Inject] public ICabinetDataService CabinetDataService { get; set; } = default!;
 
         [Parameter]
-        public Guid cabinetId { get; set; }
+        public Guid CabinetId { get; set; }
 
         Cabinet cabinet = new Cabinet();
         protected override async Task OnInitializedAsync()
         {
-            cabinet = await CabinetDataService.GetCabinetDetail(cabinetId);
+            cabinet = await CabinetDataService.GetCabinetDetail(CabinetId);
         }
         protected async Task RemoveCabinet(Guid cabinetId)
         {
@@ -25,7 +24,6 @@ namespace MyVetAppoinment.UI.Pages
         }
         public async Task Cancel()
         {
-
             await Task.Delay(3000);
             NavigationManager.NavigateTo("/cabinetsoverview");
         }

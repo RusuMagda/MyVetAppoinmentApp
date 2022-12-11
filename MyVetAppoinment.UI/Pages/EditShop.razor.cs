@@ -6,25 +6,20 @@ namespace MyVetAppoinment.UI.Pages
 {
     public partial class EditShop
     {
-        [Inject]
-        public IShopDataService ShopDataService { get; set; }
+        [Inject] public IShopDataService ShopDataService { get; set; } = default!;
 
         [Parameter]
-        public Guid shopId { get; set; }
+        public Guid ShopId { get; set; }
         protected string Title = "Edit";
-        protected Shop shop = new Shop();
+        protected Shop shop = new();
         protected override async Task OnParametersSetAsync()
         {
-            if (shopId != null)
-            {
-
-                shop = await ShopDataService.GetShopDetail(shopId);
-            }
+            shop = await ShopDataService.GetShopDetail(ShopId);
         }
         protected async Task SaveShop()
         {
 
-            ShopDataService.EditShop(shopId, shop);
+            ShopDataService.EditShop(ShopId, shop);
 
             Cancel();
         }

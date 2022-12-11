@@ -7,21 +7,20 @@ namespace MyVetAppoinment.UI.Pages
 {
     public partial class EditCabinet
     {
-        [Inject]
-        public ICabinetDataService CabinetDataService { get; set; }
+        [Inject] public ICabinetDataService CabinetDataService { get; set; } = default!;
 
         [Parameter]
-        public Guid cabinetId { get; set; }
+        public Guid CabinetId { get; set; }
         protected string Title = "Edit";
         protected Cabinet cabinet = new Cabinet();
         protected override async Task OnParametersSetAsync()
         {
-            cabinet = await CabinetDataService.GetCabinetDetail(cabinetId);
+            cabinet = await CabinetDataService.GetCabinetDetail(CabinetId);
         }
         protected async Task SaveCabinet()
         {
 
-            CabinetDataService.EditCabinet(cabinetId,cabinet);
+            CabinetDataService.EditCabinet(CabinetId,cabinet);
            
             Cancel();
         }
