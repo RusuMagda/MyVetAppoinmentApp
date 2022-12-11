@@ -18,31 +18,31 @@ namespace MyVetAppointment.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> GetAsync()
         {
-            return Ok(petRepository.GetAllAsync());
+            return Ok(await petRepository.GetAllAsync());
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> GetAsync(Guid id)
         {
-            return Ok(petRepository.GetByIdAsync(id));
+            return Ok(await petRepository.GetByIdAsync(id));
         }
 
         [HttpGet("{id}/appointments")]
-        public IActionResult GetAppointments(Guid id)
+        public async Task<IActionResult> GetAppointmentsAsync(Guid id)
         {
-            var pets = petRepository.GetAppointmentsAsync(id);
+            var pets = await petRepository.GetAppointmentsAsync(id);
             return Ok(pets);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreatePetDto dto)
+        public async Task<IActionResult> CreateAsync([FromBody] CreatePetDto dto)
         {
             var pet = new Pet(dto.OwnerId, dto.Name, dto.Birthdate);
-            petRepository.AddAsync(pet);
+            await petRepository.AddAsync(pet);
             petRepository.Save();
-            return Created(nameof(Get), pet);
+            return Created(nameof(GetAsync), pet);
         }
 
         [HttpDelete("{id}")]

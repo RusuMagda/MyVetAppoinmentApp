@@ -22,15 +22,15 @@ namespace MyVetAppointment.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(appointmentRepository.GetAllAsync());
+            return Ok(await appointmentRepository.GetAllAsync());
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            var appointment = appointmentRepository.GetByIdAsync(id);
+            var appointment = await appointmentRepository.GetByIdAsync(id);
             if (appointment == null)
             {
                 return NotFound();
@@ -39,14 +39,14 @@ namespace MyVetAppointment.API.Controllers
         }
 
         [HttpPost("{idPet:guid}/{idCabinet:guid}")]
-        public IActionResult Create([FromBody] CreateAppointmentDto dto, Guid idPet, Guid idCabinet)
+        public async Task<IActionResult> Create([FromBody] CreateAppointmentDto dto, Guid idPet, Guid idCabinet)
         {
             var appointment = new Appointment(dto.StartTime, dto.EndTime, dto.Description);
 
             appointment.attachPet(idPet);
             appointment.attachCabinet(idCabinet);
 
-            appointmentRepository.AddAsync(appointment);
+            await appointmentRepository.AddAsync(appointment);
             appointmentRepository.Save();
 
             return Created(nameof(Get), appointment);
@@ -55,7 +55,6 @@ namespace MyVetAppointment.API.Controllers
         [HttpDelete("{id:guid}")]
         public IActionResult Delete(Guid id)
         {
-           // var appointment = appointmentRepository.GetAsync(id);
             appointmentRepository.Delete(id);
             appointmentRepository.Save();
             return NoContent();
