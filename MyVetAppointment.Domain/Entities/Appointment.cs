@@ -29,14 +29,14 @@
 
         public Guid CabinetId { get; private set; } = Guid.Empty;
 
-        public void attachPet(Pet pet)
+        public void attachPet(Guid id)
         {
-            PetId = pet.Id;
+            PetId = id;
         }
 
-        public void attachCabinet(Cabinet cabinet)
+        public void attachCabinet(Guid id)
         {
-            CabinetId = cabinet.Id;
+            CabinetId =  id;
         }
 
     }

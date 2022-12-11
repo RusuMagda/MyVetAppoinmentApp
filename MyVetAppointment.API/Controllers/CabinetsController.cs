@@ -43,12 +43,12 @@ namespace MyVetAppointment.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
-            var cabinet = cabinetRepository.Get(id);
+            var cabinet = cabinetRepository.GetByIdAsync(id);
             if (cabinet == null)
             {
                 return NotFound();
             }
-            cabinetRepository.Delete(cabinet);
+            cabinetRepository.Delete(id);
             cabinetRepository.Save();
             return NoContent();
         }
@@ -61,9 +61,9 @@ namespace MyVetAppointment.API.Controllers
 
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] CreateCabinetDto dto)
+        public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreateCabinetDto dto)
         {
-            var cabinet = cabinetRepository.Get(id);
+            var cabinet = await cabinetRepository.GetByIdAsync(id);
             if (cabinet == null)
             {
                 return NotFound();

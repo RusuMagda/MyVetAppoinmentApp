@@ -17,6 +17,6 @@ namespace MyVetAppointment.Application
 
         public DbSet<Shop> Shops { get; }
 
-        void Save();
+        void SaveAsync();
     }
 }
