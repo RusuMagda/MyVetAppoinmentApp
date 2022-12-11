@@ -11,14 +11,10 @@ namespace MyVetAppointment.API.Controllers
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentRepository appointmentRepository;
-        private readonly IPetRepository petRepository;
-        private readonly ICabinetRepository cabinetRepository;
 
-        public AppointmentsController(IAppointmentRepository appointmentRepository, IPetRepository petRepository, ICabinetRepository cabinetRepository)
+        public AppointmentsController(IAppointmentRepository appointmentRepository)
         {
             this.appointmentRepository = appointmentRepository;
-            this.petRepository = petRepository;
-            this.cabinetRepository = cabinetRepository;
         }
 
         [HttpGet]

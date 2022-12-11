@@ -7,13 +7,13 @@ namespace MyVetAppoinment.UI.Pages
     public partial class SeeClients
     {
         [Inject]
-        public ICabinetDataService CabinetDataService { get; set; }
+        public ICabinetDataService CabinetDataService { get; set; } = default!;
         public List<Client> Clients { get; set; } = default!;
         [Parameter]
-        public Guid cabinetId { get; set; }
+        public Guid CabinetId { get; set; }
         protected async override Task OnInitializedAsync()
         {
-            Clients = (await  CabinetDataService.GetAllClients(cabinetId)).ToList();
+            Clients = (await  CabinetDataService.GetAllClients(CabinetId)).ToList();
         }
     }
 }

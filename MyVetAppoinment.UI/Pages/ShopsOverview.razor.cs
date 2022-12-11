@@ -8,15 +8,14 @@ namespace MyVetAppoinment.UI.Pages
 {
     public partial class ShopsOverview
     {
+        [Inject] public IShopDataService ShopDataService { get; set; } = default!;
         [Inject]
-        public IShopDataService ShopDataService { get; set; }
-        [Inject]
-        public ICabinetDataService CabinetDataService { get; set; }
+        public ICabinetDataService CabinetDataService { get; set; } = default!;
 
         public List<Shop> Shops { get; set; } = default!;
         protected List<Cabinet> userList = default!;
-        protected Cabinet cabinet;
-        protected String cabinetName;
+        protected Cabinet cabinet = default!;
+        protected String cabinetName = string.Empty;
        
         protected async override Task OnInitializedAsync()
         {

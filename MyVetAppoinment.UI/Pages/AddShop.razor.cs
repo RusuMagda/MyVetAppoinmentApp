@@ -8,13 +8,13 @@ namespace MyVetAppoinment.UI.Pages
     public partial class AddShop
     {
         [Inject]
+
+        public IShopDataService ShopDataService { get; set; } = default!;
+        public ICabinetDataService CabinetDataService { get; set; } = default!;
        
-        public IShopDataService ShopDataService { get; set; }
-        public ICabinetDataService CabinetDataService { get; set; }
-       
-        public String CabinetId;
-        public String ShopName;
-        public Cabinet cabinet;
+        public String CabinetId = string.Empty;
+        public String ShopName = string.Empty;
+        public Cabinet cabinet = default!;
         public Shop shop=new Shop();
        
         protected async Task SaveShop()
@@ -33,13 +33,7 @@ namespace MyVetAppoinment.UI.Pages
         }
         public async Task Cancel()
         {
-
-            
             NavigationManager.NavigateTo("/");
         }
-
-
-
-
     }
 }

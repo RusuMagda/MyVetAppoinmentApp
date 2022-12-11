@@ -8,7 +8,7 @@ namespace MyVetAppoinment.UI.Pages
     public partial class CabinetOverview
     {
         [Inject]
-        public ICabinetDataService CabinetDataService { get; set; }
+        public ICabinetDataService CabinetDataService { get; set; } = default!;
 
         public List<Cabinet> Cabinets { get; set; } = default!;
         protected async override Task OnInitializedAsync()
