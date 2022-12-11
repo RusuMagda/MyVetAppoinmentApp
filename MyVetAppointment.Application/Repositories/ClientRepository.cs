@@ -1,4 +1,5 @@
-﻿using MyVetAppoinment.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Application;
 
 namespace MyVetAppoinment.Repositories
@@ -12,9 +13,9 @@ namespace MyVetAppoinment.Repositories
             this.context = context;
         }
 
-        public void Add(Client client)
+        public async Task AddAsync(Client client)
         {
-            this.context.Clients.Add(client);
+            await this.context.Clients.AddAsync(client);
         }
 
         public void Update(Client client)
@@ -22,29 +23,33 @@ namespace MyVetAppoinment.Repositories
             this.context.Clients.Update(client);
         }
 
-        public void Delete(Client client)
+        public async void Delete(Guid id)
         {
-            this.context.Clients.Remove(client);
+            var client = await this.context.Clients.FirstOrDefaultAsync(c => c.Id == id);
+            if(client != null)
+            {
+                this.context.Clients.Remove(client);
+            }  
         }
 
-        public List<Client> GetAll()
+        public async Task<IReadOnlyCollection<Client>> GetAllAsync()
         {
-            return context.Clients.ToList();
+            return await context.Clients.ToListAsync();
         }
 
-        public Client Get(Guid id)
+        public async Task<Client> GetByIdAsync(Guid id)
         {
-            return context.Clients.Find(id);
+            return await context.Clients.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public List<Pet> GetAllPets(Guid id)
+        public async Task<IReadOnlyCollection<Pet>> GetAllPetsAsync(Guid id)
         {
-            return (context.Pets.Where(p => p.OwnerId == id)).ToList();
+            return await (context.Pets.Where(p => p.OwnerId == id)).ToListAsync();
         }
 
         public void Save()
         {
-            context.Save();
+            context.SaveAsync();
         }
     }
 }

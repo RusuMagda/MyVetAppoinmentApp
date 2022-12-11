@@ -44,15 +44,15 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            drugRepository.Delete(drug);
+            drugRepository.Delete(id);
             drugRepository.Save();
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] CreateDrugDto dto)
+        public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreateDrugDto dto)
         {
-            var drug = drugRepository.Get(id);
+            var drug = await drugRepository.GetByIdAsync(id);
             if (drug == null)
             {
                 return NotFound();

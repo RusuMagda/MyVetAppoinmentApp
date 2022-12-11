@@ -4,10 +4,10 @@ namespace MyVetAppoinment.Repositories
 {
     public interface IDrugRepository
     {
-        void Add(Drug drug);
-        void Delete(Drug drug);
-        Drug Get(Guid id);
-        List<Drug> GetAll();
+        Task AddAsync(Drug drug);
+        void Delete(Guid id);
+        Task<Drug> GetByIdAsync(Guid id);
+        Task<IReadOnlyCollection<Drug>> GetAllAsync();
         void Save();
         void Update(Drug drug);
     }

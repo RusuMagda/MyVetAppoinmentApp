@@ -23,9 +23,9 @@ namespace MyVetAppointment.Infrastructure
 
         public DbSet<Shop> Shops => Set<Shop>();
 
-        public void Save()
+        public void SaveAsync()
         {
-            SaveChanges();
+            SaveChangesAsync();
         }
     }
 }
