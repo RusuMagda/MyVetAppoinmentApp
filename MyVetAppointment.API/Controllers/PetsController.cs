@@ -20,19 +20,19 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(petRepository.GetAllAsync());
+            return Ok(petRepository.GetAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            return Ok(petRepository.GetByIdAsync(id));
+            return Ok(petRepository.Get(id));
         }
 
         [HttpGet("{id}/appointments")]
         public IActionResult GetAppointments(Guid id)
         {
-            var pets = petRepository.GetAppointmentsAsync(id);
+            var pets = petRepository.GetAppointments(id);
             return Ok(pets);
         }
 
@@ -40,7 +40,7 @@ namespace MyVetAppointment.API.Controllers
         public IActionResult Create([FromBody] CreatePetDto dto)
         {
             var pet = new Pet(dto.OwnerId, dto.Name, dto.Birthdate);
-            petRepository.AddAsync(pet);
+            petRepository.Add(pet);
             petRepository.Save();
             return Created(nameof(Get), pet);
         }
@@ -48,7 +48,12 @@ namespace MyVetAppointment.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
-            petRepository.Delete(id);
+            var pet = petRepository.Get(id);
+            if(pet == null)
+            {
+                return NotFound();
+            }
+            petRepository.Delete(pet);
             petRepository.Save();
             return NoContent();
         }
@@ -56,10 +61,20 @@ namespace MyVetAppointment.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(Guid id, [FromBody] CreatePetDto dto)
         {
-            var pet = new Pet(id, dto.OwnerId, dto.Name, dto.Birthdate);
+            var pet = petRepository.Get(id);
+            if(pet == null)
+            {
+                return NotFound();
+            }
+            pet.Name = dto.Name;
+            pet.OwnerId = dto.OwnerId;
+            pet.Birthdate = dto.Birthdate;
             petRepository.Update(pet);
             petRepository.Save();
             return NoContent();
         }
+
+
+
     }
 }

@@ -7,7 +7,7 @@
             DrugName = drugName;
             DrugDescription = drugDescription;
             Stock = stock;
-            Id = Guid.NewGuid();
+            ID = Guid.NewGuid();
             Price = price;
             SaleForm = saleForm;
             Quantity = quantity;
@@ -18,7 +18,7 @@
             DrugName = drugName;
             DrugDescription = drugDescription;
             Stock = stock;
-            Id = id;
+            ID = id;
             Price = price;
             SaleForm = saleForm;
             Quantity = quantity;
@@ -31,7 +31,7 @@
 
         public int Stock { get; set; } = 0;
 
-        public Guid Id { get;  set; } = Guid.Empty;
+        public Guid ID { get;  set; } = Guid.Empty;
 
         public int Price { get; set; } = default(int);
 

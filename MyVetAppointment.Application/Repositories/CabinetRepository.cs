@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyVetAppoinment.Domain.Entities;
+﻿using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Application;
 
 namespace MyVetAppoinment.Repositories
@@ -12,52 +11,46 @@ namespace MyVetAppoinment.Repositories
             this.context = context;
         }
 
-        public async Task AddAsync(Cabinet cabinet)
+        public void Add(Cabinet cabinet)
         {
-           await this.context.Cabinets.AddAsync(cabinet);
+            this.context.Cabinets.Add(cabinet);
         }
 
-        public async void Update(Cabinet cabinet)
+        public void Update(Cabinet cabinet)
         {
             this.context.Cabinets.Update(cabinet);
         }
 
-        public async void Delete(Guid id)
+        public void Delete(Cabinet cabinet)
         {
-            var cabinet = await this.context.Cabinets.FirstOrDefaultAsync(c => c.Id == id);
-            if(cabinet != null)
-            {
-                this.context.Cabinets.Remove(cabinet);
-            }
+            this.context.Cabinets.Remove(cabinet);
         }
 
-        public async Task<IReadOnlyCollection<Cabinet>> GetAllAsync()
+        public List<Cabinet> GetAll()
         {
-            return await context.Cabinets.ToListAsync();
+            return context.Cabinets.ToList();
         }
 
-        public async Task<Cabinet> GetByIdAsync(Guid id)
+        public Cabinet Get(Guid id)
         {
-            return await context.Cabinets.FirstOrDefaultAsync(c => c.Id == id);
+            return context.Cabinets.Find(id);
         }
-        public async Task<IReadOnlyCollection<Client>> GetClientsAsync(Guid id)
+        public List<Client> GetClients(Guid id)
         {
-            var pets = await (context.Appointments.Where(a => a.CabinetId == id)).Select(a=> a.PetId).ToListAsync();
-
-            List<Guid> ids=new List<Guid>();
+            var pets=(context.Appointments.Where(a => a.CabinetId == id)).Select(a=> a.PetId).ToList();
+           List<Guid> ids=new List<Guid>();
             foreach(Guid q in pets)
-                ids.Add(await context.Pets.Where(p=>p.Id==q).Select(p=>p.OwnerId).SingleAsync());
-
+                ids.Add(context.Pets.Where(p=>p.Id==q).Select(p=>p.OwnerId).Single());
             List<Client> clients=new List<Client>();
             foreach (Guid cl in ids)
-                clients.Add(await context.Clients.Where(c => c.Id == cl).SingleAsync());
-
+                clients.Add(context.Clients.Where(c => c.Id == cl).Single());
             return clients;
+
         }
 
         public void Save()
         {
-            context.SaveAsync();
+            context.Save();
         }
     }
 }

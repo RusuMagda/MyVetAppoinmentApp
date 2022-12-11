@@ -18,25 +18,25 @@
             Description = description;
         }
 
-        public Guid Id { get; set; } = Guid.Empty;
+        public Guid Id { get; private set; } = Guid.Empty;
 
-        public Guid PetId { get; set; } = Guid.Empty;
+        public Guid PetId { get; private set; } = Guid.Empty;
 
-        public DateTime StartTime { get; set; } = default(DateTime);
-        public DateTime EndTime { get; set; } = default(DateTime);
+        public DateTime StartTime { get; private set; } = default(DateTime);
+        public DateTime EndTime { get; private set; } = default(DateTime);
 
-        public string Description { get; set; } = String.Empty;
+        public string Description { get; private set; } = String.Empty;
 
-        public Guid CabinetId { get; set; } = Guid.Empty;
+        public Guid CabinetId { get; private set; } = Guid.Empty;
 
-        public void attachPet(Guid id)
+        public void attachPet(Pet pet)
         {
-            PetId = id;
+            PetId = pet.Id;
         }
 
-        public void attachCabinet(Guid id)
+        public void attachCabinet(Cabinet cabinet)
         {
-            CabinetId = id;
+            CabinetId = cabinet.Id;
         }
 
     }

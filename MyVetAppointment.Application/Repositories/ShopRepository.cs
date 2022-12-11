@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyVetAppoinment.Domain.Entities;
+﻿using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Application;
 
 namespace MyVetAppoinment.Repositories
@@ -13,9 +12,9 @@ namespace MyVetAppoinment.Repositories
             this.context = context;
         }
 
-        public async Task AddAsync(Shop shop)
+        public void Add(Shop shop)
         {
-            await this.context.Shops.AddAsync(shop);
+            this.context.Shops.Add(shop);
         }
 
         public void Update(Shop shop)
@@ -23,33 +22,24 @@ namespace MyVetAppoinment.Repositories
             this.context.Shops.Update(shop);
         }
 
-        public async void Delete(Guid id)
+        public void Delete(Shop shop)
         {
-            var shop = await this.context.Shops.FirstOrDefaultAsync(s => s.ShopId == id);
-            if (shop != null)
-            {
-                this.context.Shops.Remove(shop);
-            }
+            this.context.Shops.Remove(shop);
         }
 
-        public async Task<IReadOnlyCollection<Shop>> GetAllAsync()
+        public List<Shop> GetAll()
         {
-            return await context.Shops.ToListAsync();
+            return context.Shops.ToList();
         }
 
-        public async Task<Shop> GetByIdAsync(Guid id)
+        public Shop Get(Guid id)
         {
-            var result = await this.context.Shops.FirstOrDefaultAsync(s => s.ShopId == id);
-            if(result != null)
-            {
-                return result;
-            }
-            return null;
+            return context.Shops.Find(id);
         }
 
         public void Save()
         {
-            context.SaveAsync();
+            context.Save();
         }
     }
 }

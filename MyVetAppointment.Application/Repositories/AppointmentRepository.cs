@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Metadata;
-using MyVetAppoinment.Domain.Entities;
+﻿using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Application;
 
 namespace MyVetAppoinment.Repositories
@@ -15,46 +12,35 @@ namespace MyVetAppoinment.Repositories
             this.context = context;
         }
 
-        public async Task AddAsync(Appointment appointment)
+        public void Add(Appointment appointment)
         {
-            await context.Appointments.AddAsync(appointment);
-        }
-
-        public async Task<IReadOnlyCollection<Appointment>> GetAllAsync()
-        {
-            return await context.Appointments.ToListAsync<Appointment>();
-        }
-
-        public async Task<Appointment> GetByIdAsync(Guid id)
-        {
-            return await context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
+            this.context.Appointments.Add(appointment);
         }
 
         public void Update(Appointment appointment)
         {
-            context.Appointments.Update(appointment);
+            this.context.Appointments.Update(appointment);
         }
 
-        public async void Delete(Guid id)
+        public void Delete(Appointment appointment)
         {
-            var appointment = await context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
-            if (appointment != null) 
-            {
-                context.Appointments.Remove(appointment);
-            }
-            
-            //await context.Appointments.Remove(appointment);
+            this.context.Appointments.Remove(appointment);
+        }
+
+        public List<Appointment> GetAll()
+        {
+            return context.Appointments.ToList();
+        }
+
+        public Appointment Get(Guid id)
+        {
+            return context.Appointments.Find(id);
         }
 
 
         public void Save()
         {
-            context.SaveAsync();
+            context.Save();
         }
-
-        //public async Task DeleteAsync(Task<Appointment> appointment)
-        //{
-        //    await context.Appointments.Remove(appointment);
-        //}
     }
 }
