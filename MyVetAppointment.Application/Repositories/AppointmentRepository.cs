@@ -1,20 +1,16 @@
+﻿using MyVetAppoinment.Domain.Entities;
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Metadata;
-using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Application;
 
-namespace MyVetAppoinment.Repositories
-{
+namespace MyVetAppoinment.Repositories 
+{ 
     public class AppointmentRepository : IAppointmentRepository
     {
         private readonly IDatabaseContext context;
-
-        public AppointmentRepository(IDatabaseContext context)
+        public AppointmentRepository(IDatabaseContext databaseContext) 
         {
-            this.context = context;
+            context = databaseContext;
         }
-
         public async Task AddAsync(Appointment appointment)
         {
             await context.Appointments.AddAsync(appointment);
@@ -38,23 +34,16 @@ namespace MyVetAppoinment.Repositories
         public async void Delete(Guid id)
         {
             var appointment = await context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
-            if (appointment != null) 
+            if (appointment != null)
             {
                 context.Appointments.Remove(appointment);
             }
-            
+
             //await context.Appointments.Remove(appointment);
         }
-
-
         public void Save()
         {
             context.SaveAsync();
         }
-
-        //public async Task DeleteAsync(Task<Appointment> appointment)
-        //{
-        //    await context.Appointments.Remove(appointment);
-        //}
     }
 }
