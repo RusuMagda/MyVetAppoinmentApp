@@ -2,26 +2,52 @@
 @using MyVetAppoinment.Shared.Domain
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
-<h1> Cabinet</h1>
-<hr />
+<head>
+    <link href="../css/shop.css" rel="stylesheet" />
+</head>
+<div class="cont">
+    <div class="row"><h1> Shop</h1></div>
 
-    <div class="mb-3">
-        <label for="CabinetId" class="form-label">CabinetId</label>
-        <div class="col-md-4">
-            <InputText class="form-control" @bind-Value="CabinetId" />
-        </div>
-    </div>
-<hr />
-<div class="mb-3">
-    <label for="Name" class="form-label">Shop Name</label>
-    <div class="col-md-4">
-        <InputText class="form-control" @bind-Value="ShopName" />
-    </div>
+
+        <div class="row">
+            <div class="modal-body">  
+                <EditForm Model="@shop" OnValidSubmit="@HandleValidSubmit">  
+                    <DataAnnotationsValidator />  
+                    <ValidationSummary />  
+                    <div class="form-group" >  
+                        <label for="Name"> Name: </label>  
+                        <InputText id="Name" class="form-control" @bind-Value="@shop.ShopName" placeholder=" Enter  name"></InputText>
+                        <ValidationMessage For="@(() => shop.ShopName)" />  
+                    </div>  
+               
+                    
+                    <div class="form-group">  
+                    <label >Cabinet: </label>
+                    
+                        <select class="form-control" @onchange="@OnValueChanged">
+                            <option value="Select" selected disabled="disabled">Choose Cabinet</option>
+                            @if(Cabinets==null)
+                            {
+                                <p><em>Loading...</em></p>
+                            }
+                            else
+                            @foreach (var cabinet in Cabinets)
+                            {
+                                <option value="@cabinet.Id"> @cabinet.Name </option>
+                            }
+
+                        </select>
+                       
+
+                    </div>
+                    
+                        
+                       
+                      
+                <button type="submit" class="btn btn-primary">Save shop</button>
+                <a class="btn btn-outline-primary" @onclick="@Close">Close</a>
+
+            </EditForm>  
+            </div>  
+          </div>
 </div>
-
-    
-
-    <div class="form-group">
-    <input type="submit" value="Save" @onclick="@(async () => await SaveShop())" class="btn btn-default" />
-        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
-    </div>

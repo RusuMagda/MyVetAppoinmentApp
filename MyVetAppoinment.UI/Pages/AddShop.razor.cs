@@ -7,33 +7,53 @@ namespace MyVetAppoinment.UI.Pages
 {
     public partial class AddShop
     {
+        public Guid CabinetId { get; set; }
+        public List<Cabinet> Cabinets { get; set; } = default!;
         [Inject]
-
-        public IShopDataService ShopDataService { get; set; } = default!;
         public ICabinetDataService CabinetDataService { get; set; } = default!;
-       
-        public String CabinetId = string.Empty;
-        public String ShopName = string.Empty;
-        public Cabinet cabinet = default!;
-        public Shop shop=new Shop();
-       
-        protected async Task SaveShop()
+
+        [Parameter]
+        public String Value { get; set; }
+        public Guid Gud;
+        
+        [Parameter]
+        public EventCallback<string> ValueChanged { get; set; }
+        
+        public Shop    shop=new Shop { };
+
+        [Inject]
+        public IShopDataService ShopDataService { get; set; } = default!;
+        public EventCallback<bool> CloseEventCallback
         {
-            Console.WriteLine(CabinetId);
-            Console.WriteLine(ShopName);
-            
-          
-            shop.CabinetId = new Guid(CabinetId.ToString());
-            shop.ShopName = ShopName.ToString();
-            
-            ShopDataService.AddShop(shop);
-            await Task.Delay(2000);
-            NavigationManager.NavigateTo("/shopsoverview");
-          
+            get;
+            set;
         }
-        public async Task Cancel()
+        protected  async Task HandleValidSubmit()
         {
-            NavigationManager.NavigateTo("/");
+            shop.CabinetId = new Guid(Value);
+            ShopDataService.AddShop(shop);
+            Close();
+           
+            
+        }
+
+        
+        protected async override Task OnInitializedAsync()
+        {
+            Cabinets = (await CabinetDataService.GetCabinetsWithoutShop()).ToList();
+        }
+        private Task OnValueChanged(ChangeEventArgs e)
+        {
+            Value = e.Value.ToString();
+            return ValueChanged.InvokeAsync(Value);
+        }
+        public void Close()
+        {
+           
+            
+            
+            NavigationManager.NavigateTo("/shops");
+
         }
     }
 }

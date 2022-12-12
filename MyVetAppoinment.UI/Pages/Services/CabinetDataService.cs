@@ -24,6 +24,16 @@ namespace MyVetAppoinment.UI.Pages.Services
                     PropertyNameCaseInsensitive = true,
                 });
         }
+        public async Task<IEnumerable<Cabinet>> GetCabinetsWithoutShop()
+        {
+            return await JsonSerializer
+                .DeserializeAsync<IEnumerable<Cabinet>>
+                (await httpClient.GetStreamAsync(ApiURL+"shop"),
+                new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true,
+                });
+        }
         public async Task<IEnumerable<Client>> GetAllClients(Guid cabinetId)
         {
             return await JsonSerializer

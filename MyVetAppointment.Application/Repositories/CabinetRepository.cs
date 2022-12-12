@@ -54,6 +54,23 @@ namespace MyVetAppoinment.Repositories
 
             return clients;
         }
+        public  async Task<IReadOnlyCollection<Cabinet>> GetCabinetsWithoutShop()
+        {
+            var shops=await (context.Shops.Select(a=>a.CabinetId).ToListAsync());
+            List<Cabinet> cabs=new List<Cabinet>();
+            var cab=await context.Cabinets.ToListAsync();
+
+
+            foreach (Guid q in shops)
+                cabs.Add(await context.Cabinets.Where(c=> c.Id==q).SingleAsync());
+            foreach(Cabinet c in cabs)
+                if(cab.Contains(c))
+                    cab.Remove(c);
+            
+           
+            return cab;
+        }
+
 
         public void Save()
         {
