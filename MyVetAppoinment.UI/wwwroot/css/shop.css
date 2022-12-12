@@ -1,0 +1,48 @@
+﻿.cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   align-items:center;
+    flex-wrap:nowrap;
+}
+
+.row {
+    background-color: #004780;
+    padding: 20px;
+    width: 50%;
+    margin: 10px;
+    color:white;
+}
+
+.form-group{
+   margin-bottom:10%;
+}
+.form-control {
+    display: inline;
+    width: 60%;
+    padding: 12px 12px 12px 0;
+    
+}
+
+.modal-body {
+    justify-content: center;
+    background-color: hsla(201, 100%, 6%, 0.6);
+    padding: 50px 30px;
+    width: 50%;
+}
+
+
+
+select {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+
