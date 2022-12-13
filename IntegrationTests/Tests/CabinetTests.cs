@@ -68,5 +68,38 @@ namespace IntegrationTests.Tests
             // Assert
             Assert.True(response.IsSuccessStatusCode);
         }
+
+        [Fact]
+        public async Task TestPutCabinetAsync()
+        {
+            // Arrange
+            var request = new
+            {
+                Url = "/api/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518",
+                Body = new
+                {
+                    Name = "NewVet",
+                    Address = "New Address"
+                }
+            };
+
+            // Act
+            var response = await HttpClient.PutAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+
+            // Assert
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async Task TestDeleteCabinetAsync()
+        {
+            // Arrange
+            var request = "/api/Cabinets/f5c0e1b8-fcf4-4e43-ab72-609eb7c0d6e3";
+            // Act
+            var response = await HttpClient.DeleteAsync(request);
+
+            // Assert
+            Assert.True(response.IsSuccessStatusCode);
+        }
     }
 }

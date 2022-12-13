@@ -92,6 +92,18 @@ namespace IntegrationTests.Tests
             // Assert
             Assert.True(response.IsSuccessStatusCode);
         }
+
+        [Fact]
+        public async Task TestDeleteClientAsync()
+        {
+            // Arrange
+            var request = "/api/Clients/f813b0bb-fe09-4624-8449-aaf037b890b5";
+            // Act
+            var response = await HttpClient.DeleteAsync(request);
+
+            // Assert
+            Assert.True(response.IsSuccessStatusCode);
+        }
     }
 
 }

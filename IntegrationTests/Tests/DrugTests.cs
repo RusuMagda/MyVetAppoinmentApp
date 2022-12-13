@@ -89,6 +89,18 @@ namespace IntegrationTests.Tests
             // Assert
             Assert.True(response.IsSuccessStatusCode);
         }
+
+        [Fact]
+        public async Task TestDrugAppointmentAsync()
+        {
+            // Arrange
+            var request = "/api/Drugs/45454ce7-7fa1-478b-bfaa-021eea996f16";
+            // Act
+            var response = await HttpClient.DeleteAsync(request);
+
+            // Assert
+            Assert.True(response.IsSuccessStatusCode);
+        }
     }
 
 }

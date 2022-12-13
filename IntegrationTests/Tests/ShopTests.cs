@@ -82,5 +82,17 @@ namespace IntegrationTests.Tests
             Assert.True(response.IsSuccessStatusCode);
         }
 
+        [Fact]
+        public async Task TestDeleteShopAsync()
+        {
+            // Arrange
+            var request = "/api/Shops/d196087d-02de-4253-ab11-4716c189558b";
+            // Act
+            var response = await HttpClient.DeleteAsync(request);
+
+            // Assert
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
     }
 }
