@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -11,10 +12,12 @@ namespace MyVetAppointment.API.Controllers
     public class DrugsController : ControllerBase
     {
         private readonly IDrugRepository drugRepository;
+        private readonly IMapper mapper;
 
-        public DrugsController(IDrugRepository drugRepository)
+        public DrugsController(IDrugRepository drugRepository, IMapper mapper)
         {
             this.drugRepository = drugRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -30,8 +33,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateDrugDto dto)
         {
-            var drug = new Drug(dto.DrugName, dto.Description, dto.Stock, dto.Price, dto.SaleForm,
-                                dto.Quantity, dto.QuantityMeasure);
+            var drug = mapper.Map<Drug>(dto);
             await drugRepository.AddAsync(drug);
             drugRepository.Save();
             return Created(nameof(Get), drug);
@@ -57,13 +59,7 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            drug.DrugName = dto.DrugName;
-            drug.DrugDescription = dto.Description;
-            drug.Stock = dto.Stock;
-            drug.Price = dto.Price;
-            drug.SaleForm = dto.SaleForm;
-            drug.Quantity = dto.Quantity;
-            drug.QuantityMeasure = dto.QuantityMeasure;
+            mapper.Map(dto, drug);
             drugRepository.Update(drug);
             drugRepository.Save();
             return NoContent();

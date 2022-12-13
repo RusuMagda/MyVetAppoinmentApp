@@ -12,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("MyVetAppointmentDb"),
            b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
