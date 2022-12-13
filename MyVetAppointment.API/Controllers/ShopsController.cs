@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -11,10 +12,12 @@ namespace MyVetAppointment.API.Controllers
     public class ShopsController : ControllerBase
     {
         private readonly IShopRepository shopRepository;
+        private readonly IMapper mapper;
 
-        public ShopsController(IShopRepository shopRepository)
+        public ShopsController(IShopRepository shopRepository, IMapper mapper)
         {
             this.shopRepository = shopRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -37,7 +40,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateShopDto dto)
         {
-            var shop = new Shop(dto.ShopName,dto.CabinetId);
+            var shop = mapper.Map<Shop>(dto);
             await shopRepository.AddAsync(shop);
             shopRepository.Save();
             return Created(nameof(GetAsync), shop);
@@ -64,7 +67,7 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            shop.ShopName = dto.ShopName;
+            mapper.Map(dto, shop);
             shopRepository.Update(shop);
             shopRepository.Save();
             return NoContent();

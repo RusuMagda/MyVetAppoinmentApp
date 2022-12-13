@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -11,10 +12,12 @@ namespace MyVetAppointment.API.Controllers
     public class ClientsController : ControllerBase
     {
         private readonly IClientRepository clientRepository;
+        private readonly IMapper mapper;
 
-        public ClientsController(IClientRepository clientRepository)
+        public ClientsController(IClientRepository clientRepository, IMapper mapper)
         {
             this.clientRepository = clientRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -50,7 +53,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateClientDto dto)
         {
-            var client = new Client(dto.Name, dto.EMail, dto.PhoneNumber);
+            var client = mapper.Map<Client>(dto);
             await clientRepository.AddAsync(client);
             clientRepository.Save();
             return Created(nameof(Get), client);
@@ -72,9 +75,7 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            client.PhoneNumber = dto.PhoneNumber;
-            client.Name = dto.Name;
-            client.EMail = dto.EMail;
+            mapper.Map(dto, client);
             clientRepository.Update(client);
             clientRepository.Save();
             return NoContent();

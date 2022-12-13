@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -11,10 +12,12 @@ namespace MyVetAppointment.API.Controllers
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentRepository appointmentRepository;
+        private readonly IMapper mapper;
 
-        public AppointmentsController(IAppointmentRepository appointmentRepository)
+        public AppointmentsController(IAppointmentRepository appointmentRepository, IMapper mapper)
         {
             this.appointmentRepository = appointmentRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -39,7 +42,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost("{idPet:guid}/{idCabinet:guid}")]
         public async Task<IActionResult> Create([FromBody] CreateAppointmentDto dto, Guid idPet, Guid idCabinet)
         {
-            var appointment = new Appointment(dto.StartTime, dto.EndTime, dto.Description);
+            var appointment = mapper.Map<Appointment>(dto);
 
             appointment.attachPet(idPet);
             appointment.attachCabinet(idCabinet);
