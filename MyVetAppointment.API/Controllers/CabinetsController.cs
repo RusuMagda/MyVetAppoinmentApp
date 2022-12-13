@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -11,14 +11,11 @@ namespace MyVetAppointment.API.Controllers
     public class CabinetsController : ControllerBase
     {
         private readonly ICabinetRepository cabinetRepository;
-        private readonly IMapper mapper;
 
-        public CabinetsController(ICabinetRepository cabinetRepository, IShopRepository shopRepository, IMapper mapper)
+        public CabinetsController(ICabinetRepository cabinetRepository, IShopRepository shopRepository)
         {
             this.cabinetRepository = cabinetRepository;
-            this.mapper = mapper;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
@@ -28,10 +25,10 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateCabinetDto dto)
         {
-            var cabinet = mapper.Map<Cabinet>(dto);
+            var cabinet = new Cabinet(dto.Name, dto.Address, dto.Description, dto.PhoneNumber, dto.Image);
 
             await cabinetRepository.AddAsync(cabinet);
-            
+
             cabinetRepository.Save();
             return Created(nameof(GetAsync), cabinet);
 
@@ -39,13 +36,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(Guid id)
         {
-            var result = await cabinetRepository.GetByIdAsync(id);
-            if (result != null)
-            {
-                return Ok(result);
-            }
-
-            return NotFound();
+            return Ok(await cabinetRepository.GetByIdAsync(id));
         }
 
         [HttpDelete("{id}")]
@@ -82,7 +73,11 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            mapper.Map(dto, cabinet);
+            cabinet.Name = dto.Name;
+            cabinet.Address = dto.Address;
+            cabinet.Description = dto.Description;
+            cabinet.PhoneNumber = dto.PhoneNumber;
+            cabinet.Image = dto.Image;
 
             cabinetRepository.Update(cabinet);
             cabinetRepository.Save();
