@@ -3,22 +3,46 @@ namespace MyVetAppoinment.Domain.Entities
 {
     public class Cabinet
     {
-        public Cabinet(string name, string address)
+        
+        public Cabinet(string name, string address,string description,string phonenumber,string img)
         {
             Id = Guid.NewGuid();
             Name = name;
             Address = address;
+            Description= description;
+            PhoneNumber= phonenumber;
+            Image= img;
         }
-        public Cabinet(Guid id, string name, string address)
+        public Cabinet(Guid id,string name, string address, string description, string phonenumber,string img)
         {
             Id = id;
             Name = name;
             Address = address;
+            Description = description;
+            PhoneNumber = phonenumber;
+            Image= img;
         }
+        public Cabinet(Guid id, string name, string address) { 
+            Id = id;
+            Name = name;
+            Address = address;
+            
+        }
+        public Cabinet( string name, string address)
+        {
+            Id = new Guid();
+            Name = name;
+            Address = address;
+
+        }
+
 
         public Guid Id { get; private set; } = Guid.Empty;
         public string Name { get;  set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string PhoneNumber { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
         public List<Client> Clients { get; private set; } = new List<Client>();
         public Shop Shop { get; private set; } = default!;
 

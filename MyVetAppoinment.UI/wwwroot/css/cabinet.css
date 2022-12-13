@@ -76,14 +76,16 @@
 
 .main {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    height: 700px;
+    height: 800px;
     margin: 0 auto;
     max-width: 700px;
     overflow: hidden;
     position: relative;
+    background-image: url("../../photo/add.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     
-  
-    background-image:url(../../photo/add.jpg);
 }
 
 .input {
@@ -91,13 +93,14 @@
     border: 0;
     border-bottom: 1px solid white;
     box-sizing: border-box;
-    color: white;
+    color: black;
+    font-weight:600;
     display: block;
     font-size: 16px;
-    margin-bottom: 30px;
+    
     outline: none !important;
     opacity: .6;
-    padding-bottom: 15px;
-    padding-left: 50px;
+    margin:auto;
+   margin-top:20px;
     width: 50%;
 }
