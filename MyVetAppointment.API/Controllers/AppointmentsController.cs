@@ -28,11 +28,12 @@ namespace MyVetAppointment.API.Controllers
         {
             var appointment = await appointmentRepository.GetByIdAsync(id);
 
-            if (appointment == null)
+            if (appointment != null)
             {
-                return NotFound();
+                return Ok(appointment);
+                
             }
-            return Ok(appointment);
+            return NotFound();
         }
 
         [HttpPost("{idPet:guid}/{idCabinet:guid}")]

@@ -28,7 +28,7 @@ namespace MyVetAppointment.Infrastructure.Migrations
                 table: "Shops",
                 type: "TEXT",
                 nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+                defaultValue: Guid.NewGuid());
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shops_CabinetId",
@@ -65,7 +65,7 @@ namespace MyVetAppointment.Infrastructure.Migrations
                 table: "Cabinets",
                 type: "TEXT",
                 nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+                defaultValue: Guid.NewGuid());
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cabinets_ShopId",

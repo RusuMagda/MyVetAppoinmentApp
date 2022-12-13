@@ -42,8 +42,6 @@ namespace MyVetAppoinment.Repositories
             {
                 context.Appointments.Remove(appointment);
             }
-            
-            //await context.Appointments.Remove(appointment);
         }
 
 
@@ -51,10 +49,5 @@ namespace MyVetAppoinment.Repositories
         {
             context.SaveAsync();
         }
-
-        //public async Task DeleteAsync(Task<Appointment> appointment)
-        //{
-        //    await context.Appointments.Remove(appointment);
-        //}
     }
 }

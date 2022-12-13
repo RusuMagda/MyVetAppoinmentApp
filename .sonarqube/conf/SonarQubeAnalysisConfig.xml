@@ -114,10 +114,10 @@
     <Property Name="sonaranalyzer-vbnet.pluginKey">vbnet</Property>
     <Property Name="sonar.updatecenter.url">https://update.sonarsource.org/update-center.properties</Property>
     <Property Name="sonar.core.id">147B411E-AYTskANCzwTgyKWM4fA8</Property>
-    <Property Name="sonar.core.startTime">11-Dec-22 10:21:14 PM</Property>
+    <Property Name="sonar.core.startTime">13-Dec-22 4:32:48 PM</Property>
   </ServerSettings>
   <LocalSettings>
-    <Property Name="sonar.host.url">http://localhost:9000</Property>
+    <Property Name="sonar.cs.dotcover.reportsPaths">dotCover.Output.html</Property>
   </LocalSettings>
   <AnalyzersSettings>
     <AnalyzerSettings>

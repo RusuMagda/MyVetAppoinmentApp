@@ -17,7 +17,7 @@ namespace MyVetAppoinment.Repositories
            await this.context.Cabinets.AddAsync(cabinet);
         }
 
-        public async void Update(Cabinet cabinet)
+        public void Update(Cabinet cabinet)
         {
             this.context.Cabinets.Update(cabinet);
         }

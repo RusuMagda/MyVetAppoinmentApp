@@ -36,7 +36,7 @@ namespace IntegrationTests.Tests
         }
 
         [Fact]
-        public async Task TestGetPetAppointmnentsAsync()
+        public async Task TestGetPetAppointmentsAsync()
         {
             // Arrange
             var request = "/api/Pets/7febb009-3dc4-4413-a5c4-4142b101be37/appointments";
@@ -88,6 +88,18 @@ namespace IntegrationTests.Tests
 
             // Act
             var response = await HttpClient.PutAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+
+            // Assert
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async Task TestDeletePetAsync()
+        {
+            // Arrange
+            var request = "/api/Pets/e1c0bbc0-045f-4908-93f8-773f14732508";
+            // Act
+            var response = await HttpClient.DeleteAsync(request);
 
             // Assert
             Assert.True(response.IsSuccessStatusCode);

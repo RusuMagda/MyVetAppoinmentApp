@@ -10,6 +10,5 @@ namespace MyVetAppoinment.Repositories
         void Delete(Guid id);
         void Update(Appointment appointment);
         void Save();
-        //void Delete(Task<Appointment> appointment);
     }
 }

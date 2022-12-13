@@ -11,12 +11,10 @@ namespace MyVetAppointment.API.Controllers
     public class CabinetsController : ControllerBase
     {
         private readonly ICabinetRepository cabinetRepository;
-        private readonly IShopRepository shopRepository;
 
         public CabinetsController(ICabinetRepository cabinetRepository,IShopRepository shopRepository)
         {
             this.cabinetRepository = cabinetRepository;
-            this.shopRepository = shopRepository;
         }
         [HttpGet]
         public async Task<IActionResult> GetAsync()
