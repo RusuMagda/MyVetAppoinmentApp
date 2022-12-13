@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.API.DTOs;
+using MyVetAppointment.API.Validators;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -11,6 +12,7 @@ namespace MyVetAppointment.API.Controllers
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentRepository appointmentRepository;
+        private readonly AppointmentValidator _validator = new AppointmentValidator();
 
         public AppointmentsController(IAppointmentRepository appointmentRepository)
         {
@@ -43,11 +45,17 @@ namespace MyVetAppointment.API.Controllers
 
             appointment.attachPet(idPet);
             appointment.attachCabinet(idCabinet);
+            var validationResult = await _validator.ValidateAsync(appointment);
+            if (validationResult.Errors.Count > 0)
+                return BadRequest(validationResult.Errors);
+            else
+            {
 
-            await appointmentRepository.AddAsync(appointment);
+                await appointmentRepository.AddAsync(appointment);
 
-            appointmentRepository.Save();
-            return Created(nameof(Get), appointment);
+                appointmentRepository.Save();
+                return Created(nameof(Get), appointment);
+            }
         }
 
         [HttpDelete("{id:guid}")]

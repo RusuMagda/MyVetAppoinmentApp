@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.API.DTOs;
+using MyVetAppointment.API.Validators;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -11,6 +12,7 @@ namespace MyVetAppointment.API.Controllers
     public class ClientsController : ControllerBase
     {
         private readonly IClientRepository clientRepository;
+        private readonly ClientValidator _validator = new ClientValidator();
 
         public ClientsController(IClientRepository clientRepository)
         {
@@ -51,9 +53,15 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateClientDto dto)
         {
             var client = new Client(dto.Name, dto.EMail, dto.PhoneNumber);
-            await clientRepository.AddAsync(client);
-            clientRepository.Save();
-            return Created(nameof(Get), client);
+            var validationResult = await _validator.ValidateAsync(client);
+            if (validationResult.Errors.Count > 0)
+                return BadRequest(validationResult.Errors);
+            else
+            {
+                await clientRepository.AddAsync(client);
+                clientRepository.Save();
+                return Created(nameof(Get), client);
+            }
         }
 
         [HttpDelete("{id:guid}")]
