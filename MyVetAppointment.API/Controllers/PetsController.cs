@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -11,10 +12,12 @@ namespace MyVetAppointment.API.Controllers
     public class PetsController : ControllerBase
     {
         private readonly IPetRepository petRepository;
+        private readonly IMapper mapper;
 
-        public PetsController(IPetRepository petRepository)
+        public PetsController(IPetRepository petRepository, IMapper mapper)
         {
             this.petRepository = petRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -39,7 +42,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreatePetDto dto)
         {
-            var pet = new Pet(dto.OwnerId, dto.Name, dto.Birthdate);
+            var pet = mapper.Map<Pet>(dto);
             await petRepository.AddAsync(pet);
             petRepository.Save();
             return Created(nameof(GetAsync), pet);
@@ -66,15 +69,11 @@ namespace MyVetAppointment.API.Controllers
             {
                 return NotFound();
             }
-            pet.Name = dto.Name;
-            pet.OwnerId = dto.OwnerId;
-            pet.Birthdate = dto.Birthdate;
+
+            mapper.Map(dto, pet);
             petRepository.Update(pet);
             petRepository.Save();
             return NoContent();
         }
-
-
-
     }
 }
