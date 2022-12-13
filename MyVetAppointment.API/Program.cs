@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.Application;
