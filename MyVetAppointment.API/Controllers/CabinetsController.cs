@@ -25,7 +25,7 @@ namespace MyVetAppointment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateCabinetDto dto)
         {
-            var cabinet = new Cabinet(dto.Name, dto.Address);
+            var cabinet = new Cabinet(dto.Name, dto.Address,dto.Description,dto.PhoneNumber, dto.Image);
             
             await cabinetRepository.AddAsync(cabinet);
             
@@ -75,6 +75,9 @@ namespace MyVetAppointment.API.Controllers
             }
             cabinet.Name = dto.Name;
             cabinet.Address = dto.Address;
+            cabinet.Description = dto.Description;
+            cabinet.PhoneNumber = dto.PhoneNumber;
+            cabinet.Image = dto.Image;
 
             cabinetRepository.Update(cabinet);
             cabinetRepository.Save();
