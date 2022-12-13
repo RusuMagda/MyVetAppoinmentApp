@@ -1,45 +1,79 @@
 ﻿@page "/cabinetsoverview"
-
-<h2>Cabinets Overview</h2>
+<link href="css/cabinet.css" rel="stylesheet" />
+<div class="imga">
+    <img src="../../photo/1.jpg" alt="Name in the site" width="100px" height="100px">
+    
+</div>
+<h2>Cabinets </h2>
 @if (Cabinets == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <tabel class="table table-light">
-        <thead class="table-primary" >
-        <th>Cabinet Id</th>
-        <th>Cabinet Name</th>
-        <th>Cabinet Address</th>
-        <th>Edit/Delete</th>
-        <th>Clients</th>
-       
-        </thead>
-        <tbody>
-            @foreach (var cabinet in Cabinets)
-            {
-                <tr>
-                    <td>@cabinet.Id</td>
-                    <td>@cabinet.Name</td>
-                    <td>@cabinet.Address</td>
-                    <td>
-                        <a href='/cabinet/edit/@cabinet.Id' class="btn btn-outline-dark" role="button">
-                            Edit
-                        </a>
-                        <a href='/cabinet/delete/@cabinet.Id' class="btn btn-outline-danger" role="button">
-                            Delete
-                        </a>
-                    </td>
-                     <td>
-                    <a href='/seeclients/@cabinet.Id' class="btn btn-outline" role="button">
-                        Clients
+
+
+    int i = 0;
+    @foreach (var cabinet in Cabinets)
+    {
+        if (i % 2 == 0)
+
+        {
+            <div class="box-container">
+               
+             <div class="flex-container">
+                <div class="item">
+                        <div class="name"><b>@cabinet.Name</b></div>
+                        <hr/>
+                        <div class="address">@cabinet.Address</div>
+                            <div class="number">Tel: @cabinet.PhoneNumber</div>
+                        
+                    <div class="desc">@cabinet.Description</div>
+                    
+                    
+                    <a href='' class="btn" role="button">
+                        Make an Appointment
                     </a>
-                    </td>
+                </div>
+                <div class="item">
                     
+                    <img src="photo/@cabinet.Image" alt="Loading" width="300" height="300">
+                </div>
+            </div>
+               
+            </div>
+
+        }
+        else
+        {<div class="box-container">
+            <div class="flex-container">
+               
+                <div class="item">
+                    <img src="photo/@cabinet.Image" alt="Loading" width="300" height="300">
+                </div>
+                <div class="item">
+                        <div class="name"><b>@cabinet.Name</b></div>
+                        <hr />
+                        <div class="address">@cabinet.Address</div>
+                        <div class="number">Tel: @cabinet.PhoneNumber</div>
+                        <div>@cabinet.Description</div>
+                        <a href='' class="btn" role="button">
+                            Make an Appointment
+                        </a>
                     
-                </tr>
-            }
-        </tbody>
-    </tabel>
+                </div>
+
+            </div>
+            </div>
+        }
+        i += 1;
+
+
+
+
+
+    }
+
+
 }
+

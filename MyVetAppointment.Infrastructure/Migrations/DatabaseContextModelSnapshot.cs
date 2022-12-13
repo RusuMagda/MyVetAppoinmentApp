@@ -41,8 +41,6 @@ namespace MyVetAppointment.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CabinetId");
-
                     b.HasIndex("PetId");
 
                     b.ToTable("Appointments");
@@ -58,7 +56,19 @@ namespace MyVetAppointment.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -84,8 +94,9 @@ namespace MyVetAppointment.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -96,7 +107,7 @@ namespace MyVetAppointment.Infrastructure.Migrations
 
             modelBuilder.Entity("MyVetAppoinment.Domain.Entities.Drug", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -128,7 +139,7 @@ namespace MyVetAppointment.Infrastructure.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("ShopId");
 
@@ -151,8 +162,8 @@ namespace MyVetAppointment.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -184,21 +195,11 @@ namespace MyVetAppointment.Infrastructure.Migrations
 
             modelBuilder.Entity("MyVetAppoinment.Domain.Entities.Appointment", b =>
                 {
-                    b.HasOne("MyVetAppoinment.Domain.Entities.Cabinet", "Cabinet")
-                        .WithMany()
-                        .HasForeignKey("CabinetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyVetAppoinment.Domain.Entities.Pet", "Pet")
+                    b.HasOne("MyVetAppoinment.Domain.Entities.Pet", null)
                         .WithMany("Appointments")
                         .HasForeignKey("PetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cabinet");
-
-                    b.Navigation("Pet");
                 });
 
             modelBuilder.Entity("MyVetAppoinment.Domain.Entities.Client", b =>
