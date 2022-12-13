@@ -29,7 +29,12 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(Guid id)
         {
-            return Ok(await petRepository.GetByIdAsync(id));
+            var result = await petRepository.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         [HttpGet("{id}/appointments")]

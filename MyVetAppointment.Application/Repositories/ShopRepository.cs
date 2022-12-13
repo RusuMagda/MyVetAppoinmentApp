@@ -37,7 +37,7 @@ namespace MyVetAppoinment.Repositories
             return await context.Shops.ToListAsync();
         }
 
-        public async Task<Shop> GetByIdAsync(Guid id)
+        public async Task<Shop?> GetByIdAsync(Guid id)
         {
             return await this.context.Shops.FirstOrDefaultAsync(s => s.ShopId == id);
         }

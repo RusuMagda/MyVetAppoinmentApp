@@ -10,6 +10,12 @@ C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\DTOs\Crea
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\DTOs\CreateDrugDto.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\DTOs\CreatePetDto.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\DTOs\CreateShopDto.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\Profiles\AppointmentProfile.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\Profiles\CabinetProfile.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\Profiles\ClientProfile.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\Profiles\DrugProfile.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\Profiles\PetProfile.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\Profiles\ShopProfile.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\Program.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\obj\Debug\net7.0\MyVetAppointment.API.GlobalUsings.g.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.API\obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
