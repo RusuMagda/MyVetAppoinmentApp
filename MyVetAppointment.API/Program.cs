@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.Application;
@@ -10,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("MyVetAppointmentDb"),
