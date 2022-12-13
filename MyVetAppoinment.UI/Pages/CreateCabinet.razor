@@ -1,29 +1,60 @@
 ﻿@page "/cabinetcreate"
+<link href="css/cabinet.css" rel="stylesheet" />
 @using MyVetAppoinment.Shared.Domain
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 <h1>@Title Cabinet</h1>
 <hr />
+<div class="main">
 <EditForm Model="@cabinet" OnValidSubmit="SaveCabinet">
     <DataAnnotationsValidator />
     <div class="mb-3">
+            <div class="input">
         <label for="Name" class="form-label">Name</label>
-        <div class="col-md-4">
+        
             <InputText class="form-control" @bind-Value="cabinet.Name" />
         </div>
         <ValidationMessage For="@(() => cabinet.Name)" />
     </div>
     <div class="mb-3">
+            <div class="input">
         <label for="Address" class="form-label">Address</label>
-        <div class="col-md-4">
+            
             <InputText class="form-control" @bind-Value="cabinet.Address" />
         </div>
         <ValidationMessage For="@(() => cabinet.Address)" />
     </div>
+    <div class="mb-3">
+            <div class="input">
+        <label for="Number" class="form-label">Phone Number</label>
+            
+            <InputText class="form-control" @bind-Value="cabinet.PhoneNumber" />
+        </div>
+        <ValidationMessage For="@(() => cabinet.PhoneNumber)" />
+    </div>
+    <div class="mb-3">
+            <div class="input">
+        <label for="Description" class="form-label">Description</label>
+            
+            <InputText class="form-control" @bind-Value="cabinet.Description" />
+        </div>
+        <ValidationMessage For="@(() => cabinet.Description)" />
+    </div>
+    <div class="mb-3">
+            <div class="input">
+        <label for="Image" class="form-label">Image</label>
+            
+            <InputText class="form-control" @bind-Value="cabinet.Image" />
+        </div>
+        <ValidationMessage For="@(() => cabinet.Image)" />
+    </div>
     
     
     <div class="form-group">
+            <div class="input">
         <button type="submit" class="btn btn-primary">Save</button>
-        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+                <button class="btn btn-primary" @onclick="Cancel">Cancel</button>
+    </div>
     </div>
 </EditForm>
+</div>
