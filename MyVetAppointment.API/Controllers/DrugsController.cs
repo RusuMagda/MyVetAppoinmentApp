@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.API.DTOs;
+using MyVetAppointment.API.Validators;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -13,6 +14,7 @@ namespace MyVetAppointment.API.Controllers
     {
         private readonly IDrugRepository drugRepository;
         private readonly IMapper mapper;
+        private readonly DrugValidator _validator = new DrugValidator();
 
         public DrugsController(IDrugRepository drugRepository, IMapper mapper)
         {
@@ -34,9 +36,15 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateDrugDto dto)
         {
             var drug = mapper.Map<Drug>(dto);
-            await drugRepository.AddAsync(drug);
-            drugRepository.Save();
-            return Created(nameof(Get), drug);
+            var validationResult = await _validator.ValidateAsync(drug);
+            if (validationResult.Errors.Count > 0)
+                return BadRequest(validationResult.Errors);
+            else
+            {
+                await drugRepository.AddAsync(drug);
+                drugRepository.Save();
+                return Created(nameof(Get), drug);
+            }
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAsync(Guid id)

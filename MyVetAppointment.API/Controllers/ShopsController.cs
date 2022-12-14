@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.API.DTOs;
+using MyVetAppointment.API.Validators;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -13,6 +14,7 @@ namespace MyVetAppointment.API.Controllers
     {
         private readonly IShopRepository shopRepository;
         private readonly IMapper mapper;
+        private readonly ShopValidator _validator = new ShopValidator();
 
         public ShopsController(IShopRepository shopRepository, IMapper mapper)
         {
@@ -41,9 +43,15 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> CreateAsync([FromBody] CreateShopDto dto)
         {
             var shop = mapper.Map<Shop>(dto);
-            await shopRepository.AddAsync(shop);
-            shopRepository.Save();
-            return Created(nameof(GetAsync), shop);
+            var validationResult = await _validator.ValidateAsync(shop);
+            if (validationResult.Errors.Count > 0)
+                return BadRequest(validationResult.Errors);
+            else
+            {
+                await shopRepository.AddAsync(shop);
+                shopRepository.Save();
+                return Created(nameof(GetAsync), shop);
+            }
         }
 
         [HttpDelete("{id}")]

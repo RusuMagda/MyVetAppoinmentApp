@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
 using MyVetAppointment.API.DTOs;
+using MyVetAppointment.API.Validators;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -13,6 +14,7 @@ namespace MyVetAppointment.API.Controllers
     {
         private readonly ICabinetRepository cabinetRepository;
         private readonly IMapper mapper;
+        private readonly CabinetValidator _validator = new CabinetValidator();
 
         public CabinetsController(ICabinetRepository cabinetRepository, IMapper mapper)
         {
@@ -29,11 +31,17 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> CreateAsync([FromBody] CreateCabinetDto dto)
         {
             var cabinet = mapper.Map<Cabinet>(dto);
-            
-            await cabinetRepository.AddAsync(cabinet);
-            
-            cabinetRepository.Save();
-            return Created(nameof(GetAsync), cabinet);
+            var validationResult = await _validator.ValidateAsync(cabinet);
+            if (validationResult.Errors.Count > 0)
+                return BadRequest(validationResult.Errors);
+            else
+            {
+
+                await cabinetRepository.AddAsync(cabinet);
+
+                cabinetRepository.Save();
+                return Created(nameof(GetAsync), cabinet);
+            }
 
         }
         [HttpGet("{id}")]
