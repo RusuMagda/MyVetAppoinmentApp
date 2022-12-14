@@ -3,4 +3,6 @@ C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Infrastructur
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Infrastructure\Migrations\20221122220219_InitialCreate.Designer.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Infrastructure\Migrations\20221123131814_Second.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Infrastructure\Migrations\20221123131814_Second.Designer.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Infrastructure\Migrations\20221213191223_Third.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Infrastructure\Migrations\20221213191223_Third.Designer.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Infrastructure\Migrations\DatabaseContextModelSnapshot.cs

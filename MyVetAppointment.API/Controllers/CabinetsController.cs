@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -21,10 +20,22 @@ namespace MyVetAppointment.API.Controllers
             this.cabinetRepository = cabinetRepository;
             this.mapper = mapper;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
             return Ok(await cabinetRepository.GetAllAsync());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAsync(Guid id)
+        {
+            var result = await cabinetRepository.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         [HttpPost]
@@ -36,18 +47,11 @@ namespace MyVetAppointment.API.Controllers
                 return BadRequest(validationResult.Errors);
             else
             {
-
                 await cabinetRepository.AddAsync(cabinet);
-
                 cabinetRepository.Save();
                 return Created(nameof(GetAsync), cabinet);
             }
 
-        }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync(Guid id)
-        {
-            return Ok(await cabinetRepository.GetByIdAsync(id));
         }
 
         [HttpDelete("{id}")]

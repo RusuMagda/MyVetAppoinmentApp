@@ -13,7 +13,7 @@ namespace MyVetAppoinment.Domain.Entities
             PhoneNumber= phonenumber;
             Image= img;
         }
-        public Cabinet(Guid id,string name, string address, string description, string phonenumber,string img)
+        public Cabinet(Guid id,string name, string address, string description, string phonenumber, string img)
         {
             Id = id;
             Name = name;
@@ -28,18 +28,18 @@ namespace MyVetAppoinment.Domain.Entities
             Address = address;
             
         }
-        public Cabinet( string name, string address)
+        public Cabinet(string name, string address)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             Name = name;
             Address = address;
 
         }
 
 
-        public Guid Id { get; private set; } = Guid.Empty;
-        public string Name { get;  set; } = string.Empty;
-        public string Address { get; set; } = string.Empty;
+        public Guid Id { get; private set; }
+        public string Name { get;  set; }
+        public string Address { get; set; }
         public string Description { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;

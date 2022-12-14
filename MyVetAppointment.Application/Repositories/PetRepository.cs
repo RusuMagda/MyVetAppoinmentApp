@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Application;
-using System.Runtime.CompilerServices;
 
 namespace MyVetAppoinment.Repositories
 {
@@ -38,7 +37,7 @@ namespace MyVetAppoinment.Repositories
             return await context.Pets.ToListAsync();
         }
 
-        public async Task<Pet> GetByIdAsync(Guid id)
+        public async Task<Pet?> GetByIdAsync(Guid id)
         {
             return await context.Pets.FirstOrDefaultAsync(p => p.Id == id);
         }

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using MyVetAppoinment.Shared.Domain;
 using MyVetAppoinment.UI.Pages.Services;
-using System.Net.Http.Json;
 
 namespace MyVetAppoinment.UI.Pages
 {
@@ -19,11 +18,19 @@ namespace MyVetAppoinment.UI.Pages
        
         protected async override Task OnInitializedAsync()
         {
-            Shops =(await ShopDataService.GetAllShops()).ToList();
+            var result = await ShopDataService.GetAllShops();
+            if (result != null)
+            {
+                Shops = result.ToList();
+            }
            
             foreach (var shop in Shops)
             {
-                cabinet = (await CabinetDataService.GetCabinetDetail(shop.CabinetId));
+                var MyShop = await CabinetDataService.GetCabinetDetail(shop.CabinetId);
+                if (MyShop != null)
+                {
+                    cabinet = MyShop;
+                }
             }
            
         }

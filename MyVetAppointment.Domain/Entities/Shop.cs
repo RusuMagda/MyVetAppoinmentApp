@@ -17,9 +17,9 @@
             CabinetId = cabinetId;
         }
 
-        public Guid ShopId { get; set; } = Guid.Empty;
-        public string ShopName { get;  set; }  = string.Empty;
-        public Guid CabinetId { get; set; } = Guid.Empty;
+        public Guid ShopId { get; set; }
+        public string ShopName { get;  set; }
+        public Guid CabinetId { get; set; }
         public List<Drug> Drugs { get;  set; } = new List<Drug>();
 
         public void AttachCabinet(Cabinet cabinet)

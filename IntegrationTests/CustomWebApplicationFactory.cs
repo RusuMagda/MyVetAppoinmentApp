@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MyVetAppointment.Infrastructure;
+using Xunit;
 using static IntegrationTests.DbSeed;
-
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace IntegrationTests;
 public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : class
 {

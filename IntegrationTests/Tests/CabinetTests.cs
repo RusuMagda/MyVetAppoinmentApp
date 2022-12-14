@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Net;
+using Xunit;
 
 namespace IntegrationTests.Tests
 {
@@ -32,6 +33,18 @@ namespace IntegrationTests.Tests
 
             // Assert
             Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async Task TestGetNonExistingCabinetAsync()
+        {
+            // Arrange
+            var request = "/api/Cabinets/96ad18b8-8b3b-443c-9a86-2d3fc36b8399";
+            // Act
+            var response = await HttpClient.GetAsync(request);
+
+            // Assert
+            Assert.True(response.StatusCode == HttpStatusCode.NotFound);
         }
         [Fact]
         public async Task TestPostCabinetAsync()

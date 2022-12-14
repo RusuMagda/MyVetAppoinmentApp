@@ -6,7 +6,7 @@ namespace MyVetAppoinment.Repositories
     {
         Task AddAsync(Cabinet cabinet);
         void Delete(Guid id);
-        Task<Cabinet> GetByIdAsync(Guid id);
+        Task<Cabinet?> GetByIdAsync(Guid id);
         Task<IReadOnlyCollection<Cabinet>> GetAllAsync();
         Task<IReadOnlyCollection<Client>> GetClientsAsync(Guid id);
         Task<IReadOnlyCollection<Cabinet>> GetCabinetsWithoutShop();

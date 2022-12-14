@@ -6,7 +6,7 @@ namespace MyVetAppoinment.Repositories
     {
         Task AddAsync(Drug drug);
         void Delete(Guid id);
-        Task<Drug> GetByIdAsync(Guid id);
+        Task<Drug?> GetByIdAsync(Guid id);
         Task<IReadOnlyCollection<Drug>> GetAllAsync();
         void Save();
         void Update(Drug drug);

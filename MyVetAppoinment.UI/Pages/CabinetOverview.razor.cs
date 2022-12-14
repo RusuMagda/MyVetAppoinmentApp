@@ -13,7 +13,11 @@ namespace MyVetAppoinment.UI.Pages
         public List<Cabinet> Cabinets { get; set; } = default!;
         protected async override Task OnInitializedAsync()
         {
-            Cabinets = (await CabinetDataService.GetAllCabinets()).ToList();
+            var result = await CabinetDataService.GetAllCabinets();
+            if (result != null)
+            {
+                Cabinets = result.ToList();
+            }
         }
 
     }

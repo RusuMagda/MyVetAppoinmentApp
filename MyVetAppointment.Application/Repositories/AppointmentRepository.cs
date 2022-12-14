@@ -25,14 +25,9 @@ namespace MyVetAppoinment.Repositories
             return await context.Appointments.ToListAsync<Appointment>();
         }
 
-        public async Task<Appointment> GetByIdAsync(Guid id)
+        public async Task<Appointment?> GetByIdAsync(Guid id)
         {
             return await context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
-        }
-
-        public void Update(Appointment appointment)
-        {
-            context.Appointments.Update(appointment);
         }
 
         public async void Delete(Guid id)
@@ -51,3 +46,8 @@ namespace MyVetAppoinment.Repositories
         }
     }
 }
+
+
+
+
+
