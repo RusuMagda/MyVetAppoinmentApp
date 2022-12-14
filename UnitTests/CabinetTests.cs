@@ -1,7 +1,5 @@
 ﻿
 using MyVetAppoinment.Domain.Entities;
-using System.Net;
-using System.Xml.Linq;
 
 namespace UnitTests
 {
@@ -13,12 +11,18 @@ namespace UnitTests
             var Id = new Guid("086771a1-4a3b-4a64-b922-00b7bbe54fdf");
             var name = "ProVet";
             var address = "Strada Smardan 84";
-            Cabinet result = new Cabinet(Id, name, address);
+            var description = "New Cabinet";
+            var phoneNumber = "0123456789";
+            var img = "image.png";
+            Cabinet result = new Cabinet(Id, name, address,description,phoneNumber, img);
 
             Assert.NotNull(result);
             result.Id.Equals(new Guid("086771a1-4a3b-4a64-b922-00b7bbe54fdf"));
             result.Name.Equals("ProVet");
             result.Address.Equals("Strada Smardan 84");
+            result.Description.Equals("New Cabinet");
+            result.PhoneNumber.Equals("0123456789");
+            result.Image.Equals("image.png");
         }
 
         [Fact]

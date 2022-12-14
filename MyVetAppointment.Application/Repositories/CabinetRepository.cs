@@ -36,7 +36,7 @@ namespace MyVetAppoinment.Repositories
             return await context.Cabinets.ToListAsync();
         }
 
-        public async Task<Cabinet> GetByIdAsync(Guid id)
+        public async Task<Cabinet?> GetByIdAsync(Guid id)
         {
             return await context.Cabinets.FirstOrDefaultAsync(c => c.Id == id);
         }
@@ -49,7 +49,7 @@ namespace MyVetAppoinment.Repositories
                 ids.Add(await context.Pets.Where(p=>p.Id==q).Select(p=>p.OwnerId).SingleAsync());
 
             List<Client> clients=new List<Client>();
-            foreach (Guid cl in ids)
+            foreach (var cl in ids)
                 clients.Add(await context.Clients.Where(c => c.Id == cl).SingleAsync());
 
             return clients;
@@ -57,15 +57,14 @@ namespace MyVetAppoinment.Repositories
         public  async Task<IReadOnlyCollection<Cabinet>> GetCabinetsWithoutShop()
         {
             var shops=await (context.Shops.Select(a=>a.CabinetId).ToListAsync());
-            List<Cabinet> cabs=new List<Cabinet>();
+            List<Cabinet> cabs=new();
             var cab=await context.Cabinets.ToListAsync();
 
 
-            foreach (Guid q in shops)
+            foreach (var q in shops)
                 cabs.Add(await context.Cabinets.Where(c=> c.Id==q).SingleAsync());
-            foreach(Cabinet c in cabs)
-                if(cab.Contains(c))
-                    cab.Remove(c);
+            foreach (var c in cabs.Where(c => cab.Contains(c)))
+                cab.Remove(c);
             
            
             return cab;

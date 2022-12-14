@@ -11,23 +11,39 @@ namespace MyVetAppoinment.UI.Pages
         public ICabinetDataService CabinetDataService { get; set; } = default!;
       
         public EventCallback<string> ValueChanged { get; set; }
-        public String Value { get; set; }
+        public String? Value { get; set; }
         public List<Client> Clients { get; set; } = default!;
         [Parameter]
         public Guid CabinetId { get; set; }
         protected async override Task OnInitializedAsync()
         {
-           
-            Cabinets = (await CabinetDataService.GetAllCabinets()).ToList();
+            var result = await CabinetDataService.GetAllCabinets();
+            if (result != null)
+            {
+                Cabinets = result.ToList();
+            }
         }
         private Task OnValueChanged(ChangeEventArgs e)
         {
-            Value = e.Value.ToString();
+            var result = e.Value;
+            if (result != null)
+            {
+                Value = result.ToString();
+            }
             return ValueChanged.InvokeAsync(Value);
         }
         protected async Task Close()
         {
-            Clients = (await CabinetDataService.GetAllClients(new Guid(Value))).ToList();
+            if (Value != null)
+            {
+                var result = await CabinetDataService.GetAllClients(new Guid(Value));
+                if (result != null)
+                {
+                    Clients = result.ToList();
+                }
+            }
+            
+            
             
 
 

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppoinment.Domain.Entities;
 using MyVetAppoinment.Repositories;
@@ -30,7 +29,12 @@ namespace MyVetAppointment.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(await drugRepository.GetByIdAsync(id));
+            var result = await drugRepository.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateDrugDto dto)

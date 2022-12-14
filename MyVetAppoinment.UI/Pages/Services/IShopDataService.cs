@@ -4,9 +4,9 @@ namespace MyVetAppoinment.UI.Pages.Services
 {
     public interface IShopDataService
     {
-        Task<IEnumerable<Shop>> GetAllShops();
+        Task<IEnumerable<Shop>?> GetAllShops();
        
-        Task<Shop> GetShopDetail(Guid shopId);
+        Task<Shop?> GetShopDetail(Guid shopId);
 
 
         void AddShop(Shop shop);

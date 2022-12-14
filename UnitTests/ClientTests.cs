@@ -1,5 +1,4 @@
 ﻿using MyVetAppoinment.Domain.Entities;
-using System.Xml.Linq;
 
 namespace UnitTests
 {

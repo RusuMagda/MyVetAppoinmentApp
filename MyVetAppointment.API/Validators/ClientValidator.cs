@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using MyVetAppoinment.Domain.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Text.RegularExpressions;
 
 namespace MyVetAppointment.API.Validators

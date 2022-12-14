@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Net;
+using Xunit;
 
 namespace IntegrationTests.Tests
 {
@@ -35,6 +36,18 @@ namespace IntegrationTests.Tests
         }
 
         [Fact]
+        public async Task TestGetNonExistingAppointmentAsync()
+        {
+            // Arrange
+            var request = "/api/Appointments/96ad18b8-8b3b-443c-9a86-2d3fc36b8388";
+            // Act
+            var response = await HttpClient.GetAsync(request);
+
+            // Assert
+            Assert.True(response.StatusCode == HttpStatusCode.NotFound);
+        }
+
+        [Fact]
         public async Task TestDeleteAppointmentAsync()
         {
             // Arrange
@@ -56,8 +69,8 @@ namespace IntegrationTests.Tests
                 Body = new
                 {
                     Id = Guid.NewGuid(),
-                    StartTime = "2022-12-06T16:47:02.959Z",
-                    EndTime = "2022-12-06T17:47:02.959Z",
+                    StartTime = "2023-12-06T16:47:02.959Z",
+                    EndTime = "2023-12-06T17:47:02.959Z",
                     Description = "description"
                 }
             };

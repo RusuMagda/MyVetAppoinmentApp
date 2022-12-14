@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyVetAppoinment.Domain.Entities;
+﻿using MyVetAppoinment.Domain.Entities;
 using MyVetAppointment.Infrastructure;
 
 namespace IntegrationTests;

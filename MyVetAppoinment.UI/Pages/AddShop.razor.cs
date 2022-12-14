@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using MyVetAppoinment.Shared.Domain;
 using MyVetAppoinment.UI.Pages.Services;
 
@@ -11,15 +10,16 @@ namespace MyVetAppoinment.UI.Pages
         public List<Cabinet> Cabinets { get; set; } = default!;
         [Inject]
         public ICabinetDataService CabinetDataService { get; set; } = default!;
-
-        [Parameter]
-        public String Value { get; set; }
-        public Guid Gud;
         
+        [Parameter]
+        public String? Value { get; set; }
+
         [Parameter]
         public EventCallback<string> ValueChanged { get; set; }
         
-        public Shop    shop=new Shop { };
+        private Shop shop = new();
+        public Shop? Shop { get; set; }
+        
 
         [Inject]
         public IShopDataService ShopDataService { get; set; } = default!;
@@ -28,23 +28,35 @@ namespace MyVetAppoinment.UI.Pages
             get;
             set;
         }
-        protected  async Task HandleValidSubmit()
+        protected Task HandleValidSubmit()
         {
-            shop.CabinetId = new Guid(Value);
-            ShopDataService.AddShop(shop);
-            Close();
-           
-            
+            if (Value != null)
+            {
+                shop.CabinetId = new Guid(Value);
+                ShopDataService.AddShop(shop);
+                Close();
+            }
+
+            return Task.CompletedTask;
         }
 
         
         protected async override Task OnInitializedAsync()
         {
-            Cabinets = (await CabinetDataService.GetCabinetsWithoutShop()).ToList();
+            var result = await CabinetDataService.GetCabinetsWithoutShop();
+            if (result != null)
+            {
+                Cabinets = result.ToList();
+            }
         }
         private Task OnValueChanged(ChangeEventArgs e)
         {
-            Value = e.Value.ToString();
+            var result = e.Value;
+            if (result != null)
+            {
+                Value = result.ToString();
+            }
+            
             return ValueChanged.InvokeAsync(Value);
         }
         public void Close()

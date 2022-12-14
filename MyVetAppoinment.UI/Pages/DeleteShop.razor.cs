@@ -14,14 +14,18 @@ namespace MyVetAppoinment.UI.Pages
         Shop shop = new Shop();
         protected override async Task OnInitializedAsync()
         {
-            shop = await ShopDataService.GetShopDetail(ShopId);
-            
+            var result = await ShopDataService.GetShopDetail(ShopId);
+            if (result != null)
+            {
+                shop = result;
+            }
+
         }
         protected async Task RemoveShop(Guid shopId)
         {
             ShopDataService.DeleteShop(shopId);
             
-            Cancel();
+            await Cancel();
         }
         public async Task Cancel()
         {

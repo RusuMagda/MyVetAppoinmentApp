@@ -37,14 +37,9 @@ namespace MyVetAppoinment.Repositories
             return await context.Drugs.ToListAsync();
         }
 
-        public async Task<Drug> GetByIdAsync(Guid id)
+        public async Task<Drug?> GetByIdAsync(Guid id)
         {
-            var result = await context.Drugs.FindAsync(id);
-            if(result != null)
-            {
-                return result;
-            }
-            return null;
+            return await context.Drugs.FirstOrDefaultAsync(d => d.Id == id);
         }
 
         public void Save()
@@ -53,3 +48,7 @@ namespace MyVetAppoinment.Repositories
         }
     }
 }
+
+
+
+

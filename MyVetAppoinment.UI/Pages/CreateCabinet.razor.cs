@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MyVetAppoinment.Shared.Domain;
 using MyVetAppoinment.UI.Pages.Services;
-using System.Net.Http.Json;
 
 namespace MyVetAppoinment.UI.Pages
 {
@@ -9,7 +8,12 @@ namespace MyVetAppoinment.UI.Pages
     {
         [Inject] public ICabinetDataService CabinetDataService { get; set; } = default!;
 
-        public Cabinet cabinet=new Cabinet();
+        private Cabinet cabinet = new();
+        public Cabinet? Cabinet
+        {
+            get;
+            set;
+        }
       
 
         protected string Title = "Add";
@@ -18,7 +22,7 @@ namespace MyVetAppoinment.UI.Pages
         protected async Task SaveCabinet()
         {
             CabinetDataService.AddCabinet(cabinet);       
-            Cancel();
+            await Cancel();
         }
         public async Task Cancel()
         {
