@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MyVetAppoinment.Domain.Entities;
-using MyVetAppoinment.Repositories;
+using MyVetAppointment.Domain.Entities;
 using MyVetAppointment.API.DTOs;
 using MyVetAppointment.API.Validators;
+using MyVetAppointment.Infrastructure.Repositories;
 
 namespace MyVetAppointment.API.Controllers
 {

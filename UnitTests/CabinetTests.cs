@@ -1,5 +1,5 @@
 ﻿
-using MyVetAppoinment.Domain.Entities;
+using MyVetAppointment.Domain.Entities;
 
 namespace UnitTests
 {

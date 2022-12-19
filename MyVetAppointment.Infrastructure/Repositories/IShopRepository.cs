@@ -1,6 +1,6 @@
-﻿using MyVetAppoinment.Domain.Entities;
+﻿using MyVetAppointment.Domain.Entities;
 
-namespace MyVetAppoinment.Repositories
+namespace MyVetAppointment.Infrastructure.Repositories
 {
     public interface IShopRepository
     {

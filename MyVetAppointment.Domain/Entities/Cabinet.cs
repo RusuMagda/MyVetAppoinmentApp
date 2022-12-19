@@ -1,5 +1,5 @@
 
-namespace MyVetAppoinment.Domain.Entities
+namespace MyVetAppointment.Domain.Entities
 {
     public class Cabinet
     {

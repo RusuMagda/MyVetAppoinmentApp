@@ -1,5 +1,5 @@
-﻿using MyVetAppoinment.Domain.Entities;
-using MyVetAppointment.Infrastructure;
+﻿using MyVetAppointment.Domain.Entities;
+using MyVetAppointment.Infrastructure.Data;
 
 namespace IntegrationTests;
 public class DbSeed

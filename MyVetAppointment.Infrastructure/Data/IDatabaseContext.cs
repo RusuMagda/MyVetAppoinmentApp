@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyVetAppoinment.Domain.Entities;
+using MyVetAppointment.Domain.Entities;
 
-namespace MyVetAppointment.Application
+namespace MyVetAppointment.Infrastructure.Data
 {
     public interface IDatabaseContext
     {

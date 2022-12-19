@@ -1,8 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using MyVetAppoinment.Repositories;
-using MyVetAppointment.Application;
-using MyVetAppointment.Infrastructure;
+using MyVetAppointment.Infrastructure.Data;
+using MyVetAppointment.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
