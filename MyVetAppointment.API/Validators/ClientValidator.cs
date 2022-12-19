@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MyVetAppoinment.Domain.Entities;
+using MyVetAppointment.Domain.Entities;
 using System.Text.RegularExpressions;
 
 namespace MyVetAppointment.API.Validators

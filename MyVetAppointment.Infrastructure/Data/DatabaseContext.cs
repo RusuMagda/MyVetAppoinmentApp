@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyVetAppointment.Application;
-using MyVetAppoinment.Domain.Entities;
+using MyVetAppointment.Domain.Entities;
 
-namespace MyVetAppointment.Infrastructure
+namespace MyVetAppointment.Infrastructure.Data
 {
     public class DatabaseContext : DbContext, IDatabaseContext
     {
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-            this.Database.EnsureCreated();
+            Database.EnsureCreated();
         }
         public DbSet<Appointment> Appointments => Set<Appointment>();
 

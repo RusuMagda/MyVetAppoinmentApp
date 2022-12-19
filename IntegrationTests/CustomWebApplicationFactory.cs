@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MyVetAppointment.Infrastructure;
+using MyVetAppointment.Infrastructure.Data;
 using Xunit;
 using static IntegrationTests.DbSeed;
 [assembly: CollectionBehavior(DisableTestParallelization = true)]

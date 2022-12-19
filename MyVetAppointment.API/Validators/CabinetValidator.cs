@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MyVetAppoinment.Domain.Entities;
+using MyVetAppointment.Domain.Entities;
 
 namespace MyVetAppointment.API.Validators
 {

@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyVetAppointment.Application\MyVetAppointment.Application.csproj" />
+    <ProjectReference Include="..\MyVetAppointment.Domain\MyVetAppointment.Domain.csproj" />
   </ItemGroup>
 
 </Project>

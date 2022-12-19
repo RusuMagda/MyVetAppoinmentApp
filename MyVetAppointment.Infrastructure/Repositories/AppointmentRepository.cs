@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Metadata;
-using MyVetAppoinment.Domain.Entities;
-using MyVetAppointment.Application;
+using MyVetAppointment.Domain.Entities;
+using MyVetAppointment.Infrastructure.Data;
 
-namespace MyVetAppoinment.Repositories
+namespace MyVetAppointment.Infrastructure.Repositories
 {
     public class AppointmentRepository : IAppointmentRepository
     {
