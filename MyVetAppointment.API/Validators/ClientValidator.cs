@@ -1,16 +1,17 @@
 ﻿using FluentValidation;
+using MyVetAppointment.API.DTOs;
 using MyVetAppointment.Domain.Entities;
 using System.Text.RegularExpressions;
 
 namespace MyVetAppointment.API.Validators
 {
-    public class ClientValidator : AbstractValidator<Client>
+    public class ClientValidator : AbstractValidator<CreateClientDto>
     {
         public ClientValidator()
         {
-            RuleFor(client => client.Name).NotNull();
-            RuleFor(client => client.EMail).NotNull().EmailAddress();
-            RuleFor(client => client.PhoneNumber).NotNull().MaximumLength(10).Must(IsPhoneValid);
+            RuleFor(client => client.Name).NotEmpty();
+            RuleFor(client => client.EMail).NotEmpty().EmailAddress();
+            RuleFor(client => client.PhoneNumber).NotEmpty().MaximumLength(10).Must(IsPhoneValid);
         }
         public static bool IsPhoneValid(string phoneNumber)
         {

@@ -13,7 +13,6 @@ namespace MyVetAppointment.API.Controllers
     {
         private readonly IClientRepository clientRepository;
         private readonly IMapper mapper;
-        private readonly ClientValidator _validator = new ClientValidator();
 
         public ClientsController(IClientRepository clientRepository, IMapper mapper)
         {
@@ -55,15 +54,9 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateClientDto dto)
         {
             var client = mapper.Map<Client>(dto);
-            var validationResult = await _validator.ValidateAsync(client);
-            if (validationResult.Errors.Count > 0)
-                return BadRequest(validationResult.Errors);
-            else
-            {
                 await clientRepository.AddAsync(client);
                 clientRepository.Save();
                 return Created(nameof(Get), client);
-            }
         }
 
         [HttpDelete("{id:guid}")]
