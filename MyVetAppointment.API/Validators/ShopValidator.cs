@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
+using MyVetAppointment.API.DTOs;
 using MyVetAppointment.Domain.Entities;
 
 namespace MyVetAppointment.API.Validators
 {
-    public class ShopValidator : AbstractValidator<Shop>
+    public class ShopValidator : AbstractValidator<CreateShopDto>
     {
         public ShopValidator()
         {
-            RuleFor(shop => shop.ShopName).NotNull();
-            RuleFor(shop => shop.CabinetId).NotNull();
-            RuleForEach(x => x.Drugs).SetValidator(new DrugValidator());
+            RuleFor(shop => shop.ShopName).NotEmpty();
+            RuleFor(shop => shop.CabinetId).NotEmpty();
 
         }
     }

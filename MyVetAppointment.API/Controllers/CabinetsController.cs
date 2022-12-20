@@ -13,7 +13,6 @@ namespace MyVetAppointment.API.Controllers
     {
         private readonly ICabinetRepository cabinetRepository;
         private readonly IMapper mapper;
-        private readonly CabinetValidator _validator = new CabinetValidator();
 
         public CabinetsController(ICabinetRepository cabinetRepository, IMapper mapper)
         {
@@ -42,15 +41,9 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> CreateAsync([FromBody] CreateCabinetDto dto)
         {
             var cabinet = mapper.Map<Cabinet>(dto);
-            var validationResult = await _validator.ValidateAsync(cabinet);
-            if (validationResult.Errors.Count > 0)
-                return BadRequest(validationResult.Errors);
-            else
-            {
                 await cabinetRepository.AddAsync(cabinet);
                 cabinetRepository.Save();
                 return Created(nameof(GetAsync), cabinet);
-            }
 
         }
 
