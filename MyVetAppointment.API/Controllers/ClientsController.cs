@@ -73,15 +73,10 @@ namespace MyVetAppointment.API.Controllers
         {
             var client = mapper.Map<Client>(dto);
 
-            var validationResult = await _validator.ValidateAsync(client);
-            if (validationResult.Errors.Count > 0)
-                return BadRequest(validationResult.Errors);
-            else
-            {
+           
                 await clientRepository.AddAsync(client);
                 clientRepository.Save();
                 return Created(nameof(Get), client);
-            }
         }
 
         [HttpDelete("{id:guid}")]
