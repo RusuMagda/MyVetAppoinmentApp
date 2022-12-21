@@ -44,7 +44,7 @@ namespace MyVetAppoinment.UI.Pages
                 pet.OwnerId = ClientId;
                 pet.Birthdate = Convert.ToDateTime(date1);
                 PetDataService.AddPet(pet);
-                Task.Delay(2000);
+                await Task.Delay(2000);
                
                 var pet1 = await PetDataService.GetPetId(ClientId,pet.Name);
                 
