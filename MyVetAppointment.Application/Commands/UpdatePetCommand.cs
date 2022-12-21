@@ -3,7 +3,7 @@ using MyVetAppointment.Application.Response;
 
 namespace MyVetAppointment.Application.Commands
 {
-    public class UpdatePetCommand : IRequest<Guid>
+    public class UpdatePetCommand : IRequest<PetResponse>
     {
         public Guid Id { get; set; }
         public Guid OwnerId { get; set; }

@@ -7,7 +7,7 @@ using MyVetAppointment.Infrastructure.Repositories;
 
 namespace MyVetAppointment.Application.Handlers
 {
-    public class UpdatePetCommandHandler : IRequestHandler<UpdatePetCommand, Guid>
+    public class UpdatePetCommandHandler : IRequestHandler<UpdatePetCommand, PetResponse>
     {
         private readonly IPetRepository repository;
 
@@ -15,7 +15,7 @@ namespace MyVetAppointment.Application.Handlers
         {
             this.repository = repository;
         }
-        public async Task<Guid> Handle(UpdatePetCommand request, CancellationToken cancellationToken)
+        public async Task<PetResponse> Handle(UpdatePetCommand request, CancellationToken cancellationToken)
         {
             var pet = PetMapper.Mapper.Map<Pet>(await repository.GetByIdAsync(request.Id));
             if (pet == null)
@@ -27,7 +27,7 @@ namespace MyVetAppointment.Application.Handlers
             pet.Name = request.Name;
             repository.Update(PetMapper.Mapper.Map<Pet>(pet));
             repository.Save();
-            return pet.Id;
+            return PetMapper.Mapper.Map < PetResponse > (pet);
         }
     }
 }

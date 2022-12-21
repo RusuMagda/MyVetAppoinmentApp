@@ -50,8 +50,10 @@ namespace MyVetAppoinment.UI.Pages
                 if (cl.Name == client.Name && cl.PhoneNumber == client.PhoneNumber)
                     NavigationManager.NavigateTo("/addpet/" + cl.Id + "/" + CabinetId);
                 else
+                {
 
-                NavigationManager.NavigateTo("/");
+                    NavigationManager.NavigateTo("/");
+                }
             }
 
 

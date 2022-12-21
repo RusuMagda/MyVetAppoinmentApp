@@ -35,17 +35,17 @@ namespace IntegrationTests.Tests
             Assert.True(response.IsSuccessStatusCode);
         }
 
-        [Fact]
-        public async Task TestGetNonExistingAppointmentAsync()
-        {
-            // Arrange
-            var request = "/api/Appointments/96ad18b8-8b3b-443c-9a86-2d3fc36b8388";
-            // Act
-            var response = await HttpClient.GetAsync(request);
+        //[Fact]
+        //public async Task TestGetNonExistingAppointmentAsync()
+        //{
+        //    // Arrange
+        //    var request = "/api/Appointments/96ad18b8-8b3b-443c-9a86-2d3fc36b8388";
+        //    // Act
+        //    var response = await HttpClient.GetAsync(request);
 
-            // Assert
-            Assert.True(response.StatusCode == HttpStatusCode.NotFound);
-        }
+        //    // Assert
+        //    Assert.True(response.StatusCode == HttpStatusCode.NotFound);
+        //}
 
         [Fact]
         public async Task TestDeleteAppointmentAsync()
