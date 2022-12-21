@@ -1,4 +1,4 @@
-﻿@page "/addpet/{clientId:guid}/{cabinetId:guid}"
+@page "/addpet/{clientId:guid}/{cabinetId:guid}"
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 <head>
@@ -58,7 +58,7 @@
 
 
                 </div>
-                <button type="submit" class="btn btn-primary">Save shop</button>
+                <button type="submit" class="btn btn-primary">Next step</button>
                 <a class="btn btn-outline-primary" @onclick="@Cancel">Close</a>
             </EditForm>
         </div>
