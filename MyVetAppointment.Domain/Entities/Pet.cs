@@ -22,12 +22,5 @@
         public Guid OwnerId { get; set; }
         public string Name { get;  set; }
         public DateTime Birthdate { get; set; } = default(DateTime);
-        public List<Appointment> Appointments { get;  set; } = new List<Appointment>();
-
-        public void addAppointment(Appointment appointment)
-        {
-            if (Appointments == null) Appointments = new List<Appointment>();
-            Appointments.Add(appointment);
-        }
     }
 }

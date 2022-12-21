@@ -1,9 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using MyVetAppointment.Domain.Entities;
-using MyVetAppointment.API.DTOs;
-using MyVetAppointment.API.Validators;
-using MyVetAppointment.Infrastructure.Repositories;
+﻿using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using MyVetAppointment.Application.Commands;
+using MyVetAppointment.Application.Queries;
+using MyVetAppointment.Application.Response;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -11,86 +10,67 @@ namespace MyVetAppointment.API.Controllers
     [ApiController]
     public class PetsController : ControllerBase
     {
-        private readonly IPetRepository petRepository;
-        private readonly IMapper mapper;
- 
+        private readonly IMediator mediator;
 
-        public PetsController(IPetRepository petRepository, IMapper mapper)
+        public PetsController(IMediator mediator)
         {
-            this.petRepository = petRepository;
-            this.mapper = mapper;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAsync()
+
+        public async Task<List<PetResponse>> Get()
         {
-            return Ok(await petRepository.GetAllAsync());
+            return await mediator.Send(new GetAllPetsQuery());
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync(Guid id)
+        public async Task<PetResponse> Get(Guid id)
         {
-            var result = await petRepository.GetByIdAsync(id);
-            if (result == null)
-            {
-                return NotFound();
-            }
+            return await mediator.Send(new GetPetByIdQuery { Id = id });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<PetResponse>> Create([FromBody] CreatePetCommand command)
+        {
+            var result = await mediator.Send(command);
             return Ok(result);
         }
 
         [HttpGet("{id}/appointments")]
-        public async Task<IActionResult> GetAppointmentsAsync(Guid id)
+        public async Task<List<AppointmentResponse>> GetPetAppointments(Guid id)
         {
-            var pets = await petRepository.GetAppointmentsAsync(id);
-            return Ok(pets);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] CreatePetDto dto)
-        {
-            var pet = mapper.Map<Pet>(dto);
-                await petRepository.AddAsync(pet);
-                petRepository.Save();
-                return Created(nameof(GetAsync), pet);
-
+            return await mediator.Send(new GetPetAppointmentsQuery { Id = id });
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveAsync(Guid id)
+        public async Task<ActionResult<PetResponse>> Remove(Guid id)
         {
-            var pet = await petRepository.GetByIdAsync(id);
-            if(pet == null)
-            {
-                return NotFound();
-            }
-            petRepository.Delete(id);
-            petRepository.Save();
-            return NoContent();
+            var result = await mediator.Send(new DeletePetByIdCommand { Id = id });
+            return Ok(result);
         }
-        [HttpGet("{id:guid}/pets")]
-        public async Task<IActionResult> GetPetsClient(Guid id)
-        {
-            var pets = await petRepository.GetPetsClient(id);
-            return Ok(pets);
-        }
-        [HttpGet("{id:guid}/{name}")]
-        public async Task<IActionResult> GetPetId(Guid id,String name)
-        {
-            var pett = await petRepository.GetPetId(id,name);
-            return Ok(pett);
-        }
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreatePetDto dto)
+        public async Task<ActionResult<PetResponse>> Update(Guid id, [FromBody] UpdatePetCommand command)
         {
-            var pet = await petRepository.GetByIdAsync(id);
-            if(pet == null)
+            if (id != command.Id)
             {
-                return NotFound();
+                return BadRequest();
             }
-            mapper.Map(dto, pet);
-            petRepository.Update(pet);
-            petRepository.Save();
-            return NoContent();
+            var result = await mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpGet("{id:guid}/{name}")]
+        public async Task<PetResponse> GetPetId(Guid id, String name)
+        {
+            return await mediator.Send(new GetPetIdQuery() { Id = id, Name = name });
+        }
+
+        [HttpGet("{id:guid}/pets")]
+        public async Task<List<PetResponse>> GetPetsClient(Guid id)
+        {
+            return await mediator.Send(new GetPetsOfClientQuery { Id = id });
         }
     }
 }

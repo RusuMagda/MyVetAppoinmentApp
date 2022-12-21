@@ -1,9 +1,8 @@
-﻿using AutoMapper;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MyVetAppointment.Domain.Entities;
-using MyVetAppointment.API.DTOs;
-using MyVetAppointment.API.Validators;
-using MyVetAppointment.Infrastructure.Repositories;
+using MyVetAppointment.Application.Commands;
+using MyVetAppointment.Application.Response;
+using MyVetAppointment.Application.Queries;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -11,56 +10,38 @@ namespace MyVetAppointment.API.Controllers
     [ApiController]
     public class AppointmentsController : ControllerBase
     {
-        private readonly IAppointmentRepository appointmentRepository;
-        private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
-        public AppointmentsController(IAppointmentRepository appointmentRepository, IMapper mapper)
+        public AppointmentsController(IMediator mediator)
         {
-            this.appointmentRepository = appointmentRepository;
-            this.mapper = mapper;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<List<AppointmentResponse>> Get()
         {
-            return Ok(await appointmentRepository.GetAllAsync());
+            return await mediator.Send(new GetAllAppointmentsQuery());
         }
 
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> Get(Guid id)
+        [HttpGet("{id}")]
+        public async Task<AppointmentResponse> Get(Guid id)
         {
-            var appointment = await appointmentRepository.GetByIdAsync(id);
-
-            if (appointment != null)
-            {
-                return Ok(appointment);
-                
-            }
-            return NotFound();
+            return await mediator.Send(new GetAppointmentByIdQuery() { Id = id });
         }
 
         [HttpPost("{idPet:guid}/{idCabinet:guid}")]
-        public async Task<IActionResult> Create([FromBody] CreateAppointmentDto dto, Guid idPet, Guid idCabinet)
+        public async Task<ActionResult<AppointmentResponse>> Create(Guid idPet, Guid idCabinet,
+            [FromBody] CreateAppointmentCommand command)
         {
-            var appointment = mapper.Map<Appointment>(dto);
-
-            appointment.attachPet(idPet);
-            appointment.attachCabinet(idCabinet);
-
-                await appointmentRepository.AddAsync(appointment);
-
-                appointmentRepository.Save();
-                return Created(nameof(Get), appointment);
-
+            var result = await mediator.Send(command);
+            return Ok(result);
         }
 
-        [HttpDelete("{id:guid}")]
-        public IActionResult Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<AppointmentResponse>> Remove(Guid id)
         {
-            appointmentRepository.Delete(id);
-
-            appointmentRepository.Save();
-            return NoContent();
+            var result = await mediator.Send(new DeleteAppointmentByIdCommand() { Id = id });
+            return Ok(result);
         }
     }
 }
