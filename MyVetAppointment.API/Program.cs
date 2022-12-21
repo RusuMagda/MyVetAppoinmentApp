@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 //API versioning
 builder.Services.AddApiVersioning(o =>
@@ -46,12 +45,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("MyVetAppointmentDb"),
            b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
-//builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-//builder.Services.AddScoped<ICabinetRepository, CabinetRepository>();
-//builder.Services.AddScoped<IClientRepository, ClientRepository>();
-//builder.Services.AddScoped<IDrugRepository, DrugRepository>();
-//builder.Services.AddScoped<IPetRepository, PetRepository>();
-//builder.Services.AddScoped<IShopRepository, ShopRepository>();
+
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
@@ -85,5 +79,35 @@ public partial class Program
 {
     protected Program(){}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

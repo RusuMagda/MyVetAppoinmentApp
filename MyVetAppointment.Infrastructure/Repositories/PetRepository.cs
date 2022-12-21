@@ -36,7 +36,7 @@ namespace MyVetAppointment.Infrastructure.Repositories
         {
             return await context.Pets.ToListAsync();
         }
-        public async Task<Pet?> GetPetId(Guid id, String name)
+        public Pet? GetPetId(Guid id, String name)
         {
             return  context.Pets.Where(p => p.OwnerId == id && p.Name==name).Single();
         }

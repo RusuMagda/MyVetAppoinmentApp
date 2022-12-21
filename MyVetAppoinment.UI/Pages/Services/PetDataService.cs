@@ -33,11 +33,11 @@ namespace MyVetAppoinment.UI.Pages.Services
         {
             return await httpClient.GetFromJsonAsync<Pet>($"https://localhost:7193/{ApiUrl}" + id+"/"+name);
         }
-        public async Task<IEnumerable<Pet>?> GetPetsClient(Guid clientId)
+        public async Task<IEnumerable<Pet>?> GetPetsClient(Guid id)
         {
             return await JsonSerializer
                 .DeserializeAsync<IEnumerable<Pet>>
-                (await httpClient.GetStreamAsync($"https://localhost:7193/{ApiUrl}" + clientId + "/pets"),
+                (await httpClient.GetStreamAsync($"https://localhost:7193/{ApiUrl}" + id + "/pets"),
                 new JsonSerializerOptions()
                 {
                     PropertyNameCaseInsensitive = true,
