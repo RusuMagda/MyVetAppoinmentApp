@@ -11,7 +11,7 @@ namespace MyVetAppointment.Application.Commands
             RuleFor(p => p.Birthdate).NotEmpty().NotNull().Must(BeOver1Day);
         }
 
-        protected bool BeOver1Day(DateTime date)
+        protected static bool BeOver1Day(DateTime date)
         {
             return date <= DateTime.Now;
         }

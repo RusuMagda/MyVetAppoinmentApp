@@ -8,8 +8,8 @@ namespace MyVetAppointment.API.Validators
     {
         public PetValidator()
         {
-            RuleFor(pet => pet.Name).NotEmpty();
-            RuleFor(pet => pet.OwnerId).NotEmpty();
+            RuleFor(pet => pet.Name).NotEmpty().NotNull();
+            RuleFor(pet => pet.OwnerId).NotEmpty().NotNull();
             RuleFor(pet => pet.Birthdate).NotEmpty().Must(BeOver1Day);
         }
         protected bool BeOver1Day(DateTime date)

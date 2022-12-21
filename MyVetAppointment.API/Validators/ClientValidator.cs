@@ -10,7 +10,7 @@ namespace MyVetAppointment.API.Validators
 {
     public class ClientValidator : AbstractValidator<CreateClientDto>
     {
-        private IClientRepository clientRepository;
+        private readonly IClientRepository clientRepository;
         public ClientValidator(IClientRepository repository)
         {
 

@@ -20,7 +20,7 @@ namespace MyVetAppointment.Application.Handlers
             var appointmentEntity = AppointmentMapper.Mapper.Map<Appointment>(request);
             if (appointmentEntity == null)
             {
-                throw new ApplicationException("Issue with the Mapper");
+                return default;
             }
             appointmentEntity.attachCabinet(request.CabinetId);
             appointmentEntity.attachPet(request.PetId);

@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyVetAppointment.Infrastructure.Data;
 using MyVetAppointment.Infrastructure.Repositories;
 
 namespace MyVetAppointment.Infrastructure

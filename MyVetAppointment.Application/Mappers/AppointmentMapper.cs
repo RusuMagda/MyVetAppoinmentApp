@@ -4,7 +4,8 @@ namespace MyVetAppointment.Application.Mappers
 {
     public class AppointmentMapper
     {
-        public static Lazy<IMapper> Lazy = new Lazy<IMapper>(() =>
+        protected AppointmentMapper() { }
+        public static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(() =>
         {
             var config = new MapperConfiguration(cfg =>
             {

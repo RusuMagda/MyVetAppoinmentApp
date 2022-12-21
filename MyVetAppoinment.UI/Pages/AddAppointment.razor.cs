@@ -12,7 +12,7 @@ namespace MyVetAppoinment.UI.Pages
         public Guid CabinetId { get; set; }
 
         [Inject]
-        public IAppointmentDataService AppointmentDataService { get; set; }
+        public IAppointmentDataService? AppointmentDataService { get; set; }
 
 
         [Parameter]
@@ -38,12 +38,12 @@ namespace MyVetAppoinment.UI.Pages
         {
 
 
-            DateTime date1 = new DateTime(2023, Int32.Parse(month), Int32.Parse(day), Int32.Parse(hour), Int32.Parse(minut), 0, DateTimeKind.Utc);
+            DateTime date1 = new DateTime(2023, Int32.Parse(month!), Int32.Parse(day!), Int32.Parse(hour!), Int32.Parse(minut!), 0, DateTimeKind.Utc);
             
             appointment.StartTime = Convert.ToDateTime(date1);
            
             appointment.EndTime = Convert.ToDateTime(date1);
-            AppointmentDataService.AddAppointment(appointment,PetId,CabinetId);
+            AppointmentDataService?.AddAppointment(appointment,PetId,CabinetId);
              await Task.Delay(2000);
             NavigationManager.NavigateTo("/");
         }

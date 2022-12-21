@@ -40,7 +40,7 @@ namespace MyVetAppoinment.UI.Pages
             if (Value == null)
             {
                 
-                DateTime date1 = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(day), Int32.Parse(hour), 0, 0, DateTimeKind.Utc);
+                DateTime date1 = new DateTime(Int32.Parse(year!), Int32.Parse(month!), Int32.Parse(day!), Int32.Parse(hour!), 0, 0, DateTimeKind.Utc);
                 pet.OwnerId = ClientId;
                 pet.Birthdate = Convert.ToDateTime(date1);
                 PetDataService.AddPet(pet);

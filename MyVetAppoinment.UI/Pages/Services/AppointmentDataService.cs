@@ -25,29 +25,29 @@ namespace MyVetAppoinment.UI.Pages.Services
 
         }
 
-        public async Task<Appointment?> GetPetAppointment(Guid AppointmentId)
+        public async Task<Appointment?> GetPetAppointment(Guid appointmentId)
         {
-            return await httpClient.GetFromJsonAsync<Appointment>($"https://localhost:7193/{ApiUrl}" + AppointmentId);
+            return await httpClient.GetFromJsonAsync<Appointment>($"https://localhost:7193/{ApiUrl}" + appointmentId);
         }
         
-        public async void AddAppointment(Appointment Appointment,Guid petId, Guid cabinetId)
+        public async void AddAppointment(Appointment appointmentId,Guid petId, Guid cabinetId)
         {
 
-            await httpClient.PostAsJsonAsync($"https://localhost:7193/{ApiUrl}"+petId+"/"+cabinetId, Appointment);
+            await httpClient.PostAsJsonAsync($"https://localhost:7193/{ApiUrl}"+petId+"/"+cabinetId, appointmentId);
 
 
         }
-        public async void EditAppointment(Guid AppointmentId, Appointment Appointment)
+        public async void EditAppointment(Guid appointmentId, Appointment appointment)
         {
 
-            await httpClient.PutAsJsonAsync($"https://localhost:7193/{ApiUrl}" + AppointmentId, Appointment);
+            await httpClient.PutAsJsonAsync($"https://localhost:7193/{ApiUrl}" + appointmentId, appointment);
 
 
         }
 
-        public async void DeleteAppointment(Guid AppointmentId)
+        public async void DeleteAppointment(Guid appointmentId)
         {
-            await httpClient.DeleteAsync($"https://localhost:7193/{ApiUrl}" + AppointmentId);
+            await httpClient.DeleteAsync($"https://localhost:7193/{ApiUrl}" + appointmentId);
         }
     }
 }

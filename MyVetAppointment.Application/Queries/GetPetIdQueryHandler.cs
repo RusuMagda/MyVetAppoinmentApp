@@ -16,7 +16,7 @@ namespace MyVetAppointment.Application.Queries
         
         public async Task<PetResponse> Handle(GetPetIdQuery request, CancellationToken cancellationToken)
         {
-            var result = PetMapper.Mapper.Map<PetResponse>(await repository.GetPetId(request.Id, request.Name));
+            var result = PetMapper.Mapper.Map<PetResponse>( repository.GetPetId(request.Id, request.Name));
             return result;
         }
     }

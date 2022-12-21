@@ -11,7 +11,7 @@ namespace MyVetAppointment.API.Controllers
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private  IClientRepository clientRepository;
+        private readonly  IClientRepository clientRepository;
   
         private readonly IMapper mapper;
 
@@ -43,7 +43,7 @@ namespace MyVetAppointment.API.Controllers
             return Ok(client);
         }
         [HttpGet("{email}")]
-        public async Task<IActionResult> GetEmail(string email)
+        public IActionResult GetEmail(string email)
         {
             var client =  clientRepository.GetByEmail(email);
            
