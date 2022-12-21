@@ -16,7 +16,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetCabinetsAsync()
         {
             // Arrange
-            var request = "/api/Cabinets";
+            var request = "/api/v1/Cabinets";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -27,7 +27,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetCabinetAsync()
         {
             // Arrange
-            var request = "/api/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518";
+            var request = "/api/v1/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -39,7 +39,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetNonExistingCabinetAsync()
         {
             // Arrange
-            var request = "/api/Cabinets/96ad18b8-8b3b-443c-9a86-2d3fc36b8399";
+            var request = "/api/v1/Cabinets/96ad18b8-8b3b-443c-9a86-2d3fc36b8399";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -52,7 +52,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Cabinets",
+                Url = "/api/v1/Cabinets",
                 Body = new
                 {
                     Id = Guid.NewGuid(),
@@ -75,7 +75,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetCabinetClientsAsync()
         {
             // Arrange
-            var request = "/api/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518/clients";
+            var request = "/api/v1/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518/clients";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -89,7 +89,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518",
+                Url = "/api/v1/Cabinets/3937a85c-fc53-40d9-b588-2fd95fa86518",
                 Body = new
                 {
                     Name = "NewVet",
@@ -110,7 +110,7 @@ namespace IntegrationTests.Tests
         public async Task TestDeleteCabinetAsync()
         {
             // Arrange
-            var request = "/api/Cabinets/f5c0e1b8-fcf4-4e43-ab72-609eb7c0d6e3";
+            var request = "/api/v1/Cabinets/f5c0e1b8-fcf4-4e43-ab72-609eb7c0d6e3";
             // Act
             var response = await HttpClient.DeleteAsync(request);
 

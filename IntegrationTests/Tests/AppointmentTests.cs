@@ -15,7 +15,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetAppointmentsAsync()
         {
             // Arrange
-            var request = "/api/Appointments";
+            var request = "/api/v1/Appointments";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -27,7 +27,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetAppointmentAsync()
         {
             // Arrange
-            var request = "/api/Appointments/6fa878bc-5a6c-4f6d-804c-2f487b892145";
+            var request = "/api/v1/Appointments/6fa878bc-5a6c-4f6d-804c-2f487b892145";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -51,7 +51,7 @@ namespace IntegrationTests.Tests
         public async Task TestDeleteAppointmentAsync()
         {
             // Arrange
-            var request = "/api/Appointments/659a141f-03ba-4ee8-9faf-944944a85da8";
+            var request = "/api/v1/Appointments/659a141f-03ba-4ee8-9faf-944944a85da8";
             // Act
             var response = await HttpClient.DeleteAsync(request);
 
@@ -65,7 +65,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Appointments/7febb009-3dc4-4413-a5c4-4142b101be37/3937a85c-fc53-40d9-b588-2fd95fa86518",
+                Url = "/api/v1/Appointments/7febb009-3dc4-4413-a5c4-4142b101be37/3937a85c-fc53-40d9-b588-2fd95fa86518",
                 Body = new
                 {
                     Id = Guid.NewGuid(),

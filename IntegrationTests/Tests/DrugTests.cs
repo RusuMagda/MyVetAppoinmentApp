@@ -16,7 +16,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetDrugsAsync()
         {
             // Arrange
-            var request = "/api/Drugs";
+            var request = "/api/v1/Drugs";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -28,7 +28,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetDrugAsync()
         {
             // Arrange
-            var request = "/api/Drugs/fe1bdfc5-5424-4410-ab46-3cf1f98ac59a";
+            var request = "/api/v1/Drugs/fe1bdfc5-5424-4410-ab46-3cf1f98ac59a";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -42,7 +42,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Drugs",
+                Url = "/api/v1/Drugs",
                 Body = new
                 {
                     Id = Guid.NewGuid(),
@@ -70,7 +70,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Drugs/fe1bdfc5-5424-4410-ab46-3cf1f98ac59a",
+                Url = "/api/v1/Drugs/fe1bdfc5-5424-4410-ab46-3cf1f98ac59a",
                 Body = new
                 {
                     DrugName = "CorpetVet",
@@ -94,7 +94,7 @@ namespace IntegrationTests.Tests
         public async Task TestDrugAppointmentAsync()
         {
             // Arrange
-            var request = "/api/Drugs/45454ce7-7fa1-478b-bfaa-021eea996f16";
+            var request = "/api/v1/Drugs/45454ce7-7fa1-478b-bfaa-021eea996f16";
             // Act
             var response = await HttpClient.DeleteAsync(request);
 

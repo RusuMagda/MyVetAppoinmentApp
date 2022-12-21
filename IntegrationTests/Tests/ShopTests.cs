@@ -17,7 +17,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetShopsAsync()
         {
             //Arrange
-            var request = "api/Shops";
+            var request = "api/v1/Shops";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -29,7 +29,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetShopAsync()
         {
             // Arrange
-            var request = "/api/Shops/4af1a2fb-61a2-4059-b3bb-bfad4aa07416";
+            var request = "/api/v1/Shops/4af1a2fb-61a2-4059-b3bb-bfad4aa07416";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -43,7 +43,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Shops",
+                Url = "/api/v1/Shops",
                 Body = new
                 {
                     ShopId = Guid.NewGuid(),
@@ -66,7 +66,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Shops/4af1a2fb-61a2-4059-b3bb-bfad4aa07416",
+                Url = "/api/v1/Shops/4af1a2fb-61a2-4059-b3bb-bfad4aa07416",
                 Body = new
                 {
                     ShopId = Guid.NewGuid(),
@@ -86,7 +86,7 @@ namespace IntegrationTests.Tests
         public async Task TestDeleteShopAsync()
         {
             // Arrange
-            var request = "/api/Shops/d196087d-02de-4253-ab11-4716c189558b";
+            var request = "/api/v1/Shops/d196087d-02de-4253-ab11-4716c189558b";
             // Act
             var response = await HttpClient.DeleteAsync(request);
 
