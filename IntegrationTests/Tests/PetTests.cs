@@ -15,7 +15,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetPetsAsync()
         {
             // Arrange
-            var request = "/api/Pets";
+            var request = "/api/v1/Pets";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -27,7 +27,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetPetAsync()
         {
             // Arrange
-            var request = "/api/Pets/7febb009-3dc4-4413-a5c4-4142b101be37";
+            var request = "/api/v1/Pets/7febb009-3dc4-4413-a5c4-4142b101be37";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -39,7 +39,7 @@ namespace IntegrationTests.Tests
         public async Task TestGetPetAppointmentsAsync()
         {
             // Arrange
-            var request = "/api/Pets/7febb009-3dc4-4413-a5c4-4142b101be37/appointments";
+            var request = "/api/v1/Pets/7febb009-3dc4-4413-a5c4-4142b101be37/appointments";
             // Act
             var response = await HttpClient.GetAsync(request);
 
@@ -53,7 +53,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Pets",
+                Url = "/api/v1/Pets",
                 Body = new
                 {
                     Id = Guid.NewGuid(),
@@ -77,7 +77,7 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/Pets/7febb009-3dc4-4413-a5c4-4142b101be37",
+                Url = "/api/v1/Pets/7febb009-3dc4-4413-a5c4-4142b101be37",
                 Body = new
                 {
                     OwnerId = "427a80d3-09b2-4c92-8e4c-369b8de6fe26",
@@ -97,7 +97,7 @@ namespace IntegrationTests.Tests
         public async Task TestDeletePetAsync()
         {
             // Arrange
-            var request = "/api/Pets/e1c0bbc0-045f-4908-93f8-773f14732508";
+            var request = "/api/v1/Pets/e1c0bbc0-045f-4908-93f8-773f14732508";
             // Act
             var response = await HttpClient.DeleteAsync(request);
 
