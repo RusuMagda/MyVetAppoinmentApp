@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppointment.Domain.Entities;
 using MyVetAppointment.API.DTOs;
@@ -14,7 +14,9 @@ namespace MyVetAppointment.API.Controllers
         private  IClientRepository clientRepository;
   
         private readonly IMapper mapper;
+
         private readonly ClientValidator _validator;
+
 
         public ClientsController(IClientRepository clientRepository, IMapper mapper)
         {

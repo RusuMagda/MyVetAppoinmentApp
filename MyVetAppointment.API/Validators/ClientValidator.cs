@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+using FluentValidation;
+using MyVetAppointment.API.DTOs;
 using MyVetAppointment.Domain.Entities;
 using MyVetAppointment.Infrastructure.Data;
 using MyVetAppointment.Infrastructure.Repositories;
@@ -7,17 +8,19 @@ using System.Text.RegularExpressions;
 
 namespace MyVetAppointment.API.Validators
 {
-    public class ClientValidator : AbstractValidator<Client>
+    public class ClientValidator : AbstractValidator<CreateClientDto>
     {
         private IClientRepository clientRepository;
         public ClientValidator(IClientRepository repository)
         {
+
             this.clientRepository = repository;
            
             RuleFor(client => client.Name).NotNull();
             RuleFor(client => client.EMail).NotNull().EmailAddress().Must(BeUniqueAsync).WithMessage("Email already exists");
 
             RuleFor(client => client.PhoneNumber).NotNull().MaximumLength(10).Must(IsPhoneValid);
+
         }
         public static bool IsPhoneValid(string phoneNumber)
         {

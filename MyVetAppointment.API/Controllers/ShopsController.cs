@@ -13,7 +13,6 @@ namespace MyVetAppointment.API.Controllers
     {
         private readonly IShopRepository shopRepository;
         private readonly IMapper mapper;
-        private readonly ShopValidator _validator = new ShopValidator();
 
         public ShopsController(IShopRepository shopRepository, IMapper mapper)
         {
@@ -42,15 +41,10 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> CreateAsync([FromBody] CreateShopDto dto)
         {
             var shop = mapper.Map<Shop>(dto);
-            var validationResult = await _validator.ValidateAsync(shop);
-            if (validationResult.Errors.Count > 0)
-                return BadRequest(validationResult.Errors);
-            else
-            {
                 await shopRepository.AddAsync(shop);
                 shopRepository.Save();
                 return Created(nameof(GetAsync), shop);
-            }
+
         }
 
         [HttpDelete("{id}")]
