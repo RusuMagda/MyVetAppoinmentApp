@@ -6,7 +6,7 @@ namespace MyVetAppoinment.UI.Pages.Services
 {
     public class PetDataService : IPetDataService
     {
-        private const string ApiUrl = "api/pets/";
+        private const string ApiUrl = "api/v1/pets/";
         private readonly HttpClient httpClient;
 
         public PetDataService(HttpClient httpClient)

@@ -7,7 +7,7 @@ namespace MyVetAppoinment.UI.Pages.Services
     public class ShopDataService : IShopDataService
     {
       
-            private const string ApiUrl = "api/shops/";
+            private const string ApiUrl = "api/v1/shops/";
             private readonly HttpClient httpClient;
 
             public ShopDataService(HttpClient httpClient)

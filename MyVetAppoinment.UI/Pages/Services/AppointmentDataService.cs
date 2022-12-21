@@ -6,7 +6,7 @@ namespace MyVetAppoinment.UI.Pages.Services
 {
     public class AppointmentDataService : IAppointmentDataService
     {
-        private const string ApiUrl = "api/appointments/";
+        private const string ApiUrl = "api/v1/appointments/";
         private readonly HttpClient httpClient;
 
         public AppointmentDataService(HttpClient httpClient)

@@ -6,8 +6,9 @@ using MyVetAppointment.Application.Response;
 
 namespace MyVetAppointment.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/pets")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class PetsController : ControllerBase
     {
         private readonly IMediator mediator;

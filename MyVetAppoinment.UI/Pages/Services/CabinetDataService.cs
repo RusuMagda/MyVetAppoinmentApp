@@ -6,7 +6,7 @@ namespace MyVetAppoinment.UI.Pages.Services
 {
     public class CabinetDataService : ICabinetDataService
     {
-        private const string ApiUrl = "api/Cabinets/";
+        private const string ApiUrl = "api/v1/Cabinets/";
         private readonly HttpClient httpClient;
 
         public CabinetDataService(HttpClient httpClient)

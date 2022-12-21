@@ -7,8 +7,9 @@ using MyVetAppointment.Infrastructure.Repositories;
 
 namespace MyVetAppointment.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/drugs")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class DrugsController : ControllerBase
     {
         private readonly IDrugRepository drugRepository;
