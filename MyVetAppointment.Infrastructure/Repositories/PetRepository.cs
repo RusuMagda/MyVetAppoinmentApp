@@ -36,7 +36,11 @@ namespace MyVetAppointment.Infrastructure.Repositories
         {
             return await context.Pets.ToListAsync();
         }
-
+        public async Task<Pet?> GetPetId(Guid id, String name)
+        {
+            return  context.Pets.Where(p => p.OwnerId == id && p.Name==name).Single();
+        }
+        
         public async Task<Pet?> GetByIdAsync(Guid id)
         {
             return await context.Pets.FirstOrDefaultAsync(p => p.Id == id);
@@ -45,6 +49,14 @@ namespace MyVetAppointment.Infrastructure.Repositories
         public async Task<IReadOnlyCollection<Appointment>> GetAppointmentsAsync(Guid id)
         {
             return await (context.Appointments.Where(a => a.PetId == id)).ToListAsync();
+        }
+        public async Task<IReadOnlyCollection<Pet>> GetPetsClient(Guid id)
+        {
+            var pets = await (context.Pets.Where(a => a.OwnerId == id)).ToListAsync();
+
+
+
+            return pets;
         }
 
         public void Save()

@@ -37,6 +37,10 @@ namespace MyVetAppointment.Infrastructure.Repositories
             return await context.Clients.ToListAsync();
         }
 
+        public Client? GetByEmail(String email)
+        {
+            return context.Clients.Where(c => c.EMail == email).SingleOrDefault();
+        }
         public async Task<Client?> GetByIdAsync(Guid id)
         {
             return await context.Clients.FirstOrDefaultAsync(c => c.Id == id);

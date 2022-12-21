@@ -7,6 +7,7 @@ namespace MyVetAppointment.Infrastructure.Repositories
         Task AddAsync(Client client);
         void Delete(Guid id);
         Task<Client?> GetByIdAsync(Guid id);
+        Client GetByEmail(String email);
         Task<IReadOnlyCollection<Client>> GetAllAsync();
         Task<IReadOnlyCollection<Pet>> GetAllPetsAsync(Guid id);
         void Save();

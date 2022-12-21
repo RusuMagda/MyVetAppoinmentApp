@@ -26,12 +26,13 @@ else
                         <div class="name"><b>@cabinet.Name</b></div>
                         <hr/>
                         <div class="address">@cabinet.Address</div>
+                        <div class="address">@cabinet.Id</div>
                             <div class="number">Tel: @cabinet.PhoneNumber</div>
                         
                     <div class="desc">@cabinet.Description</div>
                     
                     
-                    <a href='' class="btn" role="button">
+                    <a href='/registration/@cabinet.Id' class="btn" role="button">
                         Make an Appointment
                     </a>
                 </div>
@@ -57,7 +58,7 @@ else
                         <div class="address">@cabinet.Address</div>
                         <div class="number">Tel: @cabinet.PhoneNumber</div>
                         <div>@cabinet.Description</div>
-                        <a href='' class="btn" role="button">
+                        <a href='/registration/@cabinet.Id' class="btn" role="button">
                             Make an Appointment
                         </a>
                     

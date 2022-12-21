@@ -40,7 +40,7 @@ namespace MyVetAppoinment.UI.Pages
             return Task.CompletedTask;
         }
 
-        
+
         protected async override Task OnInitializedAsync()
         {
             var result = await CabinetDataService.GetCabinetsWithoutShop();

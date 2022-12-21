@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyVetAppointment.Domain.Entities;
 using MyVetAppointment.API.DTOs;
@@ -11,13 +11,19 @@ namespace MyVetAppointment.API.Controllers
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly IClientRepository clientRepository;
+        private  IClientRepository clientRepository;
+  
         private readonly IMapper mapper;
+
+        private readonly ClientValidator _validator;
+
 
         public ClientsController(IClientRepository clientRepository, IMapper mapper)
         {
             this.clientRepository = clientRepository;
             this.mapper = mapper;
+
+        this._validator = new ClientValidator(clientRepository);
         }
 
         [HttpGet]
@@ -36,6 +42,18 @@ namespace MyVetAppointment.API.Controllers
             }
             return Ok(client);
         }
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetEmail(string email)
+        {
+            var client =  clientRepository.GetByEmail(email);
+           
+            if (client == null)
+            {
+                return NotFound();
+            }
+            return Ok(client);
+        }
+       
 
         [HttpGet("{id:guid}/pets")]
         public async Task<IActionResult> GetPets(Guid id)
@@ -54,9 +72,16 @@ namespace MyVetAppointment.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateClientDto dto)
         {
             var client = mapper.Map<Client>(dto);
+
+            var validationResult = await _validator.ValidateAsync(client);
+            if (validationResult.Errors.Count > 0)
+                return BadRequest(validationResult.Errors);
+            else
+            {
                 await clientRepository.AddAsync(client);
                 clientRepository.Save();
                 return Created(nameof(Get), client);
+            }
         }
 
         [HttpDelete("{id:guid}")]

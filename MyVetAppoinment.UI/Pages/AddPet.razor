@@ -1,0 +1,80 @@
+﻿@page "/addpet/{clientId:guid}/{cabinetId:guid}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<head>
+    <link href="../css/shop.css" rel="stylesheet" />
+</head>
+<div class="cont">
+    <div class="row"><h1> Pet</h1></div>
+
+
+    <div class="row">
+        <div class="modal-body">
+            <EditForm Model="@pet" OnValidSubmit="@SavePet">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="form-group">
+                    <label for="Name"> Name: </label>
+                    <InputText id="Name" class="form-control" @bind-Value="@pet.Name" placeholder=" Enter  name"></InputText>
+                    <ValidationMessage For="@(() => pet.Name)" />
+                </div>
+                <div class="form-group">
+                    <label for="Year"> Tear: </label>
+                    <InputText id="Year" class="form-control" @bind-Value="@year" placeholder=" Enter  name"></InputText>
+                    <ValidationMessage For="@(() => year)" />
+                </div>
+                <div class="form-group">
+                    <label for="Month"> Month: </label>
+                    <InputText id="Month" class="form-control" @bind-Value="@month" placeholder=" Enter  name"></InputText>
+                    <ValidationMessage For="@(() => month)" />
+                </div>
+                <div class="form-group">
+                    <label for="Day"> Day: </label>
+                    <InputText id="Day" class="form-control" @bind-Value="@day" placeholder=" Enter  name"></InputText>
+                    <ValidationMessage For="@(() => day)" />
+                </div>
+                <div class="form-group">
+                    <label for="Hour"> Hour: </label>
+                    <InputText id="Hour" class="form-control" @bind-Value="@hour" placeholder=" Enter  name"></InputText>
+                    <ValidationMessage For="@(() => hour)" />
+                </div>
+             
+                <div class="form-group">
+
+                    <label>Pet: </label>
+                    <select class="form-control" @onchange="@OnValueChanged">
+                        <option value="Select" selected disabled="disabled">Choose Pet</option>
+                        @if (Pets == null)
+                        {
+                            <p><em>Loading...</em></p>
+                        }
+                        else
+                            @foreach (var pet in Pets)
+                            {
+                                <option value="@pet.Id"> @pet.Name </option>
+                            }
+
+                    </select>
+
+
+                </div>
+                <button type="submit" class="btn btn-primary">Save shop</button>
+                <a class="btn btn-outline-primary" @onclick="@Cancel">Close</a>
+            </EditForm>
+        </div>
+    </div>
+    
+        
+   
+
+    
+</div>
+
+
+
+   
+
+              
+
+           
+    
