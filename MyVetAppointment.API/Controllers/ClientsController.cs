@@ -7,8 +7,9 @@ using MyVetAppointment.Infrastructure.Repositories;
 
 namespace MyVetAppointment.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/clients")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class ClientsController : ControllerBase
     {
         private  IClientRepository clientRepository;
