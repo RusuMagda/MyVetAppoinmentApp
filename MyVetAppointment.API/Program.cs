@@ -62,7 +62,10 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
+app.UseHealthChecks("/health");
 
 if (app.Environment.IsDevelopment())
 {
