@@ -15,7 +15,7 @@ namespace MyVetAppointment.API.Controllers
   
         private readonly IMapper mapper;
 
-        private readonly ClientValidator _validator;
+      
 
 
         public ClientsController(IClientRepository clientRepository, IMapper mapper)
@@ -23,7 +23,7 @@ namespace MyVetAppointment.API.Controllers
             this.clientRepository = clientRepository;
             this.mapper = mapper;
 
-        this._validator = new ClientValidator(clientRepository);
+       
         }
 
         [HttpGet]
