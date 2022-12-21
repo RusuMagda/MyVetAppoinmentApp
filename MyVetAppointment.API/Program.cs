@@ -6,6 +6,8 @@ using System.Reflection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using MyVetAppointment.Application;
+using MyVetAppointment.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,17 +17,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("MyVetAppointmentDb"),
            b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
-builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-builder.Services.AddScoped<ICabinetRepository, CabinetRepository>();
-builder.Services.AddScoped<IClientRepository, ClientRepository>();
-builder.Services.AddScoped<IDrugRepository, DrugRepository>();
-builder.Services.AddScoped<IPetRepository, PetRepository>();
-builder.Services.AddScoped<IShopRepository, ShopRepository>();
+//builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+//builder.Services.AddScoped<ICabinetRepository, CabinetRepository>();
+//builder.Services.AddScoped<IClientRepository, ClientRepository>();
+//builder.Services.AddScoped<IDrugRepository, DrugRepository>();
+//builder.Services.AddScoped<IPetRepository, PetRepository>();
+//builder.Services.AddScoped<IShopRepository, ShopRepository>();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

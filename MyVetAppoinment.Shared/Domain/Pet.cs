@@ -6,6 +6,5 @@
         public Guid OwnerId { get; set; } = Guid.Empty;
         public string Name { get; set; } = string.Empty;
         public DateTime Birthdate { get; set; } = default(DateTime);
-        public List<Appointment> Appointments { get; set; } = new List<Appointment>();
     }
 }
