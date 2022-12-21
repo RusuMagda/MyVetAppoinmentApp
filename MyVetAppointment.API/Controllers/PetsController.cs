@@ -72,7 +72,18 @@ namespace MyVetAppointment.API.Controllers
             petRepository.Save();
             return NoContent();
         }
-
+        [HttpGet("{id:guid}/pets")]
+        public async Task<IActionResult> GetPetsClient(Guid id)
+        {
+            var pets = await petRepository.GetPetsClient(id);
+            return Ok(pets);
+        }
+        [HttpGet("{id:guid}/{name}")]
+        public async Task<IActionResult> GetPetId(Guid id,String name)
+        {
+            var pett = await petRepository.GetPetId(id,name);
+            return Ok(pett);
+        }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] CreatePetDto dto)
         {

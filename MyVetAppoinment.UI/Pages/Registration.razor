@@ -1,0 +1,44 @@
+﻿@page "/registration/{cabinetId:guid}"
+<link href="css/cabinet.css" rel="stylesheet" />
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<h1>@Title Registration</h1>
+<hr />
+<div class="main">
+    <EditForm Model="@client" OnValidSubmit="SaveClient">
+        <DataAnnotationsValidator />
+        <div class="mb-3">
+            <div class="input">
+                <label for="Name" class="form-label">Name</label>
+
+                <InputText class="form-control" @bind-Value="client.Name" />
+            </div>
+            <ValidationMessage For="@(() => client.Name)" />
+        </div>
+        <div class="mb-3">
+            <div class="input">
+                <label for="EMail" class="form-label">EMail</label>
+
+                <InputText class="form-control" @bind-Value="client.EMail" />
+            </div>
+            <ValidationMessage For="@(() => client.EMail)" />
+        </div>
+        <div class="mb-3">
+            <div class="input">
+                <label for="Number" class="form-label">Phone Number</label>
+
+                <InputText class="form-control" @bind-Value="client.PhoneNumber" />
+            </div>
+            <ValidationMessage For="@(() => client.PhoneNumber)" />
+        </div>
+        
+
+
+        <div class="form-group">
+            <div class="input">
+                <button type="submit" class="btn btn-primary"> Add pet</button>
+                <button class="btn btn-primary" @onclick="Cancel">Cancel</button>
+            </div>
+        </div>
+    </EditForm>
+</div>
