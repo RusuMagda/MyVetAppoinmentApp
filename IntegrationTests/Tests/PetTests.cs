@@ -59,7 +59,7 @@ namespace IntegrationTests.Tests
                     Id = Guid.NewGuid(),
                     OwnerId = "3837a85c-fc53-40d9-b588-2fd95fa86518",
                     Name = "Kara",
-                    Birthdate = "2022-12-06T16:47:02.959Z"
+                    Birthdate = "2021-12-06T16:47:02.959Z"
                 }
             };
 
@@ -81,8 +81,8 @@ namespace IntegrationTests.Tests
                 Body = new
                 {
                     OwnerId = "427a80d3-09b2-4c92-8e4c-369b8de6fe26",
-                    Name = "Kara",
-                    Birthdate = "2022-12-06T16:47:02.959Z"
+                    Name = "UpdateDog",
+                    Birthdate = "2020-12-06T16:47:02.959Z"
                 }
             };
 

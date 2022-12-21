@@ -3,6 +3,7 @@ using MediatR;
 using MyVetAppointment.Application.Commands;
 using MyVetAppointment.Application.Queries;
 using MyVetAppointment.Application.Response;
+using MyVetAppointment.Domain.Entities;
 
 namespace MyVetAppointment.API.Controllers
 {
@@ -54,10 +55,6 @@ namespace MyVetAppointment.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<PetResponse>> Update(Guid id, [FromBody] UpdatePetCommand command)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
             var result = await mediator.Send(command);
             return Ok(result);
         }
@@ -75,3 +72,19 @@ namespace MyVetAppointment.API.Controllers
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

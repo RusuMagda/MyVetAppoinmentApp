@@ -57,8 +57,9 @@ namespace IntegrationTests.Tests
                 {
                     Id = Guid.NewGuid(),
                     Name = "TestVet",
-                    Address = "Str. Stefan Cel Mare"
-
+                    Address = "Str. Stefan Cel Mare",
+                    PhoneNumber = "0756432567",
+                    Description = "cabinet"
                 }
             };
 
@@ -92,7 +93,9 @@ namespace IntegrationTests.Tests
                 Body = new
                 {
                     Name = "NewVet",
-                    Address = "New Address"
+                    Address = "New Address",
+                    PhoneNumber = "0756432567",
+                    Description = "cabinet"
                 }
             };
 

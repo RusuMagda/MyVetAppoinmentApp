@@ -24,3 +24,10 @@
         public DateTime Birthdate { get; set; } = default(DateTime);
     }
 }
+
+
+
+
+
+
+

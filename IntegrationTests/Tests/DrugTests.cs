@@ -47,7 +47,7 @@ namespace IntegrationTests.Tests
                 {
                     Id = Guid.NewGuid(),
                     DrugName = "testdrug",
-                    Description = "test description",
+                    DrugDescription = "test description",
                     Stock = 100,
                     Price = 100,
                     SaleForm = "pastile",
@@ -74,7 +74,7 @@ namespace IntegrationTests.Tests
                 Body = new
                 {
                     DrugName = "CorpetVet",
-                    Description = "Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
+                    DrugDescription = "Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
                     Stock = 98,
                     Price = 160,
                     SaleForm = "pastile",
