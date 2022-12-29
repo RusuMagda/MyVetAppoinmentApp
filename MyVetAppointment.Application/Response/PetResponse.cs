@@ -1,6 +1,4 @@
-﻿using MyVetAppointment.Domain.Entities;
-
-namespace MyVetAppointment.Application.Response
+﻿namespace MyVetAppointment.Application.Response
 {
     public class PetResponse
     {

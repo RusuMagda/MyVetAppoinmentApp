@@ -58,7 +58,6 @@ namespace IntegrationTests.Tests
 
             // Act
             var response = await HttpClient.PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
-            var value = await response.Content.ReadAsStringAsync();
 
             // Assert
             Assert.True(response.IsSuccessStatusCode);
