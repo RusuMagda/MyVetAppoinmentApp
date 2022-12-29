@@ -27,9 +27,12 @@ namespace MyVetAppointment.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<PetResponse> Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return await mediator.Send(new GetPetByIdQuery { Id = id });
+            var result = await mediator.Send(new GetPetByIdQuery { Id = id });
+            if(result == null)
+                return NotFound();
+            return Ok(result);
         }
 
         [HttpPost]
@@ -59,7 +62,7 @@ namespace MyVetAppointment.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id:guid}/{name}")]
+        [HttpGet("{id}/{name}")]
         public async Task<PetResponse> GetPetId(Guid id, String name)
         {
             return await mediator.Send(new GetPetIdQuery() { Id = id, Name = name });

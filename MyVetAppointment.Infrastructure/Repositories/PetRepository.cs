@@ -38,7 +38,7 @@ namespace MyVetAppointment.Infrastructure.Repositories
         }
         public Pet? GetPetId(Guid id, String name)
         {
-            return  context.Pets.Where(p => p.OwnerId == id && p.Name==name).Single();
+            return context.Pets.FirstOrDefault(p => p.OwnerId == id && p.Name == name);
         }
         
         public async Task<Pet?> GetByIdAsync(Guid id)
