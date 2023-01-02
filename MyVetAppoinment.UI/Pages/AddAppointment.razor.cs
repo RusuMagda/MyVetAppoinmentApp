@@ -16,39 +16,33 @@ namespace MyVetAppoinment.UI.Pages
 
 
         [Parameter]
-        public String? year { get; set; }
+        public String? Month { get; set; }
         [Parameter]
-        public String? month { get; set; }
+        public String? Day { get; set; }
         [Parameter]
-        public String? day { get; set; }
+        public String? Hour { get; set; }
         [Parameter]
-        public String? hour { get; set; }
-        [Parameter]
-        public String? minut { get; set; }
+        public String? Minute { get; set; }
 
 
         public EventCallback<string> ValueChanged { get; set; }
 
         private Appointment appointment = new();
 
-
-
-
         protected async Task SaveApp()
         {
-
-
-            DateTime date1 = new DateTime(2023, Int32.Parse(month!), Int32.Parse(day!), Int32.Parse(hour!), Int32.Parse(minut!), 0, DateTimeKind.Utc);
+            DateTime date1 = new DateTime(DateTime.Now.Year, Int32.Parse(Month!), Int32.Parse(Day!), Int32.Parse(Hour!), Int32.Parse(Minute!), 0, DateTimeKind.Utc);
             
             appointment.StartTime = Convert.ToDateTime(date1);
-           
             appointment.EndTime = Convert.ToDateTime(date1);
-            AppointmentDataService?.AddAppointment(appointment,PetId,CabinetId);
+
+            appointment.CabinetId = CabinetId;
+            appointment.PetId = PetId;
+
+            AppointmentDataService?.AddAppointment(appointment, PetId, CabinetId);
              await Task.Delay(2000);
             NavigationManager.NavigateTo("/");
         }
-
-
 
         public async Task Cancel()
         {

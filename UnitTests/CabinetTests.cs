@@ -32,7 +32,7 @@ namespace UnitTests
             Assert.NotNull(result);
 
             Client client = new Client("oana", "oana@yahoo.com", "0123456789");
-            result.addClient(client);
+            result.AddClient(client);
             result.Clients.Count.Equals(1);
             result.Clients[0].Equals(client);
         }
@@ -45,7 +45,7 @@ namespace UnitTests
 
             var shop = new Shop("MyShop", new Guid("d42fbb91-0ebe-43ea-b91c-b9b026430f09"));
             Assert.NotNull(shop);
-            cabinet.attachShop(shop);
+            cabinet.AttachShop(shop);
 
             cabinet.Shop.Equals(shop);
         }

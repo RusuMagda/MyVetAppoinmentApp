@@ -15,7 +15,7 @@ namespace MyVetAppointment.Application.Commands
         public DateTime StartTime { get;  set; } = default(DateTime);
         public DateTime EndTime { get; set; } = default(DateTime);
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         public Guid CabinetId { get;  set; } = Guid.Empty;
     }

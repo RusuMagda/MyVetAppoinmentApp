@@ -46,13 +46,13 @@ namespace MyVetAppointment.Domain.Entities
         public List<Client> Clients { get; private set; } = new List<Client>();
         public Shop Shop { get; private set; } = default!;
 
-        public void addClient(Client client)
+        public void AddClient(Client client)
         {
             if (Clients == null) Clients = new List<Client>();
             Clients.Add(client);
         }
 
-        public void attachShop(Shop shop)
+        public void AttachShop(Shop shop)
         {
             Shop = shop;
         }
