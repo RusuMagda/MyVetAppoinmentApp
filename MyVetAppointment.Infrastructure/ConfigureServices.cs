@@ -17,9 +17,6 @@ namespace MyVetAppointment.Infrastructure
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IShopRepository, ShopRepository>();
 
-            //services.AddDbContext<IDatabaseContext, DatabaseContext>(m =>
-            //    m.UseSqlite(configuration.GetConnectionString("MyVetAppointmentDb")),
-            //    ServiceLifetime.Singleton);
             return services;
         }
     }

@@ -9,7 +9,7 @@
         public DateTime StartTime { get;  set; } = default(DateTime);
         public DateTime EndTime { get;  set; } = default(DateTime);
 
-        public string Description { get;  set; }
+        public string Description { get;  set; } = String.Empty;
 
         public Guid CabinetId { get;  set; } = Guid.Empty;
     }

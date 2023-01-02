@@ -30,12 +30,9 @@ namespace MyVetAppoinment.UI.Pages.Services
             return await httpClient.GetFromJsonAsync<Appointment>($"https://localhost:7193/{ApiUrl}" + appointmentId);
         }
         
-        public async void AddAppointment(Appointment appointmentId,Guid petId, Guid cabinetId)
+        public async void AddAppointment(Appointment appointment, Guid petId, Guid cabinetId)
         {
-
-            await httpClient.PostAsJsonAsync($"https://localhost:7193/{ApiUrl}"+petId+"/"+cabinetId, appointmentId);
-
-
+            await httpClient.PostAsJsonAsync($"https://localhost:7193/{ApiUrl}" + petId + "/" + cabinetId, appointment);
         }
         public async void EditAppointment(Guid appointmentId, Appointment appointment)
         {

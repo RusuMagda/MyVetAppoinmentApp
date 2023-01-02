@@ -15,15 +15,15 @@ namespace MyVetAppointment.Application.Handlers
         {
             this.repository = repository;
         }
-        public async Task<AppointmentResponse> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
+        public async Task<AppointmentResponse?> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
         {
             var appointmentEntity = AppointmentMapper.Mapper.Map<Appointment>(request);
             if (appointmentEntity == null)
             {
                 return default;
             }
-            appointmentEntity.attachCabinet(request.CabinetId);
-            appointmentEntity.attachPet(request.PetId);
+            appointmentEntity.AttachCabinet(request.CabinetId);
+            appointmentEntity.AttachPet(request.PetId);
 
             await repository.AddAsync(appointmentEntity);
             repository.Save();

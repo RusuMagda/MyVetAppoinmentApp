@@ -31,7 +31,7 @@ namespace UnitTests
             var name = "Dog";
             var birthdate = new DateTime(10 / 10 / 2010);
             var pet = new Pet(OwnerId, name, birthdate);
-            appointment.attachPet(pet.Id);
+            appointment.AttachPet(pet.Id);
 
             appointment.PetId.Equals(pet.Id);
         }
@@ -44,7 +44,7 @@ namespace UnitTests
             Assert.NotNull(appointment);
 
             var cabinet = new Cabinet("ProVet", "Strada Smardan 84");
-            appointment.attachCabinet(cabinet.Id);
+            appointment.AttachCabinet(cabinet.Id);
 
             appointment.CabinetId.Equals(cabinet.Id);
         }
