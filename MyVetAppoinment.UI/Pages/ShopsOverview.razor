@@ -11,7 +11,7 @@ else
     <tabel class="table table-light">
         <thead class="table-primary">
         <th>Shop Name</th>
-        <th>Cabinet Id</th>
+        <th>Cabinet Name</th>
         
         <th>Edit/Delete</th>
         
@@ -22,9 +22,14 @@ else
             {
                 <tr>
                     <td>@shop.ShopName</td>
-                    <td>@shop.CabinetId</td>
+                    @foreach (var cab in Cabinets)
+                    {
+                        @if (cab.Id.Equals(shop.CabinetId))
+                        {
+                            <td>@cab.Name</td>
+                        }
+                    }
 
-                    
                     <td>
                         <a href='/shop/edit/@shop.ShopId' class="btn btn-outline-dark" role="button">
                             Edit
@@ -33,9 +38,6 @@ else
                             Delete
                         </a>
                     </td>
-                    
-
-
                 </tr>
             }
         </tbody>
