@@ -13,6 +13,18 @@
             Quantity = quantity;
             QuantityMeasure = quantityMeasure;
         }
+        public Drug(string drugName, string drugDescription, Guid shopId, int stock, int price, string saleForm, int quantity, string quantityMeasure)
+        {
+            ShopId= shopId;
+            DrugName = drugName;
+            DrugDescription = drugDescription;
+            Stock = stock;
+            Id = Guid.NewGuid();
+            Price = price;
+            SaleForm = saleForm;
+            Quantity = quantity;
+            QuantityMeasure = quantityMeasure;
+        }
         public Drug(Guid id,string drugName, string drugDescription, int stock, int price, string saleForm, int quantity, string quantityMeasure)
         {
             DrugName = drugName;
@@ -32,6 +44,7 @@
         public int Stock { get; set; } = 0;
 
         public Guid Id { get;  set; }
+        public Guid ShopId { get;  set; }
 
         public int Price { get; set; } = default(int);
 

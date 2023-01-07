@@ -9,6 +9,7 @@
         public int Stock { get; set; } = default(int);
 
         public Guid ID { get; set; } = Guid.Empty;
+        public Guid ShopId { get; set; } = Guid.Empty;
 
         public int Price { get; set; } = default(int);
 
