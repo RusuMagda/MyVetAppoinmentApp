@@ -36,6 +36,12 @@ namespace MyVetAppointment.API.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("{id:guid}/drugs")]
+        public async Task<IActionResult> GetDrugs(Guid id)
+        {
+            var drugs = await drugRepository.GetDrugsAsync(id);
+            return Ok(drugs);
+        }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateDrugDto dto)
         {

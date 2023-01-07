@@ -10,11 +10,12 @@ namespace MyVetAppointment.API.Validators
         {
             RuleFor(drug => drug.DrugName).NotEmpty();
             RuleFor(drug => drug.DrugDescription).NotEmpty();
-            RuleFor(drug => drug.Stock).GreaterThan(0);
+            RuleFor(drug => drug.Stock).GreaterThanOrEqualTo(0);
             RuleFor(drug => drug.Price).GreaterThan(0);
             RuleFor(drug => drug.SaleForm).NotEmpty();
             RuleFor(drug => drug.Quantity).GreaterThan(0);
             RuleFor(drug => drug.QuantityMeasure).NotEmpty();
+            RuleFor(drug => drug.ShopId).NotEmpty();
         }
     }
 }

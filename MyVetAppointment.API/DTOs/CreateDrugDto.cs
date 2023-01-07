@@ -9,5 +9,6 @@
         public string SaleForm { get; set; } = string.Empty;
         public int Quantity { get; set; } = default(int);
         public string QuantityMeasure { get; set; } = string.Empty;
+        public Guid ShopId { get; set; }
     }
 }
