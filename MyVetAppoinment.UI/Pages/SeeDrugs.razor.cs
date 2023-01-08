@@ -9,6 +9,8 @@ namespace MyVetAppoinment.UI.Pages
         [Parameter]
         public Guid ShopId { get; set; }
         public List<Drug> Drugs { get; set; } = default!;
+
+        public List<Drug> ShoppingList = new List<Drug>();
         [Inject] public IShopDataService ShopDataService { get; set; } = default!;
         [Inject] public IDrugDataService DrugDataService { get; set; } = default!;
 
@@ -19,6 +21,21 @@ namespace MyVetAppoinment.UI.Pages
             {
                 Drugs = result.ToList();
             }
+        }
+
+        public async Task AddDrugToList(Drug drug)
+        {
+            ShoppingList.Add(drug);
+        }
+
+        public int GetTotal()
+        {
+            int total = 0;
+            foreach (var drug in ShoppingList)
+            {
+                total += drug.Price;
+            }
+            return total;
         }
 
     }

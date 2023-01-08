@@ -15,28 +15,54 @@ else
         <th>Quantity</th>
         <th>Price</th>
         <th>Availability</th>
+        <th>Buy</th>
         </thead>
 
         <tbody>
-            @foreach (var drug in Drugs)
+        @foreach (var drug in Drugs)
+        {
+            <tr>
+                <td>@drug.DrugName</td>
+                <td>@drug.DrugDescription</td>
+                <td>@drug.Quantity @drug.QuantityMeasure</td>
+                <td>@drug.Price RON</td>
+                    
+                @if (@drug.Stock == 0)
+                {
+                    <td>Out of stock</td>
+                }
+                else
+                {
+                    <td>In stock</td>
+                }
+                    
+                <td>
+                    <a class="btn btn-outline-primary" @onclick="() => AddDrugToList(drug)">+</a>
+                </td>
+
+            </tr>
+        }
+        </tbody>
+        
+        @if (ShoppingList.Count > 0)
+        {
+            <h2>Shopping List</h2>
+            <tbody>
+            @foreach (var drug in ShoppingList)
             {
                 <tr>
                     <td>@drug.DrugName</td>
-                    <td>@drug.DrugDescription</td>
                     <td>@drug.Quantity @drug.QuantityMeasure</td>
                     <td>@drug.Price RON</td>
-                    @if (@drug.Stock == 0)
-                    {
-                        <td>Out of stock</td>
-                    }
-                    else
-                    {
-                        <td>In stock</td>
-                    }
-
                 </tr>
             }
-        </tbody>
+            <tr style="font-weight: bold">
+                <td style="background-color: antiquewhite">Total</td>
+                    <td style="background-color: antiquewhite"></td>
+                    <td style="background-color: antiquewhite">@GetTotal() RON</td>
+            </tr>
+            </tbody>
+        }
     </table>
 }
 
