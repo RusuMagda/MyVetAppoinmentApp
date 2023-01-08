@@ -39,7 +39,7 @@ namespace UnitTests
 
             Assert.NotNull(shop);
 
-            Drug drug = new Drug("NeuroVet", "este indicat pentru tratamentul adjuvant al neuropatiilor", 50, 169, "comprimate", 60, "comprimate");
+            Drug drug = new Drug(new Guid("d42fbb91-0ebe-43ea-b91c-b9b026430f09"), "NeuroVet", "este indicat pentru tratamentul adjuvant al neuropatiilor", 50, 169, "comprimate", 60, "comprimate");
             Assert.NotNull(drug);
 
             shop.addDrug(drug);

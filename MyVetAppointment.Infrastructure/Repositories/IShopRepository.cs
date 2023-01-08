@@ -8,6 +8,8 @@ namespace MyVetAppointment.Infrastructure.Repositories
         void Delete(Guid id);
         Task<Shop?> GetByIdAsync(Guid id);
         Task<IReadOnlyCollection<Shop>> GetAllAsync();
+
+        Task<IReadOnlyCollection<Drug>> GetShopDrugsAsync(Guid id);
         void Save();
         void Update(Shop shop);
     }

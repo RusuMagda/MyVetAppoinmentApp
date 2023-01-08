@@ -42,10 +42,11 @@ namespace IntegrationTests.Tests
             // Arrange
             var request = new
             {
-                Url = "/api/v1/Drugs",
+                Url = "/api/v1/Drugs/4af1a2fb-61a2-4059-b3bb-bfad4aa07416",
                 Body = new
                 {
                     Id = Guid.NewGuid(),
+                    ShopId = new Guid("4af1a2fb-61a2-4059-b3bb-bfad4aa07416"),
                     DrugName = "testdrug",
                     DrugDescription = "test description",
                     Stock = 100,
@@ -72,6 +73,7 @@ namespace IntegrationTests.Tests
                 Url = "/api/v1/Drugs/fe1bdfc5-5424-4410-ab46-3cf1f98ac59a",
                 Body = new
                 {
+                    ShopId = new Guid("1e50a051-2c1d-42cf-9c4b-e4626ddcb0c4"),
                     DrugName = "CorpetVet",
                     DrugDescription = "Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
                     Stock = 98,

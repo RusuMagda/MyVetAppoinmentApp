@@ -42,6 +42,11 @@ namespace MyVetAppointment.Infrastructure.Repositories
             return await this.context.Shops.FirstOrDefaultAsync(s => s.ShopId == id);
         }
 
+        public async Task<IReadOnlyCollection<Drug>> GetShopDrugsAsync(Guid id)
+        {
+            return await (this.context.Drugs.Where(d => d.ShopId == id)).ToListAsync();
+        }
+
         public void Save()
         {
             context.SaveAsync();

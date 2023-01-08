@@ -42,13 +42,13 @@ namespace MyVetAppointment.API.Controllers
             var drugs = await drugRepository.GetDrugsAsync(id);
             return Ok(drugs);
         }
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateDrugDto dto)
+        [HttpPost("{shopId}")]
+        public async Task<IActionResult> Create(Guid shopId, [FromBody] CreateDrugDto dto)
         {
             var drug = mapper.Map<Drug>(dto);
-                await drugRepository.AddAsync(drug);
-                drugRepository.Save();
-                return Created(nameof(Get), drug);
+            await drugRepository.AddAsync(drug);
+            drugRepository.Save();
+            return Created(nameof(Get), drug);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAsync(Guid id)

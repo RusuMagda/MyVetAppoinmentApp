@@ -45,7 +45,13 @@ namespace MyVetAppointment.API.Controllers
                 await shopRepository.AddAsync(shop);
                 shopRepository.Save();
                 return Created(nameof(GetAsync), shop);
+        }
 
+        [HttpGet("{shopId}/drugs")]
+
+        public async Task<IActionResult> GetShopDrugsAsync(Guid shopId)
+        {
+            return Ok(await shopRepository.GetShopDrugsAsync(shopId));
         }
 
         [HttpDelete("{id}")]
