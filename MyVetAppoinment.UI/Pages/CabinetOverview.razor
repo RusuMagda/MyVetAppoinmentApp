@@ -26,21 +26,25 @@ else
                         <div class="name"><b>@cabinet.Name</b></div>
                         <hr/>
                         <div class="address">@cabinet.Address</div>
-                        <div class="address">@cabinet.Id</div>
                             <div class="number">Tel: @cabinet.PhoneNumber</div>
                         
                     <div class="desc">@cabinet.Description</div>
                     
                     
-                    <a href='/registration/@cabinet.Id' class="btn" role="button">
-                        Make an Appointment
-                    </a>
-                        <a href='/seedrugs/@cabinet.Id' class="btn" role="button">
-                            See Shop
+                        <a href='/registration/@cabinet.Id' class="btn" role="button">
+                            Make an Appointment
                         </a>
+                        @foreach (var shop in Shops)
+                        {
+                            @if (shop.CabinetId.Equals(cabinet.Id))
+                            {
+                                <a href='/seedrugs/@shop.ShopId' class="btn" role="button">
+                                    See Shop
+                                </a>
+                            }
+                        }
                 </div>
                 <div class="item">
-                    
                     <img src="photo/@cabinet.Image" alt="Loading" width="300" height="300">
                 </div>
             </div>
@@ -64,9 +68,15 @@ else
                         <a href='/registration/@cabinet.Id' class="btn" role="button">
                             Make an Appointment
                         </a>
-                        <a href='' class="btn" role="button">
-                           See Shop
-                        </a>
+                        @foreach (var shop in Shops)
+                        {
+                            @if (shop.CabinetId.Equals(cabinet.Id))
+                            {
+                                <a href='/seedrugs/@shop.ShopId' class="btn" role="button">
+                                    See Shop
+                                </a>
+                            }
+                        }
                     
                 </div>
 
@@ -74,13 +84,6 @@ else
             </div>
         }
         i += 1;
-
-
-
-
-
     }
-
-
 }
 

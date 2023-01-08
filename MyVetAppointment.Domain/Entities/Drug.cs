@@ -2,18 +2,7 @@
 {
     public class Drug
     {
-        public Drug(string drugName, string drugDescription, int stock, int price, string saleForm, int quantity, string quantityMeasure)
-        {
-            DrugName = drugName;
-            DrugDescription = drugDescription;
-            Stock = stock;
-            Id = Guid.NewGuid();
-            Price = price;
-            SaleForm = saleForm;
-            Quantity = quantity;
-            QuantityMeasure = quantityMeasure;
-        }
-        public Drug(string drugName, string drugDescription, Guid shopId, int stock, int price, string saleForm, int quantity, string quantityMeasure)
+        public Drug(Guid shopId, string drugName, string drugDescription, int stock, int price, string saleForm, int quantity, string quantityMeasure)
         {
             ShopId= shopId;
             DrugName = drugName;
@@ -25,8 +14,9 @@
             Quantity = quantity;
             QuantityMeasure = quantityMeasure;
         }
-        public Drug(Guid id,string drugName, string drugDescription, int stock, int price, string saleForm, int quantity, string quantityMeasure)
+        public Drug(Guid id, Guid shopId, string drugName, string drugDescription, int stock, int price, string saleForm, int quantity, string quantityMeasure)
         {
+            ShopId = shopId;
             DrugName = drugName;
             DrugDescription = drugDescription;
             Stock = stock;

@@ -35,13 +35,13 @@ public class DbSeed
     {
         var drugs = new List<Drug>
         {
-            new(new Guid("fe1bdfc5-5424-4410-ab46-3cf1f98ac59a"), "Corpet","Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
+            new(new Guid("fe1bdfc5-5424-4410-ab46-3cf1f98ac59a"), new Guid("1e50a051-2c1d-42cf-9c4b-e4626ddcb0c4"), "Corpet","Supliment nutritional cu rol paliativ antitumoral si de sustinere a sistemului imunitar.",
             98,130,"pastile",90,"pastile"),
-            new(new Guid("45454ce7-7fa1-478b-bfaa-021eea996f16"), "NeuroVet", "este indicat pentru tratamentul adjuvant al neuropatiilor",50,169, "comprimate",
+            new(new Guid("45454ce7-7fa1-478b-bfaa-021eea996f16"), new Guid("ef0434fd-a287-42b7-8714-7d090b83b9eb"), "NeuroVet", "este indicat pentru tratamentul adjuvant al neuropatiilor",50,169, "comprimate",
             60,"comprimate"),
-            new("RX Onco Support",  "pentru sustinerea functiilor in cazul afectiunilor cronice si / sau maligne",
+            new(new Guid("352c9e1f-e563-49e8-a1c4-e71380c570bc"), "RX Onco Support",  "pentru sustinerea functiilor in cazul afectiunilor cronice si / sau maligne",
             30,380,"pulbere",300,"g"),
-            new("RX Liquid Immuno","supliment nutritional si botanic pentru intarirea sistemului imunitar la caini si pisici",
+            new(new Guid("41958edf-d6e7-4454-9a15-b0d74c462a6f"), "RX Liquid Immuno","supliment nutritional si botanic pentru intarirea sistemului imunitar la caini si pisici",
             234,222,"lichid",120,"ml")
 
         };

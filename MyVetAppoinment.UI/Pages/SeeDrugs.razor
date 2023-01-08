@@ -1,48 +1,80 @@
-﻿@page "/seedrugs/{cabinetId:guid}"
+﻿@page "/seedrugs/{shopId:guid}"
 <link href="css/client.css" rel="stylesheet" />
 <h2>Drugs</h2>
-<div class="cont">
-    
-     
-    <div class="row">
-        @if (Drugs == null)
-        {
-            <p><em>Loading...</em></p>
-        }
-        else
-        {
-            <div class="container">
-                <div class="row1" id="head">
-                    <div class="col">Drug Name</div>
-                    <div class="col">Drug Description</div>
-                    <div class="col">Drug Price</div>
-                    <div class="col">Availability</div>
-                </div>
-                <div class="row1">
-                    @foreach (var drug in Drugs)
+
+@if (Drugs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-light">
+        <thead class="table-primary">
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Availability</th>
+        </thead>
+
+        <tbody>
+            @foreach (var drug in Drugs)
+            {
+                <tr>
+                    <td>@drug.DrugName</td>
+                    <td>@drug.DrugDescription</td>
+                    <td>@drug.Quantity @drug.QuantityMeasure</td>
+                    <td>@drug.Price RON</td>
+                    @if (@drug.Stock == 0)
                     {
-                        <div class="col">@drug.DrugName</div>
-                        <div class="col">@drug.DrugDescription</div>
-                        <div class="col">@drug.Price</div>
-                        @if (@drug.Stock == 0)
-                        {
-                            <div class="col">it is no longer in stock</div>
-                        }
-                        else
-                        {
-                            <div class="col">In stock</div>
-                        }
+                        <td>Out of stock</td>
+                    }
+                    else
+                    {
+                        <td>In stock</td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 
 
-                }
-                </div>
+@*<div class="cont">
+    <div class="row">
+    @if (Drugs == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row1" id="head">
+                <div class="col">Drug Name</div>
+                <div class="col">Drug Description</div>
+                <div class="col">Drug Price</div>
+                <div class="col">Availability</div>
             </div>
-
-            
-
-        }
-
+            <div class="row1">
+                @foreach (var drug in Drugs)
+                {
+                    <div class="col">@drug.DrugName</div>
+                    <div class="col">@drug.DrugDescription</div>
+                    <div class="col">@drug.Price</div>
+                    @if (@drug.Stock == 0)
+                    {
+                        <div class="col">it is no longer in stock</div>
+                    }
+                    else
+                    {
+                        <div class="col">In stock</div>
+                    }
+                }
+            </div>
+        </div>
+    }
     </div>
-</div>
+</div>*@
 
