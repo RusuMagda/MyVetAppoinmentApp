@@ -29,7 +29,18 @@ namespace MyVetAppoinment.UI.Pages.Services
         {
             return await httpClient.GetFromJsonAsync<Appointment>($"https://localhost:7193/{ApiUrl}" + appointmentId);
         }
-        
+        public async Task<IEnumerable<Appointment>?> GetAppointmentByCabinetId(Guid cabinetId)
+        {
+            return await JsonSerializer
+                .DeserializeAsync<IEnumerable<Appointment>>
+                (await httpClient.GetStreamAsync($"https://localhost:7193/{ApiUrl}"+"cabinet/" + cabinetId),
+                new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true,
+                });
+           
+        }
+
         public async void AddAppointment(Appointment appointment, Guid petId, Guid cabinetId)
         {
             await httpClient.PostAsJsonAsync($"https://localhost:7193/{ApiUrl}" + petId + "/" + cabinetId, appointment);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MyVetAppoinment.Shared.Domain;
 using MyVetAppoinment.UI.Pages.Services;
-
+using Radzen;
 namespace MyVetAppoinment.UI.Pages
 {
     public partial class AddAppointment
@@ -14,35 +14,91 @@ namespace MyVetAppoinment.UI.Pages
         [Inject]
         public IAppointmentDataService? AppointmentDataService { get; set; }
 
-
         [Parameter]
-        public String? Month { get; set; }
+        public DateTime Start { get; set; }
+
+        public String error { get; set; }
         [Parameter]
-        public String? Day { get; set; }
-        [Parameter]
-        public String? Hour { get; set; }
-        [Parameter]
-        public String? Minute { get; set; }
+        public String Description { get; set; }
 
 
-        public EventCallback<string> ValueChanged { get; set; }
 
-        private Appointment appointment = new();
 
-        protected async Task SaveApp()
+       
+
+        private Appointment model = new Appointment();
+        public List<Appointment> Appointments { get; set; } = default!;
+
+        public bool ok = false;
+
+        protected async override Task OnInitializedAsync()
         {
-            DateTime date1 = new DateTime(DateTime.Now.Year, Int32.Parse(Month!), Int32.Parse(Day!), Int32.Parse(Hour!), Int32.Parse(Minute!), 0, DateTimeKind.Utc);
-            
-            appointment.StartTime = Convert.ToDateTime(date1);
-            appointment.EndTime = Convert.ToDateTime(date1);
-
-            appointment.CabinetId = CabinetId;
-            appointment.PetId = PetId;
-
-            AppointmentDataService?.AddAppointment(appointment, PetId, CabinetId);
-             await Task.Delay(2000);
-            NavigationManager.NavigateTo("/");
+            model.StartTime = DateTime.Today;
         }
+        protected async Task OnSubmit()
+        {
+            if (model.StartTime.DayOfWeek == DayOfWeek.Saturday || model.StartTime.DayOfWeek == DayOfWeek.Sunday)
+            {
+                error = "Inchis sambata si duminica";
+                DialogService.Close(model);
+            }
+            else
+                if (model.StartTime.Hour < 9 || model.StartTime.Hour > 16)
+            {
+                error = "In afara orelor de program";
+                DialogService.Close(model);
+            }
+            else
+            {
+                model.EndTime = model.StartTime + TimeSpan.FromMinutes(30);
+                Console.WriteLine(model.EndTime);
+                model.CabinetId = CabinetId;
+                model.PetId = PetId;
+               
+                error = null;
+                ok = false;
+               
+
+
+                var app = await AppointmentDataService.GetAppointmentByCabinetId((Guid)CabinetId);
+                if (app != null)
+                {
+
+                    Appointments = app.ToList();
+                    foreach (var a in Appointments)
+                        if (a.StartTime == model.StartTime)
+                        {
+                            Console.WriteLine("__________exista");
+                            error = "Exista deja programare";
+                            ok = true;
+                            break;
+
+                        }
+                        else if (a.EndTime.Year == model.EndTime.Year && a.EndTime.Month == model.EndTime.Month && a.EndTime.Day == model.EndTime.Day && (((a.EndTime.TimeOfDay - model.StartTime.TimeOfDay).Minutes > 0 && (a.EndTime.TimeOfDay - model.StartTime.TimeOfDay).Minutes < 30) || ((model.EndTime.TimeOfDay - a.StartTime.TimeOfDay).Minutes > 0 && (model.EndTime.TimeOfDay - a.StartTime.TimeOfDay).Minutes < 30)))
+                        {
+                            Console.WriteLine("__________exista desfasurare");
+                            error = "Exista deja programare in desfasurare";
+                            ok = true;
+                            break;
+
+                        }
+
+                }
+                Console.WriteLine("hai ua");
+                if (ok == false)
+                {
+                    Console.WriteLine(")))))))))");
+                    AppointmentDataService?.AddAppointment(model, (Guid)PetId, (Guid)CabinetId);
+
+
+                    NavigationManager.NavigateTo("/");
+                }
+
+            }
+
+        }
+
+      
 
         public async Task Cancel()
         {

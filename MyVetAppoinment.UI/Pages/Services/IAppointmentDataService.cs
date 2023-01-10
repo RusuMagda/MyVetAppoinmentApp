@@ -8,7 +8,8 @@ namespace MyVetAppoinment.UI.Pages.Services
       
 
         Task<Appointment?> GetPetAppointment(Guid appointmentId);
-        
+        Task<IEnumerable<Appointment>?>  GetAppointmentByCabinetId(Guid cabinetId);
+
 
 
         void AddAppointment(Appointment appointmentId, Guid petId, Guid cabinetId);
