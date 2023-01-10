@@ -51,6 +51,11 @@ namespace MyVetAppoinment.UI.Pages.Services
 
         }
 
+        public async void DecreaseDrugStock(Guid drugId, int quantity, Drug drug)
+        {
+            await httpClient.PutAsJsonAsync($"https://localhost:7193/{ApiUrl}" + drugId + "/" + quantity, drug);
+        }
+
         public async void DeleteDrug(Guid drugId)
         {
             await httpClient.DeleteAsync($"https://localhost:7193/{ApiUrl}" + drugId);

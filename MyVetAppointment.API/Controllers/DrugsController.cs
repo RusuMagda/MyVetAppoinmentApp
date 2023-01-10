@@ -77,6 +77,20 @@ namespace MyVetAppointment.API.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/{quantity}")]
+        public async Task<IActionResult> DecreaseStock(Guid id, int quantity)
+        {
+            var drug = await drugRepository.GetByIdAsync(id);
+            if (drug == null)
+            {
+                return NotFound();
+            }
+            drug.Stock -= quantity;
+            drugRepository.Update(drug);
+            drugRepository.Save();
+            return NoContent();
+        }
+
     }
 }
 
