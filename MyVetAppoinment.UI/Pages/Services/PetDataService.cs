@@ -24,14 +24,24 @@ namespace MyVetAppoinment.UI.Pages.Services
                  });
 
         }
+        public async Task<IEnumerable<Appointment>?> GetAllAppointments(Guid petId)
+        {
+            return await JsonSerializer
+                .DeserializeAsync<IEnumerable<Appointment>>
+                (await httpClient.GetStreamAsync($"https://localhost:7193/{ApiUrl}" + petId + "/appointments"),
+                new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true,
+                });
+        }
 
         public async Task<Pet?> GetPetDetail(Guid petId)
         {
             return await httpClient.GetFromJsonAsync<Pet>($"https://localhost:7193/{ApiUrl}" + petId);
         }
-        public async Task<Pet?> GetPetId(Guid id, String name )
+        public async Task<Pet?> GetPetId(Guid id, String name)
         {
-            return await httpClient.GetFromJsonAsync<Pet>($"https://localhost:7193/{ApiUrl}" + id+"/"+name);
+            return await httpClient.GetFromJsonAsync<Pet>($"https://localhost:7193/{ApiUrl}" + id + "/" + name);
         }
         public async Task<IEnumerable<Pet>?> GetPetsClient(Guid id)
         {
