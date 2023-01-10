@@ -1,56 +1,65 @@
 ﻿@page "/addappointment/{petId:guid}/{cabinetId:guid}"
 @inject HttpClient Http
+@inject DialogService DialogService
 @inject NavigationManager NavigationManager
-<head>
-    <link href="../css/shop.css" rel="stylesheet" />
-</head>
-<div class="cont">
-    <div class="row"><h1> Make an appointment</h1></div>
+<link href="css/appointment.css" rel="stylesheet" />
+@page "/data"
+@using MyVetAppoinment.Shared.Domain;
+
+<RadzenTemplateForm TItem="Appointment" Data="@model" Submit=@OnSubmit>
+
+    <div class="antet">
+       <strong> PROGRAM:
+        <br>
+        Luni: 09:00-16:00 <br>
+        Marti: 09:00-16:00 <br>
+        Miercuri: 09:00-16:00 <br>
+        Joi: 09:00-16:00 <br>
+        Vineri: 09:00-16:00 <br>
+        Sambata,Duminica: inchis <br>
+        <br>
+        </strong>
+    </div>
+    <div class="container">
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Alegeti data si ora:" />
+        </div>
+        <div class="col">
 
 
-    <div class="row">
-        <div class="modal-body">
-            <EditForm Model="@appointment" OnValidSubmit="@SaveApp">
-                <DataAnnotationsValidator />
-                <ValidationSummary />
-                
-                <div class="form-group">
-                    <label for="Month"> Month: </label>
-                    <InputText id="Month" class="form-control" @bind-Value="@Month" placeholder=" Enter month"></InputText>
-                    <ValidationMessage For="@(() => Month)" />
-                </div>
-                <div class="form-group">
-                    <label for="Day"> Day: </label>
-                    <InputText id="Day" class="form-control" @bind-Value="@Day" placeholder=" Enter day"></InputText>
-                    <ValidationMessage For="@(() => Day)" />
-                </div>
-                <div class="form-group">
-                    <label for="Hour"> Hour: </label>
-                    <InputText id="Hour" class="form-control" @bind-Value="@Hour" placeholder=" Enter hour"></InputText>
-                    <ValidationMessage For="@(() => Hour)" />
-                </div>
-                <div class="form-group">
-                    <label for="Minute"> Minute: </label>
-                    <InputText id="Minute" class="form-control" @bind-Value="@Minute" placeholder=" Enter minute"></InputText>
-                    <ValidationMessage For="@(() => Minute)" />
-                </div>
+            <RadzenDatePicker Min="DateTime.Today" YearRange="2023:2024" @bind-Value="@model.StartTime" Name="Start" ShowTime="true" MinutesStep="30" />
 
-                <div class="form-group">
-                    <label for="Description"> Description: </label>
-                    <InputText id="Description" class="form-control" @bind-Value="@appointment.Description" placeholder=" Enter  description"></InputText>
-                    <ValidationMessage For="@(() => appointment.Description)" />
-                </div>
-
-                
-                <button type="submit" class="btn btn-primary">Finish</button>
-                <a class="btn btn-outline-primary" @onclick="@Cancel">Close</a>
-            </EditForm>
+            <RadzenRequiredValidator Text="Start is required" Component="Start" />
         </div>
     </div>
 
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Decriere" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.Description" Name="Description" />
+            <RadzenRequiredValidator Text="Description is required" Component="Description" />
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Save" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col">
+            @if (error != null)
+            {
+                <div> @error</div>
+            }
 
+        </div>
+    </div>
+    </div>
 
-
-</div>
-
+</RadzenTemplateForm>

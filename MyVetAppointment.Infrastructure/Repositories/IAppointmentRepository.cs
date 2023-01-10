@@ -6,6 +6,9 @@ namespace MyVetAppointment.Infrastructure.Repositories
     {
         Task AddAsync(Appointment appointment);
         Task<Appointment?> GetByIdAsync(Guid id);
+        Task<IReadOnlyCollection<Appointment>> GetByCabinetIdAsync(Guid cabinetId);
+
+      
         Task<IReadOnlyCollection<Appointment>> GetAllAsync();
         void Delete(Guid id);
         void Save();

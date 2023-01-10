@@ -29,6 +29,11 @@ namespace MyVetAppointment.API.Controllers
         {
             return await mediator.Send(new GetAppointmentByIdQuery() { Id = id });
         }
+        [HttpGet("cabinet/{cabinetId:guid}")]
+        public async Task<List<AppointmentResponse>> GetByCabinetId(Guid cabinetId)
+        {
+            return await mediator.Send(new GetAppointmentByCabinetIdQuery() { cabinetId = cabinetId});
+        }
 
         [HttpPost("{idPet:guid}/{idCabinet:guid}")]
         public async Task<ActionResult<AppointmentResponse>> Create(Guid idPet, Guid idCabinet,

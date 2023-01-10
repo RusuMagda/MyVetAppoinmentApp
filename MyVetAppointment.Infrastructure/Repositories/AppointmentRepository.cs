@@ -22,10 +22,15 @@ namespace MyVetAppointment.Infrastructure.Repositories
         {
             return await context.Appointments.ToListAsync<Appointment>();
         }
+      
 
         public async Task<Appointment?> GetByIdAsync(Guid id)
         {
             return await context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
+        }
+        public async Task<IReadOnlyCollection<Appointment>> GetByCabinetIdAsync(Guid cabinetId)
+        {
+            return await context.Appointments.Where(a => a.CabinetId == cabinetId  ).ToListAsync<Appointment>();
         }
 
         public async void Delete(Guid id)
@@ -42,6 +47,8 @@ namespace MyVetAppointment.Infrastructure.Repositories
         {
             context.SaveAsync();
         }
+
+       
     }
 }
 
