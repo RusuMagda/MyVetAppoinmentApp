@@ -1,106 +1,318 @@
-﻿@page "/seedrugs/{shopId:guid}"
-<link href="css/client.css" rel="stylesheet" />
-<h2>Drugs</h2>
-
-@if (Drugs == null)
+﻿@if (PageScope == "Shop")
 {
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table table-light">
-        <thead class="table-primary">
-        <th>Name</th>
-        <th>Description</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Availability</th>
-        <th>Buy</th>
-        </thead>
+    @page "/seedrugs/{shopId:guid}"
+    @inject NavigationManager NavigationManager
+    <link href="css/client.css" rel="stylesheet"/>
+        <h2>Drugs</h2>
 
-        <tbody>
-        @foreach (var drug in Drugs)
-        {
-            <tr>
-                <td>@drug.DrugName</td>
-                <td>@drug.DrugDescription</td>
-                <td>@drug.Quantity @drug.QuantityMeasure</td>
-                <td>@drug.Price RON</td>
-                    
-                @if (@drug.Stock == 0)
-                {
-                    <td>Out of stock</td>
-                }
-                else
-                {
-                    <td>In stock</td>
-                }
-                    
-                <td>
-                    <a class="btn btn-outline-primary" @onclick="() => AddDrugToList(drug)">+</a>
-                </td>
-
-            </tr>
-        }
-        </tbody>
-        
-        @if (ShoppingList.Count > 0)
-        {
-            <h2>Shopping List</h2>
-            <tbody>
-            @foreach (var drug in ShoppingList)
-            {
-                <tr>
-                    <td>@drug.DrugName</td>
-                    <td>@drug.Quantity @drug.QuantityMeasure</td>
-                    <td>@drug.Price RON</td>
-                </tr>
-            }
-            <tr style="font-weight: bold">
-                <td style="background-color: antiquewhite">Total</td>
-                    <td style="background-color: antiquewhite"></td>
-                    <td style="background-color: antiquewhite">@GetTotal() RON</td>
-            </tr>
-            </tbody>
-        }
-    </table>
-}
-
-
-
-@*<div class="cont">
-    <div class="row">
     @if (Drugs == null)
     {
         <p><em>Loading...</em></p>
     }
     else
     {
-        <div class="container">
-            <div class="row1" id="head">
-                <div class="col">Drug Name</div>
-                <div class="col">Drug Description</div>
-                <div class="col">Drug Price</div>
-                <div class="col">Availability</div>
-            </div>
-            <div class="row1">
-                @foreach (var drug in Drugs)
-                {
-                    <div class="col">@drug.DrugName</div>
-                    <div class="col">@drug.DrugDescription</div>
-                    <div class="col">@drug.Price</div>
-                    @if (@drug.Stock == 0)
+        <table class="table table-light">
+            <thead class="table-primary">
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Buy</th>
+            </thead>
+
+            <tbody>
+            @foreach (var drug in Drugs)
+            {
+                <tr>
+                    <td>@drug.DrugName</td>
+                    <td>@drug.DrugDescription</td>
+                    <td>@drug.Quantity @drug.QuantityMeasure</td>
+                    <td>@drug.Price RON</td>
+
+                    @if (@drug.Stock == 0 || (ShoppingList.ContainsKey(drug) && ShoppingList[drug] == @drug.Stock))
                     {
-                        <div class="col">it is no longer in stock</div>
+                        <td>Out of stock</td>
                     }
                     else
                     {
-                        <div class="col">In stock</div>
+                        <td>
+                            <a class="btn btn-outline-primary" @onclick="() => AddDrugToList(drug)">+</a>
+                        </td>
                     }
+
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        @if (ShoppingList.Count > 0)
+        {
+            <h2>Shopping List</h2>
+            <table class="table table-light">
+                <thead class="table-primary">
+                <th>Count</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Remove</th>
+                </thead>
+                <tbody>
+                @foreach (var drug in ShoppingList.Keys)
+                {
+                    <tr>
+                        <td>@ShoppingList[drug]</td>
+                        <td>@drug.DrugName</td>
+                        <td>@drug.Quantity @drug.QuantityMeasure</td>
+                        <td>@drug.Price RON</td>
+                        <td>
+                            <a style="background-color: red; align-content: end" class="btn btn-outline-primary" @onclick="() => RemoveDrugFromList(drug)">-</a>
+                        </td>
+                    </tr>
                 }
+                <tr style="font-weight: bold">
+                    <td style="background-color: antiquewhite">Total</td>
+                    <td style="background-color: antiquewhite"></td>
+                    <td style="background-color: antiquewhite"></td>
+                    <td style="background-color: antiquewhite">@GetTotal() RON</td>
+                    <td style="background-color: antiquewhite">
+                        <a style="background-color: coral" class="btn btn-outline-primary" onclick="@ShowPaymentForm">Pay</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        }
+
+        @if (PayButtonPressed == true)
+        {
+            <div class="cont">
+                <div class="row">
+                    <div class="modal-body">
+                        <EditForm Model="@Payment" OnValidSubmit="@MakePayment">
+                            <DataAnnotationsValidator/>
+                            <ValidationSummary/>
+
+                            <div class="form-group">
+                                <label for="FirstName"> First Name: </label>
+                                <InputText id="FirstName" class="form-control" @bind-Value="@Payment.FirstName" placeholder="First Name"></InputText>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="LastName"> Last Name: </label>
+                                <InputText id="LastName" class="form-control" @bind-Value="@Payment.LastName" placeholder="Last Name"></InputText>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address"> Address: </label>
+                                <InputText id="Address" class="form-control" @bind-Value="@Payment.Address" placeholder="Address"></InputText>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CardNumber"> Card Number: </label>
+                                <InputText id="CardNumber" class="form-control" @bind-Value="@Payment.CardNumber" placeholder="Card Number"></InputText>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CVC"> Security Code: </label>
+                                <InputText id="CVC" class="form-control" @bind-Value="@Payment.CVC" placeholder="CVC"></InputText>
+                            </div>
+
+                            <div class="form-group">
+                                <label >Month: </label>
+
+                                <select class="form-control" @onchange="@OnValueChanged">
+                                    <option value="Select" selected disabled="disabled">Choose Month</option>
+                                    @for (int m = 1; m <= 12; m++)
+                                    {
+                                        <option value=@m> @m </option>
+                                    }
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Year: </label>
+
+                                <select class="form-control" @onchange="@OnValueChanged">
+                                    <option value="Select" selected disabled="disabled">Choose Year</option>
+                                    @for (int m = DateTime.Now.Year; m <= DateTime.Now.Year + 50; m++)
+                                    {
+                                        <option value=@m> @m </option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Pay</button>
+                                <a class="btn btn-outline-primary" @onclick="@CancelPayment">Close</a>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
             </div>
+        }
+    }
+}
+else 
+    if(PageScope == "Message")
+    {
+        @page "/successfulpayment"
+        <div>
+            <h1>Successful Payment</h1>
+        </div>
+        <div>
+            <a class="btn btn-outline-primary" @onclick="@ViewBill">View Bill</a>
         </div>
     }
-    </div>
-</div>*@
+    else
+    {
+        @page "/bill"
+        <header>
+            <h1 style ="text-align: center">Bill</h1>
+        </header>
+        <head>
+		    <meta charset="utf-8" />
+
+		    <style>
+			    .invoice-box {
+				    max-width: 800px;
+				    margin: auto;
+				    padding: 30px;
+				    border: 1px solid #eee;
+				    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				    font-size: 16px;
+				    line-height: 24px;
+				    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				    color: #555;
+			    }
+
+			    .invoice-box table {
+				    width: 100%;
+				    line-height: inherit;
+				    text-align: left;
+			    }
+
+			    .invoice-box table td {
+				    padding: 5px;
+				    vertical-align: top;
+			    }
+
+			    .invoice-box table tr td:nth-child(2) {
+				    text-align: right;
+			    }
+
+			    .invoice-box table tr.top table td {
+				    padding-bottom: 20px;
+			    }
+
+			    .invoice-box table tr.top table td.title {
+				    font-size: 45px;
+				    line-height: 45px;
+				    color: #333;
+			    }
+
+			    .invoice-box table tr.information table td {
+				    padding-bottom: 40px;
+			    }
+
+			    .invoice-box table tr.heading td {
+				    background: #eee;
+				    border-bottom: 1px solid #ddd;
+				    font-weight: bold;
+			    }
+
+			    .invoice-box table tr.details td {
+				    padding-bottom: 20px;
+			    }
+
+			    .invoice-box table tr.item td {
+				    border-bottom: 1px solid #eee;
+			    }
+
+			    .invoice-box table tr.item.last td {
+				    border-bottom: none;
+			    }
+
+			    .invoice-box table tr.total td:nth-child(2) {
+				    border-top: 2px solid #eee;
+				    font-weight: bold;
+			    }
+                
+			    .invoice-box.rtl {
+				    direction: rtl;
+				    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			    }
+
+			    .invoice-box.rtl table {
+				    text-align: right;
+			    }
+
+			    .invoice-box.rtl table tr td:nth-child(2) {
+				    text-align: left;
+			    }
+		    </style>
+	    </head>
+
+	    <body>
+		    <div class="invoice-box">
+			    <table cellpadding="0" cellspacing="0">
+				    <tr class="top">
+					    <td colspan="2">
+						    <table>
+							    <tr>
+                                    <td>
+									    Invoice #: 123<br />
+									    Date: @DateTime.Now<br />
+								    </td>
+							    </tr>
+						    </table>
+					    </td>
+				    </tr>
+
+				    <tr class="information">
+					    <td colspan="2">
+						    <table>
+							    <tr>
+                                    <td>
+                                        Address:
+                                        @Payment.Address
+                                    </td>
+
+                                    <td>
+                                        Full Name:
+                                        @Payment.FirstName @Payment.LastName
+                                    </td>
+							    </tr>
+						    </table>
+					    </td>
+				    </tr>
+
+                    <tr class="heading">
+                        <td>Count</td>
+
+                        <td>Item</td>
+
+                        <td>Price</td>
+                    </tr>
+                    
+                    @foreach (var drug in ShoppingList.Keys)
+                    {
+                        <tr class="item">
+                            <td>@ShoppingList[drug]</td>
+
+                            <td>@drug.DrugName</td>
+                            
+                            <td>@drug.Price RON</td>
+                        </tr>
+                    }
+
+                    <tr class="total">
+					    <td></td>
+
+					    <td>Total: @GetTotal() RON</td>
+				    </tr>
+			    </table>
+		    </div>
+	    </body>
+    }
+
 
