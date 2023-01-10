@@ -10,6 +10,7 @@ namespace MyVetAppoinment.UI.Pages.Services
         void AddDrug(Drug drug);
 
         void EditDrug(Guid drugId, Drug drug);
+        void DecreaseDrugStock(Guid drugId, int quantity, Drug drug);
         void DeleteDrug(Guid drugId);
     }
 }
