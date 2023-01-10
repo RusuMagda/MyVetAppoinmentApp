@@ -1,0 +1,66 @@
+﻿@page "/futureappointments"
+<link href="css/client.css" rel="stylesheet" />
+<h2>Future Appointments</h2>
+<div class="cont">
+    <div class="row">
+
+        <select class="form-control" @onchange="@OnValueChanged">
+            <option value="Select" selected disabled="disabled">Choose Pet</option>
+            @if (Pets == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+                @foreach (var pet in Pets)
+                {
+                    <option value="@pet.Id"> @pet.Name </option>
+                }
+
+        </select>
+
+        <a class="btn" @onclick="@Close">See Future Appointments</a>
+
+    </div>
+    <div class="row">
+        @if (AppointmentsFuture == null || AppointmentsFuture.Count() == 0)
+        {
+            <p><em></em></p>
+        }
+        else
+        {
+            <table class="table table-light">
+                <thead class="table-primary">
+                <th>Date</th>
+                <th>Cabinet</th>
+                <th>Description</th>
+                </thead>
+
+                <tbody>
+                    @foreach (var appointment in AppointmentsFuture)
+                    {
+                        <tr>
+                            <td>@appointment.StartTime</td>
+                            @foreach (var cab in Cabinets)
+                            {
+                                @if (cab.Id.Equals(appointment.CabinetId))
+                                {
+                                    <td>@cab.Name</td>
+                                }
+                            }
+
+                            <td>@appointment.Description</td>
+
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+
+
+        }
+
+    </div>
+</div>
+
+
