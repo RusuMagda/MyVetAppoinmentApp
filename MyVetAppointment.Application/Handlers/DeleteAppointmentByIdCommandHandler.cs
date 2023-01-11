@@ -19,7 +19,7 @@ namespace MyVetAppointment.Application.Handlers
             var appointment = AppointmentMapper.Mapper.Map<AppointmentResponse>(await repository.GetByIdAsync(request.Id));
             if (appointment == null)
             {
-                throw new ApplicationException("Appointment not found");
+                return default!;
             }
 
             repository.Delete(request.Id);

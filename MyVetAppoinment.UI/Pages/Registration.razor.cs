@@ -17,8 +17,6 @@ namespace MyVetAppoinment.UI.Pages
             get;
             set;
         }
-
-
         protected string Title = "Add";
 
 
@@ -30,14 +28,11 @@ namespace MyVetAppoinment.UI.Pages
             Console.WriteLine(cli.GetType());
             if (cli.GetType().ToString() == "MyVetAppoinment.Shared.Domain.Client")
             {
-                var cl = await ClientDataService.GetClientEmail(client.EMail);
-                Console.WriteLine(client.Name);
-                Console.WriteLine(cl.Name);
-                if(cl.Name==client.Name && cl.PhoneNumber==client.PhoneNumber)
+                var currentClient = await ClientDataService.GetClientEmail(client.EMail);
+                if(currentClient != null && currentClient.Name==client.Name && currentClient.PhoneNumber==client.PhoneNumber)
                     NavigationManager.NavigateTo("/addpet/" + cli.Id + "/" + CabinetId);
                 else
                     NavigationManager.NavigateTo("/");
-
             }
             else
             {
@@ -45,26 +40,14 @@ namespace MyVetAppoinment.UI.Pages
                 ClientDataService.AddClient(client);
                 await Task.Delay(2000);
 
-              
-                var cl = await ClientDataService.GetClientEmail(client.EMail);
-                if (cl.Name == client.Name && cl.PhoneNumber == client.PhoneNumber)
-                    NavigationManager.NavigateTo("/addpet/" + cl.Id + "/" + CabinetId);
+                var currentClient = await ClientDataService.GetClientEmail(client.EMail);
+                if (currentClient != null && currentClient.Name == client.Name && currentClient.PhoneNumber == client.PhoneNumber)
+                    NavigationManager.NavigateTo("/addpet/" + currentClient.Id + "/" + CabinetId);
                 else
                 {
-
                     NavigationManager.NavigateTo("/");
                 }
             }
-
-
-
-
-
-
-
-
-
-
         }
         public async Task Cancel()
         {

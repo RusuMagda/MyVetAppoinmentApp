@@ -42,11 +42,6 @@ namespace MyVetAppoinment.UI.Pages
                     Clients = result.ToList();
                 }
             }
-            
-            
-            
-
-
         }
     }
 }

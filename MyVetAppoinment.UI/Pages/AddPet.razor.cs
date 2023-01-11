@@ -45,9 +45,8 @@ namespace MyVetAppoinment.UI.Pages
                 await Task.Delay(2000);
                
                 var pet1 = await PetDataService.GetPetId(ClientId,pet.Name);
-                
 
-                NavigationManager.NavigateTo("/addappointment/" + pet1.Id + "/" + CabinetId);
+                if (pet1 != null) NavigationManager.NavigateTo("/addappointment/" + pet1.Id + "/" + CabinetId);
             }
             else
             {

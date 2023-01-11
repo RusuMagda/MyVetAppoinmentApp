@@ -20,7 +20,7 @@ namespace MyVetAppointment.Application.Handlers
             var petEntity = PetMapper.Mapper.Map<Pet>(request);
             if (petEntity == null)
             {
-                throw new ApplicationException("Issue with the Mapper");
+                return default!;
             }
 
             await repository.AddAsync(petEntity);
