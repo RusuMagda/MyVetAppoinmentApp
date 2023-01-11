@@ -30,9 +30,11 @@
                                 <p><em>Loading...</em></p>
                             }
                             else
-                            @foreach (var cabinet in Cabinets)
                             {
-                                <option value="@cabinet.Id"> @cabinet.Name </option>
+                                @foreach (var cabinet in Cabinets)
+                                {
+                                    <option value="@cabinet.Id"> @cabinet.Name </option>
+                                }
                             }
 
                         </select>
