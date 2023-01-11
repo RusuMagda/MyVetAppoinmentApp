@@ -18,6 +18,8 @@ C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Q
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetAllAppointmentsQueryHandler.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetAllPetsQuery.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetAllPetsQueryHandler.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetAppointmentByCabinetIdQuery.cs
+C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetAppointmentByCabinetIdQueryHandler.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetAppointmentByIdQuery.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetAppointmentByIdQueryHandler.cs
 C:\Users\Oana\Documents\GitHub\MyVetAppoinmentApp\MyVetAppointment.Application\Queries\GetPetAppointmentsQuery.cs
