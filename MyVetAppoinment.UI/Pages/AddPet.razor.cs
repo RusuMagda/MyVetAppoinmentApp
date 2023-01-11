@@ -23,10 +23,8 @@ namespace MyVetAppoinment.UI.Pages
         public String? month { get; set; }
         [Parameter]
         public String? day { get; set; }
-        [Parameter]
-        public String? hour { get; set; }
-       
-       
+
+
         public EventCallback<string> ValueChanged { get; set; }
 
         private Pet pet = new();
@@ -40,7 +38,7 @@ namespace MyVetAppoinment.UI.Pages
             if (Value == null)
             {
                 
-                DateTime date1 = new DateTime(Int32.Parse(year!), Int32.Parse(month!), Int32.Parse(day!), Int32.Parse(hour!), 0, 0, DateTimeKind.Utc);
+                DateTime date1 = new DateTime(Int32.Parse(year!), Int32.Parse(month!), Int32.Parse(day!), 0, 0, 0, DateTimeKind.Utc);
                 pet.OwnerId = ClientId;
                 pet.Birthdate = Convert.ToDateTime(date1);
                 PetDataService.AddPet(pet);

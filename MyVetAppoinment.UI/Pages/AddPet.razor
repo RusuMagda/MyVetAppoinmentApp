@@ -33,12 +33,7 @@
                     <InputText id="Day" class="form-control" @bind-Value="@day" placeholder=" Enter  Day"></InputText>
                     <ValidationMessage For="@(() => day)" />
                 </div>
-                <div class="form-group">
-                    <label for="Hour"> Hour: </label>
-                    <InputText id="Hour" class="form-control" @bind-Value="@hour" placeholder=" Enter  Hour"></InputText>
-                    <ValidationMessage For="@(() => hour)" />
-                </div>
-             
+
                 <div class="form-group">
 
                     <label>Pet: </label>
@@ -49,10 +44,12 @@
                             <p><em>Loading...</em></p>
                         }
                         else
+                        {
                             @foreach (var pet in Pets)
                             {
                                 <option value="@pet.Id"> @pet.Name </option>
                             }
+                        }
 
                     </select>
 

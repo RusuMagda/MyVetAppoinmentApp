@@ -12,8 +12,6 @@ namespace MyVetAppoinment.UI.Pages
 
         public Dictionary<Drug, int> ShoppingList = new Dictionary<Drug, int>();
 
-        public bool PayButtonPressed = false;
-
         public string PageScope = "Shop";
 
         [Parameter]
@@ -47,13 +45,15 @@ namespace MyVetAppoinment.UI.Pages
             }
         }
 
-        public async Task RemoveDrugFromList(Drug drug)
+        public Task RemoveDrugFromList(Drug drug)
         {
             ShoppingList[drug] -= 1;
             if (ShoppingList[drug] == 0)
             {
                 ShoppingList.Remove(drug);
             }
+
+            return Task.CompletedTask;
         }
 
         public int GetTotal()
@@ -66,29 +66,31 @@ namespace MyVetAppoinment.UI.Pages
             return total;
         }
 
-        public void ShowPaymentForm()
+        public Task ShowPaymentForm()
         {
-            PayButtonPressed = true;
+            PageScope = "Payment";
+            NavigationManager.NavigateTo("/payment");
+            return Task.CompletedTask;
         }
 
         public void CancelPayment()
         {
-            PayButtonPressed = false;
             Payment = new Payment();
+            PageScope = "Shop";
+            NavigationManager.NavigateTo("/seedrugs/" + ShopId);
         }
 
-        public async Task MakePayment()
+        public Task MakePayment()
         {
             foreach (var drug in ShoppingList.Keys)
             {
                 DrugDataService.DecreaseDrugStock(drug.ID, ShoppingList[drug], drug);
             }
+            
+            PageScope = "Bill";
 
-            PayButtonPressed = false;
-            //ShoppingList = new Dictionary<Drug, int>();
-            PageScope = "Message";
-
-            NavigationManager.NavigateTo("/successfulpayment");
+            NavigationManager.NavigateTo("/bill");
+            return Task.CompletedTask;
         }
 
         private Task OnValueChanged(ChangeEventArgs e)
@@ -96,12 +98,5 @@ namespace MyVetAppoinment.UI.Pages
             var result = e.Value;
             return ValueChanged.InvokeAsync(Value);
         }
-
-        public void ViewBill()
-        {
-            PageScope = "Bill";
-            NavigationManager.NavigateTo("/bill");
-		}
-
     }
 }
