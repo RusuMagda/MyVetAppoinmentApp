@@ -42,13 +42,13 @@ namespace MyVetAppoinment.UI.Pages
         {
             if (model.StartTime.DayOfWeek == DayOfWeek.Saturday || model.StartTime.DayOfWeek == DayOfWeek.Sunday)
             {
-                error = "Inchis sambata si duminica";
+                error = "Closed on Saturday and Sunday";
               
             }
             else
                 if (model.StartTime.Hour < 9 || model.StartTime.Hour > 16)
             {
-                error = "In afara orelor de program";
+                error = "Outside of program hours";
                
             }
             else
@@ -71,26 +71,26 @@ namespace MyVetAppoinment.UI.Pages
                     foreach (var a in Appointments)
                         if (a.StartTime == model.StartTime)
                         {
-                            Console.WriteLine("__________exista");
-                            error = "Exista deja programare";
+                           
+                            error = "There is already appointment";
                             ok = true;
                             break;
 
                         }
                         else if (a.EndTime.Year == model.EndTime.Year && a.EndTime.Month == model.EndTime.Month && a.EndTime.Day == model.EndTime.Day && (((a.EndTime.TimeOfDay - model.StartTime.TimeOfDay).Minutes > 0 && (a.EndTime.TimeOfDay - model.StartTime.TimeOfDay).Minutes < 30) || ((model.EndTime.TimeOfDay - a.StartTime.TimeOfDay).Minutes > 0 && (model.EndTime.TimeOfDay - a.StartTime.TimeOfDay).Minutes < 30)))
                         {
-                            Console.WriteLine("__________exista desfasurare");
-                            error = "Exista deja programare in desfasurare";
+                            
+                            error = "There is already appointment";
                             ok = true;
                             break;
 
                         }
 
                 }
-                Console.WriteLine("hai ua");
+              
                 if (ok == false)
                 {
-                    Console.WriteLine(")))))))))");
+                   
                     AppointmentDataService?.AddAppointment(model, (Guid)PetId, (Guid)CabinetId);
 
 
