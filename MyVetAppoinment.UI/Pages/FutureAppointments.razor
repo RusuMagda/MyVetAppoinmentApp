@@ -10,10 +10,11 @@
             {
                 <p><em>Loading...</em></p>
             }
-            else
-                @foreach (var pet in Pets)
-                {
-                    <option value="@pet.Id"> @pet.Name </option>
+            else{
+                    @foreach (var pet in Pets)
+                    {
+                        <option value="@pet.Id"> @pet.Name </option>
+                    }
                 }
 
         </select>

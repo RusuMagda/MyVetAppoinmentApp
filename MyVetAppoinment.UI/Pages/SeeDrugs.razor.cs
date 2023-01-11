@@ -33,7 +33,7 @@ namespace MyVetAppoinment.UI.Pages
             }
         }
 
-        public async Task AddDrugToList(Drug drug)
+        public Task AddDrugToList(Drug drug)
         {
             if (ShoppingList.ContainsKey(drug))
             {
@@ -43,6 +43,8 @@ namespace MyVetAppoinment.UI.Pages
             {
                 ShoppingList.Add(drug, 1);
             }
+
+            return Task.CompletedTask;
         }
 
         public Task RemoveDrugFromList(Drug drug)

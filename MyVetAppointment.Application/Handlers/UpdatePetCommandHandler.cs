@@ -20,7 +20,7 @@ namespace MyVetAppointment.Application.Handlers
             var pet = PetMapper.Mapper.Map<Pet>(await repository.GetByIdAsync(request.Id));
             if (pet == null)
             {
-                throw new ApplicationException("Pet not found");
+                return default!;
             }
             pet.OwnerId = request.OwnerId;
             pet.Birthdate = request.Birthdate;

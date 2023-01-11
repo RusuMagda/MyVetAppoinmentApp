@@ -32,16 +32,13 @@ namespace MyVetAppoinment.UI.Pages.Services
             return await httpClient.GetFromJsonAsync<Shop>($"https://localhost:7193/{ApiUrl}" + shopId);
         }
 
-        public async Task<IEnumerable<Drug>?> GetShopDrugs(Guid shopId)
-        {
-            return await JsonSerializer
-                .DeserializeAsync<IEnumerable<Drug>>
-                (await httpClient.GetStreamAsync($"https://localhost:7193/{ApiUrl}" + shopId + "/drugs"),
-                    new JsonSerializerOptions()
-                    {
-                        PropertyNameCaseInsensitive = true,
-                    });
-        }
+        public async Task<IEnumerable<Drug>> GetShopDrugs(Guid shopId) => (await JsonSerializer
+            .DeserializeAsync<IEnumerable<Drug>>
+            (await httpClient.GetStreamAsync($"https://localhost:7193/{ApiUrl}" + shopId + "/drugs"),
+                new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true
+                }))!;
 
         public async void AddShop(Shop shop)
         {

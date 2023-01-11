@@ -10,10 +10,11 @@
         {
             <p><em>Loading...</em></p>
         }
-        else
-            @foreach (var cabinet in Cabinets)
-            {
-                <option value="@cabinet.Id"> @cabinet.Name </option>
+        else{
+                @foreach (var cabinet in Cabinets)
+                {
+                    <option value="@cabinet.Id"> @cabinet.Name </option>
+                }
             }
 
     </select>
@@ -42,8 +43,6 @@
                     }
                 </div>
             </div>
-
-
 
         }
 

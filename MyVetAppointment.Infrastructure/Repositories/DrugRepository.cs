@@ -41,14 +41,6 @@ namespace MyVetAppointment.Infrastructure.Repositories
         {
             return await context.Drugs.FirstOrDefaultAsync(d => d.Id == id);
         }
-        public async Task<IReadOnlyCollection<Drug>> GetDrugsAsync(Guid id)
-        {
-            var shops =  context.Shops.Where(a=>a.CabinetId==id).Select(a => a.ShopId).Single();
-          
-            var drugs =  this.context.Drugs.Where(d => d.ShopId == shops).ToList();
-          
-            return drugs;
-        }
 
         public void Save()
         {
@@ -56,6 +48,19 @@ namespace MyVetAppointment.Infrastructure.Repositories
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

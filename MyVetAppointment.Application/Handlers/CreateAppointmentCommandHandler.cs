@@ -15,12 +15,12 @@ namespace MyVetAppointment.Application.Handlers
         {
             this.repository = repository;
         }
-        public async Task<AppointmentResponse?> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
+        public async Task<AppointmentResponse> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
         {
             var appointmentEntity = AppointmentMapper.Mapper.Map<Appointment>(request);
             if (appointmentEntity == null)
             {
-                return default;
+                return default!;
             }
             appointmentEntity.AttachCabinet(request.CabinetId);
             appointmentEntity.AttachPet(request.PetId);

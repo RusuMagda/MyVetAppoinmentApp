@@ -14,11 +14,9 @@ namespace MyVetAppoinment.UI.Pages
             get;
             set;
         }
-      
-
+        
         protected string Title = "Add";
-       
-       
+        
         protected async Task SaveCabinet()
         {
             CabinetDataService.AddCabinet(cabinet);       
