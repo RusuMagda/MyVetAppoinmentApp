@@ -1,12 +1,67 @@
 ﻿@page "/addappointment/{petId:guid}/{cabinetId:guid}"
 @inject HttpClient Http
-@inject DialogService DialogService
 @inject NavigationManager NavigationManager
 <link href="css/appointment.css" rel="stylesheet" />
 @page "/data"
 @using MyVetAppoinment.Shared.Domain;
 
-<RadzenTemplateForm TItem="Appointment" Data="@model" Submit=@OnSubmit>
+
+<head>
+    <link href="../css/shop.css" rel="stylesheet" />
+</head>
+<div class="cont">
+    <div class="row"><h1> Pet</h1></div>
+
+
+    <div class="row">
+        <div class="modal-body">
+            <EditForm Model="@model" OnValidSubmit="@OnSubmit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                @*<div class="form-group">
+                    <label for="Date"> Data: </label>
+                    <input type="datetime-local" id="Date" class="form-control" @bind-Value="@model.StartTime"/>
+                    <ValidationMessage For="@(() => model.StartTime)" />
+                </div>*@
+                <div class="form-group">
+                <label for="Date"> Data si ora: </label>
+                    <input type="datetime-local" id="Date" class="form-control" @bind-value="@model.StartTime" />
+                    <ValidationMessage For="@(() => model.StartTime)" />
+                </div>
+               
+                <div class="form-group">
+                    <label for="Description"> Descriere: </label>
+                    <InputText id="Description" class="form-control" @bind-Value="@model.Description" placeholder=" Enter  Description"></InputText>
+                    <ValidationMessage For="@(() => model.Description)" />
+                </div>
+                <div class="form-group">
+                   
+                    <div class="col">
+                        @if (error != null)
+                        {
+                            <div> @error</div>
+                        }
+
+                    </div>
+                </div>
+        
+               
+                <button type="submit" class="btn btn-primary">Next step</button>
+                <a class="btn btn-outline-primary" @onclick="@Cancel">Close</a>
+            </EditForm>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+@*<RadzenTemplateForm TItem="Appointment" Data="@model" Submit=@OnSubmit>
 
     <div class="antet">
        <strong> PROGRAM:
@@ -63,3 +118,4 @@
     </div>
 
 </RadzenTemplateForm>
+*@

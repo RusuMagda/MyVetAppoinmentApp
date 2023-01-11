@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MyVetAppoinment.Shared.Domain;
 using MyVetAppoinment.UI.Pages.Services;
-using Radzen;
+
 namespace MyVetAppoinment.UI.Pages
 {
     public partial class AddAppointment
@@ -21,10 +21,13 @@ namespace MyVetAppoinment.UI.Pages
         [Parameter]
         public String Description { get; set; }
 
+        [Parameter]
+        public TimeOnly time { get; set; }
 
 
 
-       
+
+
 
         private Appointment model = new Appointment();
         public List<Appointment> Appointments { get; set; } = default!;
@@ -40,13 +43,13 @@ namespace MyVetAppoinment.UI.Pages
             if (model.StartTime.DayOfWeek == DayOfWeek.Saturday || model.StartTime.DayOfWeek == DayOfWeek.Sunday)
             {
                 error = "Inchis sambata si duminica";
-                DialogService.Close(model);
+              
             }
             else
                 if (model.StartTime.Hour < 9 || model.StartTime.Hour > 16)
             {
                 error = "In afara orelor de program";
-                DialogService.Close(model);
+               
             }
             else
             {
